@@ -1,27 +1,28 @@
 <?php
 
 
-class Article
+class Resource
 {
-    private ?int $id = null;
+    private ?int $id_res = null;
     private string $title;
     private string $description;
-    private string $type;
+    private string $url;
+    private string $category;
 
     /**
      * @return int|null
      */
-    public function getId(): ?int
+    public function getIdRes(): ?int
     {
-        return $this->id;
+        return $this->id_res;
     }
 
     /**
-     * @param int|null $id
+     * @param int|null $id_res
      */
-    public function setId(?int $id): self
+    public function setIdRes(?int $id_res): self
     {
-        $this->id = $id;
+        $this->id_res = $id_res;
         return $this;
     }
 
@@ -62,17 +63,34 @@ class Article
     /**
      * @return string
      */
-    public function getType(): string
+    public function getUrl(): string
     {
-        return $this->type;
+        return $this->url;
     }
 
     /**
-     * @param string $type
+     * @param string $url
      */
-    public function setType(string $type): self
+    public function setUrl(string $url): self
     {
-        $this->type = $type;
+        $this->url = $url;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCategory(): string
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param string $category
+     */
+    public function setCategory(string $category): self
+    {
+        $this->category = $category;
         return $this;
     }
 }
