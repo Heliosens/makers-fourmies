@@ -1,27 +1,45 @@
 <?php
 
 
-class Article
+class Image
 {
-    private ?int $id = null;
+    private ?int $id_img;
+    private string $name;
     private string $title;
     private string $description;
-    private Type $type;
+    private Article $article;
 
     /**
      * @return int|null
      */
-    public function getId(): ?int
+    public function getIdImg(): ?int
     {
-        return $this->id;
+        return $this->id_img;
     }
 
     /**
-     * @param int|null $id
+     * @param int|null $id_img
      */
-    public function setId(?int $id): self
+    public function setIdImg(?int $id_img): self
     {
-        $this->id = $id;
+        $this->id_img = $id_img;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName(string $name): self
+    {
+        $this->name = $name;
         return $this;
     }
 
@@ -60,19 +78,19 @@ class Article
     }
 
     /**
-     * @return Type
+     * @return Article
      */
-    public function getType(): Type
+    public function getArticle(): Article
     {
-        return $this->type;
+        return $this->article;
     }
 
     /**
-     * @param Type $type
+     * @param Article $article
      */
-    public function setType(Type $type): self
+    public function setArticle(Article $article): self
     {
-        $this->type = $type;
+        $this->article = $article;
         return $this;
     }
 }
