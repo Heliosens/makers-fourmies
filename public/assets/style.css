@@ -14,7 +14,7 @@ body {
 
 #band {
     width: 100%;
-    padding: 10%;
+    padding: 6%;
     background-image: url("/img/gears.jpg");
     background-size: cover;
     display: flex;
@@ -31,9 +31,9 @@ body {
 .frame {
     padding-top: 1rem;
     width: 95%;
-    margin: auto;
 }
 
 .frame > div {
-    width: 22%;
+    width: 19rem;
+    height: 20rem;
 }
