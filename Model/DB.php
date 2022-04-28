@@ -4,10 +4,10 @@
 class DB
 {
     private static ?PDO $pdo = null;
-    private static $server = 'localhost';
-    private static $db = 'makersfourmies';
-    private static $user = 'root';
-    private static $pwd = '';
+    private static string $server = 'localhost';
+    private static string $db = 'makersfourmies';
+    private static string $user = 'root';
+    private static string $pwd = '';
 
     /**
      * @return PDO
