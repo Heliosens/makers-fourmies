@@ -4,7 +4,7 @@
 <section class="frame mx-auto d-flex flex-wrap justify-content-around">
     <div>
         <div class="card shadow">
-            <a href="" class="text-decoration-none card-header">
+            <a href="index.php?c=maker" class="text-decoration-none card-header">
                 <h5  class="text-dark" >Maker</h5>
             </a>
             <div class="card-body">
@@ -15,7 +15,7 @@
     </div>
     <div>
         <div class="card shadow">
-            <a href="" class="text-decoration-none card-header">
+            <a href="index.php?c=resources" class="text-decoration-none card-header">
                 <h5 class="text-dark">Ressources</h5>
             </a>
             <div class="card-body">
@@ -26,7 +26,7 @@
     </div>
     <div>
         <div class="card shadow">
-            <a href="" class="text-decoration-none card-header">
+            <a href="index.php?c=project" class="text-decoration-none card-header">
                 <h5 class="text-dark">Projets</h5>
             </a>
             <div class="card-body">
@@ -38,7 +38,7 @@
     </div>
     <div>
         <div class="card shadow">
-            <a href="" class="text-decoration-none card-header">
+            <a href="index.php?c=contact" class="text-decoration-none card-header">
                 <h5 class="text-dark">Contact</h5>
             </a>
             <div class="card-body">

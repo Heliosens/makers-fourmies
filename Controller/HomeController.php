@@ -3,8 +3,8 @@
 
 class HomeController extends Controller
 {
-    public function view()
+    public function page()
     {
-        $this->render('home/home');
+        $this->render('home');
     }
 }
