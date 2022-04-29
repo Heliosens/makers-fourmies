@@ -37,3 +37,13 @@ body {
     width: 18rem;
     height: 12rem;
 }
+
+.bgImg {
+    background-image: url("/img/gears.jpg");
+}
+
+.bgImg > section {
+    width: 90%;
+    margin: 0 auto;
+    background: #f8f9fa;
+}
