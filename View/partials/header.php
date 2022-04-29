@@ -16,6 +16,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="index.php">MAKERS FOURMIES</a>
+            <!--  button for responsive    -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                     aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -47,6 +48,14 @@
                         <a class="nav-link" href="index.php?c=contact">Contact</a>
                     </li>
                 </ul>
+            </div>
+            <div class="d-flex">
+                <a class="nav-link text-secondary" href="index.php?" title="inscription">
+                    <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                </a>
+                <a class="nav-link text-secondary" href="index.php?" title="connexion">
+                    <i class="fa-solid fa-user"></i>
+                </a>
             </div>
         </div>
     </nav>
