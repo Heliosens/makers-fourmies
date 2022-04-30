@@ -1,5 +1,5 @@
 <section class="">
-    <div class="">
+    <div class="mx-auto">
         contact
     </div>
 </section>

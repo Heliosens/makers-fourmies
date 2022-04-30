@@ -24,7 +24,7 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="index.php">Home</a>
+                        <a class="nav-link" aria-current="page" href="index.php?c=maker">Maker</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="index.php?c=resources">Ressources</a>
@@ -42,7 +42,7 @@
                             <?php
                             foreach ($categories['item'] as $category){?>
                                 <li>
-                                    <a class="dropdown-item" href="index?c=projects&p=page"><?=$category->getCategoryName()?></a>
+                                    <a class="dropdown-item" href="index?c=projects&p=page&o=<?=$category->getIdCat()?>"><?=$category->getCategoryName()?></a>
                                 </li><?php
                             }
                             ?>

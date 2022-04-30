@@ -1,5 +1,5 @@
 <section>
-    <div>
+    <div class="mx-auto">
         <h2>page projets</h2>
         <?php
         echo $data['title'];

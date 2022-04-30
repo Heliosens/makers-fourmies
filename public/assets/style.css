@@ -42,7 +42,7 @@ body {
 .frame > a {
     width: 17rem;
     height: 9rem;
-    margin: 0 1rem;
+    /*margin: 0 1rem;*/
 }
 
 section {
@@ -55,6 +55,13 @@ section {
 section >  div {
     width: 90%;
     min-height: 80vh;
-    margin: 0 auto;
     background: #f8f9fa;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+article {
+    margin: 0 1rem;
 }
