@@ -24,21 +24,25 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+                        <a class="nav-link" aria-current="page" href="index.php">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="index.php?c=resources">Ressources</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="index.php?c=project" id="navbarDropdownMenuLink" role="button"
+                        <a class="nav-link dropdown-toggle" href="index.php?c=projects" id="navbarDropdownMenuLink" role="button"
                            data-bs-toggle="dropdown" aria-expanded="false">
                             Projets
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li>
+                                <a class="dropdown-item" href="index.php?c=projects&p=all_categories">Toutes les catégories</a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
                             <?php
                             foreach ($categories['item'] as $category){?>
                                 <li>
-                                    <a class="dropdown-item" href="#"><?=$category->getCategoryName()?></a>
+                                    <a class="dropdown-item" href="index?c=projects&p=page"><?=$category->getCategoryName()?></a>
                                 </li><?php
                             }
                             ?>

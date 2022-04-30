@@ -1,7 +1,7 @@
 <?php
 
 
-class Manager
+class CategoryManager
 {
     /**
      * @return array

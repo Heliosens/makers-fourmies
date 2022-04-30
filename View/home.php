@@ -1,7 +1,7 @@
-<section id="band">
+<header id="band">
     <h1>MAKERS FOURMIES</h1>
-</section>
-<section class="frame mx-auto d-flex flex-wrap justify-content-around">
+</header>
+<div class="frame mx-auto d-flex flex-wrap justify-content-around">
     <div>
         <div class="card shadow">
             <a href="index.php?c=maker" class="text-decoration-none card-header">
@@ -26,12 +26,12 @@
     </div>
     <div>
         <div class="card shadow">
-            <a href="index.php?c=project" class="text-decoration-none card-header">
+            <a href="index.php?c=projects&p=all_categories" class="text-decoration-none card-header">
                 <h5 class="text-dark">Projets</h5>
             </a>
             <div class="card-body">
                 <h5 class="card-title">Réalisations de makers</h5>
-                <p class="card-text">Retrouvez les projets<br>Fiche technique et images<br>
+                <p class="card-text">Retrouvez les projets<br>Fiches technique et images<br>
                     Partagez vos créations</p>
             </div>
         </div>
@@ -48,4 +48,4 @@
             </div>
         </div>
     </div>
-</section>
+</div>

@@ -1,6 +1,6 @@
-<div class="bgImg">
-    <section class="">
+<section class="">
+    <div class="">
         contact
-    </section>
-</div>
+    </div>
+</section>
 

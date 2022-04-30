@@ -11,7 +11,7 @@ require __DIR__ . '/Controller/Controller.php';
 require __DIR__ . '/Controller/HomeController.php';
 require __DIR__ . '/Controller/MakerController.php';
 require __DIR__ . '/Controller/ResourcesController.php';
-require __DIR__ . '/Controller/ProjectController.php';
+require __DIR__ . '/Controller/ProjectsController.php';
 require __DIR__ . '/Controller/ContactController.php';
 
-require __DIR__ . '/Model/Manager/Manager.php';
+require __DIR__ . '/Model/Manager/CategoryManager.php';
