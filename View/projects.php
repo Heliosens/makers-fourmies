@@ -1,17 +1,8 @@
 <section>
     <div class="mx-auto">
-        <h2>page projets</h2>
         <?php
-        echo $data['title'];
-        foreach ($categories['item'] as $category){?>
-            <a class="card text-decoration-none fs-4 text shadow d-flex justify-content-center align-items-center"
-               href="index?c=projects">
-                <p class="text-dark">
-                    <?=$category->getCategoryName()?>
-                </p>
-            </a>
-            <?php
-        }
+        var_dump($categories);
+        echo '<h2>' . $article->getCategoryName() . '</h2>';
         ?>
     </div>
 </section>

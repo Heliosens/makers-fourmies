@@ -1,24 +1,61 @@
 <section>
-    <div class="d-flex flex-column align-items-center">
-        <h2>Logiciels gratuits à télècharger</h2> <!--    category   -->
-        <div class="d-flex">
-            <div class="w-25 text-center">
-                <a href="#">Open office</a> <!--    url title   -->
+    <div class="d-grid gap-3 mx-auto">
+        <article class="card">
+            <h2 class="card-header">Logiciels gratuits à télècharger</h2> <!--    category   -->
+            <div class="card-body">
+                <div class="mb-2">
+                    <a class="btn btn-primary" href="#">Open office</a> <!--    url title   -->
+                    <!--    description   -->
+                    <p class="card-text">
+                        Traitement de texte, tableur, dessin 2D, présentation. Logiciel en open source, à télécharger et
+                        installer gratuitement.
+                    </p>
+                </div>
+                <div class="mb-2">
+                    <a class="btn btn-primary" href="#">Inkscape</a> <!--    url title   -->
+                    <div><!--    description   -->
+                        <p>Dessin 2D, à télécharger et installer gratuitement</p>
+                    </div>
+                </div>
             </div>
-            <div><!--    description   -->
-                <p>Traitement de texte, tableur, dessin 2D, présentation. Logiciel en open source, à télécharger et
-                    installer gratuitement</p>
+        </article>
+        <article class="card">
+            <h2 class="card-header">Logiciels gratuits à télècharger</h2> <!--    category   -->
+            <div class="card-body">
+                <div class="mb-2">
+                    <a class="btn btn-primary" href="#">Open office</a> <!--    url title   -->
+                    <!--    description   -->
+                    <p class="card-text">
+                        Traitement de texte, tableur, dessin 2D, présentation. Logiciel en open source, à télécharger et
+                        installer gratuitement.
+                    </p>
+                </div>
+                <div class="mb-2">
+                    <a class="btn btn-primary" href="#">Inkscape</a> <!--    url title   -->
+                    <div><!--    description   -->
+                        <p>Dessin 2D, à télécharger et installer gratuitement</p>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="d-flex">
-            <div class="w-25 text-center">
-                <a href="#">Open office</a> <!--    url title   -->
+        </article>
+        <article class="card">
+            <h2 class="card-header">Logiciels gratuits à télècharger</h2> <!--    category   -->
+            <div class="card-body">
+                <div class="mb-2">
+                    <a class="btn btn-primary" href="#">Open office</a> <!--    url title   -->
+                    <!--    description   -->
+                    <p class="card-text">
+                        Traitement de texte, tableur, dessin 2D, présentation. Logiciel en open source, à télécharger et
+                        installer gratuitement.
+                    </p>
+                </div>
+                <div class="mb-2">
+                    <a class="btn btn-primary" href="#">Inkscape</a> <!--    url title   -->
+                    <div><!--    description   -->
+                        <p>Dessin 2D, à télécharger et installer gratuitement</p>
+                    </div>
+                </div>
             </div>
-            <div><!--    description   -->
-                <p>Traitement de texte, tableur, dessin 2D, présentation. Logiciel en open source, à télécharger et
-                    installer gratuitement</p>
-            </div>
-        </div>
+        </article>
     </div>
 </section>
-

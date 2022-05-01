@@ -30,20 +30,25 @@
                         <a class="nav-link" href="index.php?c=resources">Ressources</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="index.php?c=projects" id="navbarDropdownMenuLink" role="button"
-                           data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="index.php?c=projects" id="navbarDropdownMenuLink"
+                           role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Projets
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <li>
-                                <a class="dropdown-item" href="index.php?c=projects&p=all_categories">Toutes les catégories</a>
+                                <a class="dropdown-item" href="index.php?c=projects&p=all_categories">Toutes les
+                                    catégories</a>
                             </li>
                             <li><hr class="dropdown-divider"></li>
                             <?php
-                            foreach ($categories['item'] as $category){?>
-                                <li>
-                                    <a class="dropdown-item" href="index?c=projects&p=page&o=<?=$category->getIdCat()?>"><?=$category->getCategoryName()?></a>
-                                </li><?php
+                            $categories = $categories['categories'];
+                            foreach ($categories as $category){?>
+                            <li>
+                                <a class="dropdown-item"
+                                   href="index?c=projects&p=page&o=<?=$category->getIdCat()?>">
+                                    <?=$category->getCategoryName()?>
+                                </a>
+                            </li><?php
                             }
                             ?>
                         </ul>
@@ -52,15 +57,16 @@
                         <a class="nav-link" href="index.php?c=contact">Contact</a>
                     </li>
                 </ul>
+                <div class="d-flex flex-grow-1 justify-content-end">
+                    <a class="nav-link text-secondary" href="index.php?c=user&p=register" title="Inscription">
+                        <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                    </a>
+                    <a class="nav-link text-secondary me-3" href="index.php?c=user&p=connection" title="Connexion">
+                        <i class="fa-solid fa-user"></i>
+                    </a>
+                </div>
             </div>
-            <div class="d-flex">
-                <a class="nav-link text-secondary" href="index.php?" title="inscription">
-                    <i class="fa-solid fa-arrow-right-to-bracket"></i>
-                </a>
-                <a class="nav-link text-secondary" href="index.php?" title="connexion">
-                    <i class="fa-solid fa-user"></i>
-                </a>
-            </div>
+
         </div>
     </nav>
 </header>
