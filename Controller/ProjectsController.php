@@ -12,7 +12,7 @@ class ProjectsController extends Controller
     public function page($option){
         // get category all projects
 
-        $data = ['title' => $option];
+
         $this->render('projects', $data);
     }
 
