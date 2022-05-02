@@ -4,16 +4,33 @@
 class ProjectsController extends Controller
 {
 
-    public function all_categories(){
-        // display all categories names
-        $this->render('categories_project');
+    /**
+     * display every techniques name
+     */
+    public function all_technic(){
+        $this->render('techniques');
     }
 
+    /**
+     * @param $option
+     */
+    public function one_technic($option){
+        $data = [
+            'projects' => ProjectsManager::projectByTechnic($option),
+            'title' => TechnicManager::techName($option)
+            ];
+        $this->render('project_by_tech', $data);
+    }
+
+    /**
+     * @param $option
+     */
     public function page($option){
-        // get category all projects
-
-
-        $this->render('projects', $data);
+        // get selected projects
+        $data = [
+            'project' => ProjectsManager::oneProject($option)
+        ];
+        $this->render('project', $data);
     }
 
 }

@@ -7,5 +7,7 @@ class UserController extends Controller
         $this->render('register');
     }
 
-
+    public function connection (){
+        $this->render('connection');
+    }
 }
