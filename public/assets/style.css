@@ -29,16 +29,6 @@ body {
     text-align: center;
 }
 
-.frame {
-    padding-top: 1rem;
-}
-
-.frame > a {
-    width: 17rem;
-    height: 9rem;
-    /*margin: 0 1rem;*/
-}
-
 section {
     min-height: 85vh;
     background-image: url("/img/gears.jpg");
@@ -49,9 +39,7 @@ section {
 
 section >  div {
     width: 90%;
-    min-height: 82vh;
     background: #e5eaff;
-    padding: 1rem 0 4rem 0;
 }
 
 #home {

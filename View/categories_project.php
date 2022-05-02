@@ -1,13 +1,19 @@
 <section>
-    <div class="frame mx-auto d-flex flex-wrap justify-content-center gap-3">
+    <div class="mx-auto py-3 row row-cols-1 row-cols-md-3 g-4">
         <?php
         foreach ($categories as $category){?>
-            <a class="card text-decoration-none fs-4 text shadow d-flex justify-content-center align-items-center"
-               href="index?c=projects&p=page&o=<?=$category->getIdCat()?>">
-                <p class="text-dark">
-                    <?=$category->getCategoryName()?>
-                </p>
-            </a>
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="card-body my-4">
+                            <a class="text-decoration-none justify-content-center fs-4 text-center shadow"
+                               href="index?c=projects&p=page&o=<?=$category->getIdCat()?>">
+                                <p class="text-dark">
+                                    <?=$category->getCategoryName()?>
+                                </p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             <?php
         }
         ?>

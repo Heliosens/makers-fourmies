@@ -1,5 +1,5 @@
 <section>
-    <div class="d-grid gap-3 mx-auto">
+    <div class="d-grid py-3 gap-3 mx-auto">
         <article class="card">
             <h2 class="card-header">Logiciels gratuits à télècharger</h2> <!--    category   -->
             <div class="card-body">

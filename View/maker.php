@@ -1,5 +1,5 @@
-<section>
-    <div class="d-grid gap-3 mx-auto">
+<section class="pt-3">
+    <div class="d-grid py-3 gap-3 mx-auto">
         <article class="card">
             <h2 class="card-header ">Etre maker, qu'est-ce c'est ?</h2>
             <div class="card-body">

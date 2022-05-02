@@ -44,7 +44,7 @@
                 </a>
                 <div class="card-body">
                     <h5 class="card-title">Une question ?</h5>
-                    <p class="card-text">Contactez nous pour une question ou un message sur les makers,
+                    <p class="card-text">Contactez nous pour une question ou un message sur les makers,<br>
                         un avis sur le site...</p>
                 </div>
             </div>
