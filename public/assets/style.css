@@ -9,6 +9,8 @@ html {
 }
 
 body {
+    min-height: 100vh;
+    position: relative;
     width: 100%;
     background: #e5eaff;
 }
@@ -30,7 +32,7 @@ body {
 }
 
 section {
-    min-height: 90vh;
+    min-height: 82vh;
     background-image: url("/img/gears.jpg");
     background-size: cover;
     background-attachment: fixed;
@@ -57,4 +59,3 @@ article {
 .card-header {
     background-color: #9ec5fe;
 }
-

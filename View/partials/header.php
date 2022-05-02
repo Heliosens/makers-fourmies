@@ -36,17 +36,17 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <li>
-                                <a class="dropdown-item" href="index.php?c=projects&p=all_categories">Toutes les
-                                    catégories</a>
+                                <a class="dropdown-item" href="index.php?c=projects&p=all_technic">Toutes les
+                                    techniques</a>
                             </li>
                             <li><hr class="dropdown-divider"></li>
                             <?php
-                            $categories = $categories['categories'];
-                            foreach ($categories as $category){?>
+                            $techniques = $tech['technic'];
+                            foreach ($techniques as $item){?>
                             <li>
                                 <a class="dropdown-item"
-                                   href="index?c=projects&p=page&o=<?=$category->getIdCat()?>">
-                                    <?=$category->getCategoryName()?>
+                                   href="index?c=projects&p=one_technic&o=<?=$item->getIdTech()?>">
+                                    <?=$item->getTechnique()?>
                                 </a>
                             </li><?php
                             }
