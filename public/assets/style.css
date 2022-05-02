@@ -30,7 +30,7 @@ body {
 }
 
 section {
-    min-height: 85vh;
+    min-height: 90vh;
     background-image: url("/img/gears.jpg");
     background-size: cover;
     background-attachment: fixed;

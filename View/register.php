@@ -1,4 +1,4 @@
-<section class="py-2">
+<section class="py-4">
     <div class="mx-auto pb-3 row col-10 col-sm-7 col-md-4">
         <h2 class="pt-3 text-center">Inscription</h2>
         <form  action="index.php?c=maker">
