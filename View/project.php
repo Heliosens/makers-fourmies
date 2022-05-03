@@ -1,6 +1,6 @@
 <main>
     <section>
-        <div class="mx-auto py-3 row">
+        <div class="mx-auto py-1 row">
             <nav>
                 <ul class="list-group list-group-horizontal justify-content-center">
                     <li class="list-group-item">
@@ -25,27 +25,18 @@
                 </p>
             </div>
             <div class="d-flex flex-wrap justify-content-evenly mt-3">
-                <article class="row w-75 row-cols-1 row-cols-md-2">
-                    <div class="col">
-                        <div class="card h-75">
-                            <div class="picture"></div>
-                            <img class="img-thumbnail" src="/img/article/repose-arc.png" alt="">
-                            <span>Modélisation sur Tinkercad</span>
-                        </div>
+                <article class="row w-75 row-cols-1 row-cols-md-2 justify-content-center">
+                    <div class="d-flex flex-column align-items-center pb-3">
+                        <div class="picture"></div>
+                        <span>Modélisation sur Tinkercad</span>
                     </div>
-                    <div class="col">
-                        <div class="card h-75 ">
-                            <div class="picture"></div>
-                            <img class="img-thumbnail" src="/img/article/repose-arc01.jpg" alt="">
-                            <span>Modélisation sur Tinkercad</span>
-                        </div>
+                    <div class="d-flex flex-column align-items-center">
+                        <div class="picture"></div>
+                        <span>Impression 3D au L@bo</span>
                     </div>
-                    <div class="col">
-                        <div class="card h-75">
-                            <div class="picture"></div>
-                            <img class="img-thumbnail" src="/img/article/bow01.png" alt="">
-                            <span>Modélisation sur Tinkercad</span>
-                        </div>
+                    <div class="d-flex flex-column align-items-center">
+                        <div class="picture"></div>
+                        <span>Photo du projet fini</span>
                     </div>
                 </article>
                 <aside class="ps-3 w-25">
@@ -62,6 +53,7 @@
                             <span  class="fw-bold">Technique :</span>
                             <span>Modélisation 3D</span>
                             <span>Impression 3D</span>
+                            <span>Recyclage</span>
                         </li>
                         <li class="list-group-item d-flex flex-column">
                             <span  class="fw-bold">Outils :</span>
