@@ -9,8 +9,6 @@ html {
 }
 
 body {
-    min-height: 100vh;
-    position: relative;
     width: 100%;
     background: #e5eaff;
 }
@@ -31,8 +29,13 @@ body {
     text-align: center;
 }
 
+main {
+    display: flex;
+}
+
 section {
-    min-height: 82vh;
+    flex-grow: 1;
+    /*min-height: 85vh;*/
     background-image: url("/img/gears.jpg");
     background-size: cover;
     background-attachment: fixed;
@@ -58,4 +61,8 @@ article {
 
 .card-header {
     background-color: #9ec5fe;
+}
+
+.picture {
+
 }
