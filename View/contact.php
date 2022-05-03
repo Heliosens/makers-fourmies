@@ -15,7 +15,7 @@
                         <textarea name="user-message" class="form-control" id="user-message" maxlength="255" rows="6"></textarea>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Valider</button>
+                <input type="submit" name="sendBtn" class="btn btn-primary" value="Valider">
             </form>
         </div>
     </section>

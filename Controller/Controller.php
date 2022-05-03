@@ -14,4 +14,11 @@ class Controller
         require __DIR__ . '/../View/partials/footer.php';
     }
 
+    /**
+     * @param $param
+     * @return string
+     */
+    public function cleanEntries ($param){
+        return trim(strip_tags($_POST[$param]));
+    }
 }
