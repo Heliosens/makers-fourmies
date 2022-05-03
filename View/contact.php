@@ -1,6 +1,7 @@
-<section class="">
-    <div class="mx-auto">
-        contact
-    </div>
-</section>
-
+<main>
+    <section class="">
+        <div class="mx-auto">
+            contact
+        </div>
+    </section>
+</main>

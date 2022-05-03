@@ -35,7 +35,6 @@ main {
 
 section {
     flex-grow: 1;
-    /*min-height: 85vh;*/
     background-image: url("/img/gears.jpg");
     background-size: cover;
     background-attachment: fixed;
