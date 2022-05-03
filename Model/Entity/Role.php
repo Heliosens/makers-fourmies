@@ -16,6 +16,7 @@ class Role
 
     /**
      * @param int $id
+     * @return Role
      */
     public function setId(int $id): self
     {

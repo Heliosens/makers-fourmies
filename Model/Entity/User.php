@@ -7,8 +7,8 @@ class User
     private string $pseudo;
     private string $email;
     private string $password;
-    private string $avatar;
-    private string $role;
+    private Avatar $avatar;
+    private Role $role;
 
     /**
      * @return int|null
@@ -20,6 +20,7 @@ class User
 
     /**
      * @param int|null $id
+     * @return User
      */
     public function setId(?int $id): self
     {
@@ -37,6 +38,7 @@ class User
 
     /**
      * @param string $pseudo
+     * @return User
      */
     public function setPseudo(string $pseudo): self
     {
@@ -54,6 +56,7 @@ class User
 
     /**
      * @param string $email
+     * @return User
      */
     public function setEmail(string $email): self
     {
@@ -71,6 +74,7 @@ class User
 
     /**
      * @param string $password
+     * @return User
      */
     public function setPassword(string $password): self
     {
@@ -79,34 +83,36 @@ class User
     }
 
     /**
-     * @return string
+     * @return Avatar
      */
-    public function getAvatar(): string
+    public function getAvatar(): Avatar
     {
         return $this->avatar;
     }
 
     /**
-     * @param string $avatar
+     * @param Avatar $avatar
+     * @return User
      */
-    public function setAvatar(string $avatar): self
+    public function setAvatar(Avatar $avatar): self
     {
         $this->avatar = $avatar;
         return $this;
     }
 
     /**
-     * @return string
+     * @return Role
      */
-    public function getRole(): string
+    public function getRole(): Role
     {
         return $this->role;
     }
 
     /**
-     * @param string $role
+     * @param Role $role
+     * @return User
      */
-    public function setRole(string $role): self
+    public function setRole(Role $role): self
     {
         $this->role = $role;
         return $this;
