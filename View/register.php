@@ -5,7 +5,7 @@
             <form action="index.php?c=user&p=new_user" method="post">
                 <div>
                     <div class="form-floating mb-3">
-                        <input type="text" name="pseudo" class="form-control" id="floatingInput" placeholder="Pseudo">
+                        <input type="text" name="pseudo" class="form-control" id="floatingInput">
                         <label for="floatingInput">Pseudo</label>
                     </div>
                 </div>
@@ -22,13 +22,13 @@
                         </span>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="password" name="passwrd" class="form-control" id="floatingPassword" aria-describedby="passwordHelpInline" placeholder="Password">
+                        <input type="password" name="passwrd" class="form-control" id="floatingPassword">
                         <label for="floatingPassword">Mot de passe</label>
                     </div>
                 </div>
                 <div>
                     <div class="form-floating mb-3">
-                        <input type="password" name="passwrdBis" class="form-control" id="floatingPassword" placeholder="Password">
+                        <input type="password" name="passwrdBis" class="form-control" id="floatingPassword">
                         <label for="floatingPassword">vérification du mot de passe</label>
                     </div>
                 </div>

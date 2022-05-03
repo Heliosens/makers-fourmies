@@ -15,10 +15,10 @@ class Avatar
     }
 
     /**
-     * @param int $id_avat
+     * @param $id_avat
      * @return Avatar
      */
-    public function setIdAvat(int $id_avat): self
+    public function setIdAvat($id_avat): self
     {
         $this->id_avat = $id_avat;
         return $this;

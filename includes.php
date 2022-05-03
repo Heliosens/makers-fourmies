@@ -6,6 +6,8 @@ require __DIR__ . '/Model/Entity/Technique.php';
 require __DIR__ . '/Model/Entity/Article.php';
 require __DIR__ . '/Model/Entity/Category.php';
 require __DIR__ . '/Model/Entity/User.php';
+require __DIR__ . '/Model/Entity/Avatar.php';
+require __DIR__ . '/Model/Entity/Role.php';
 
 require __DIR__ . '/Routing/Router.php';
 

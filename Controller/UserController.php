@@ -17,8 +17,11 @@ class UserController extends Controller
         $this->render('connection');
     }
 
-
+    /**
+     *
+     */
     public function new_user (){
+
         // check button
         if(isset($_POST['sendBtn'])){
             // clean user entries data
@@ -29,7 +32,7 @@ class UserController extends Controller
 
             // create array for error message
             $error = [];
-
+            $_SESSION['error'] = $error;
             // check mail validity
             $email = filter_var($email, FILTER_SANITIZE_EMAIL);
             if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
@@ -52,16 +55,35 @@ class UserController extends Controller
                 $error[] = "Les mots de passe ne sont pas identiques";
             }
 
+            // check if mail exist
+            if(UserManager::mailEverExist($email)){
+                $error[] = "Cet email est déja enregistré !";
+            }
+
+            // check if there's no error
             if(empty($error)){
                 // no error message
                 $user = new User();
                 $user->setPseudo($pseudo)
                     ->setEmail($email)
                     ->setPassword(password_hash($password, PASSWORD_DEFAULT))
-                    ->setRole(RoleManager::defaultRole())
                     ;
+
+                if(UserManager::addUser($user)){
+                    $_SESSION['success'] = "Vous allez recevoir un mail de vérification";
+                    $user->setPassword("");
+                    // todo complete user for session
+                    $_SESSION['user'] = $user;
+                    // todo send validation link by mail
+                }
+                else {
+                    $_SESSION['error'] = ["Une erreur s'est produite"];
+                }
+            }
+            else {
+                $_SESSION['error'] = $error;
             }
         }
+        $this->render('home');
     }
-
 }
