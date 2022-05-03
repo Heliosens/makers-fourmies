@@ -2,7 +2,7 @@
     <section class="py-4">
         <div class="mx-auto pb-3 row col-10 col-sm-7 col-md-4">
             <h2 class="pt-3 text-center">Inscription</h2>
-            <form  action="index.php?c=maker">
+            <form action="index.php?c=maker">
                 <div>
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="floatingInput" placeholder="Pseudo">
@@ -11,7 +11,7 @@
                 </div>
                 <div>
                     <div class="form-floating mb-3">
-                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                        <input type="email" class="form-control" id="floatingInput">
                         <label for="floatingInput">Email</label>
                     </div>
                 </div>
