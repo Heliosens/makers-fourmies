@@ -1,4 +1,4 @@
-<section class="pt-3">
+<section>
     <div class="d-grid py-3 gap-3 mx-auto">
         <article class="card">
             <h2 class="card-header ">Etre maker, qu'est-ce c'est ?</h2>
