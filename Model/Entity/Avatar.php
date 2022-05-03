@@ -16,6 +16,7 @@ class Avatar
 
     /**
      * @param int $id_avat
+     * @return Avatar
      */
     public function setIdAvat(int $id_avat): self
     {
@@ -33,6 +34,7 @@ class Avatar
 
     /**
      * @param string $avatar
+     * @return Avatar
      */
     public function setAvatar(string $avatar): self
     {
