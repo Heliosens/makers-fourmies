@@ -21,7 +21,7 @@ class UserManager
     public static function addUser(User &$user) : bool
     {
         $stm = DB::getConn()->prepare("
-        INSERT INTO mkf_user (pseudo, mail, password, avat_fk, role_fk) VALUES (:pseudo, :email, :password, 1, 1)");
+        INSERT INTO mkf_user (pseudo, mail, password, avat_fk, role_fk) VALUES (:pseudo, :email, :password, 1, 3)");
 
         $stm->bindValue(':pseudo', $user->getPseudo());
         $stm->bindValue(':email', $user->getEmail());
