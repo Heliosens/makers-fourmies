@@ -18,7 +18,8 @@
                 <div>
                     <div class="text-center">
                         <span id="passwordHelpInline" class="form-text">
-                          Minimum : 8 caractères, 1 minuscule, 1 majuscule, 1 caractère spécial !+@#$%^&*-
+                          Minimum : 8 caractères dont au moins 1 minuscule, 1 majuscule, 1 chiffre, 1 caractère spécial
+                            !+@#$%^&*-
                         </span>
                     </div>
                     <div class="form-floating mb-3">
