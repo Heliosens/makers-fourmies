@@ -67,6 +67,8 @@ class UserController extends Controller
                 $user->setPseudo($pseudo)
                     ->setEmail($email)
                     ->setPassword(password_hash($password, PASSWORD_DEFAULT))
+                    ->setRole(RoleManager::roleByName('user'))
+                    ->setAvatar(AvatarManager::defaultAvatar())
                     ;
 
                 if(UserManager::addUser($user)){
@@ -77,7 +79,7 @@ class UserController extends Controller
                     // todo send validation link by mail
                 }
                 else {
-                    $_SESSION['error'] = ["Une erreur s'est produite"];
+                    $_SESSION['error'] = "Une erreur s'est produite";
                 }
             }
             else {
