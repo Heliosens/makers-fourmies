@@ -71,7 +71,7 @@
                     }
                     else{
                         echo '<a class="nav-link text-secondary" href="index.php?c=user&p=disconnect" title="Déconnexion">
-                        déconnexion
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
                     </a>';
                     }
                     ?>
@@ -81,7 +81,7 @@
     </nav>
     <?php
     if(isset($_SESSION['error'])){
-        echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+        echo '<div class="alert alert-warning alert-dismissible fade show position-absolute w-100" role="alert">
                 <strong>Erreur : </strong>' . $_SESSION["error"] .
                 '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>';

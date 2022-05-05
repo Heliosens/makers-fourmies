@@ -36,7 +36,6 @@ class UserController extends Controller
                 $passwordBis = $_POST['passwrdBis'];
 
                 // create array for error message
-                $error = [];
                 $_SESSION['error'] = $error;
                 // check mail validity
                 $email = filter_var($email, FILTER_SANITIZE_EMAIL);
@@ -96,19 +95,22 @@ class UserController extends Controller
         else {
             $error = 'Veuillez remplir tous les champs';
         }
-        $_SESSION['error'] = $error;
-        $this->render('register');
+        // check error
+        if(strlen($error) > 0){
+            $_SESSION['error'] = $error;
+            $this->render('register');
+        }
     }
 
     /**
      * connect user
      */
     public function connection (){
-        die(var_dump($_SESSION['error']));
-        $error = [];
+        $error = "";
         // verify if there's not already a connected user & button is press & check fields
-        if(!isset($_SESSION['user']) && isset($_POST['sendBtn'])){
-            $this->fieldsState($_POST['email'], $_POST['passwrd']);
+        if(!isset($_SESSION['user']) && isset($_POST['sendBtn'])
+            && $this->fieldsState($_POST['email'], $_POST['passwrd'])){
+
             // clean email
             $email = $this->cleanEntries('email');
             $password = $_POST['passwrd'];
@@ -116,11 +118,11 @@ class UserController extends Controller
             // check mail validity
             $email = filter_var($email, FILTER_SANITIZE_EMAIL);
             if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-                $error[] = "Email ou mot de passe incorrect";
+                $error = "Email (ou mot de passe incorrect)";
             }
             elseif (!preg_match('/^(?=.*[!+@#$%^&*-\])(?=.*[0-9])(?=.*[A-Z]).{8,20}$/', $password)){
                 // password don't match with attempted characters
-                $error[] = "Email ou mot de passe incorrect";
+                $error = "Email ou mot de passe incorrect";
             }
             elseif (UserManager::mailEverExist($email)){        // check if mail not exist
                 $user = UserManager::getUserByMail($email);             // get mail owner
@@ -130,24 +132,23 @@ class UserController extends Controller
                     $this->render('home');
                 }
                 else{
-                    $_SESSION['error'] = "Email ou mot de passe incorrect";
+                    $_SESSION['error'] = "(Email ou) mot de passe incorrect";
                     $this->render('connection');
                 }
             }
             else{
-                $error[] = 'Cet email a déjà été enregistré';
+                $error = 'Cet email a déjà été enregistré';
             }
 
         }
         else {
-            $error[] = 'Veuillez remplir tous les champs';
+            $error = 'Veuillez remplir tous les champs';
         }
-        // check if error exist
-        if(count($error) < 0){
-            $_SESSION['error'][] = $error;
+        // check error
+        if(strlen($error) > 0){
+            $_SESSION['error'] = $error;
             $this->render('connection');
         }
-
     }
 
     /**
