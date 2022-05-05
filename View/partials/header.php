@@ -58,18 +58,35 @@
                     </li>
                 </ul>
                 <div class="d-flex flex-grow-1 justify-content-end">
-                    <a class="nav-link text-secondary" href="index.php?c=user&p=register_form" title="Inscription">
-                        <i class="fa-solid fa-arrow-right-to-bracket"></i>
-                    </a>
-                    <a class="nav-link text-secondary" href="index.php?c=user&p=disconnect" title="Déconnexion">
-                        déconnexion
-                    </a>
-                    <a class="nav-link text-secondary me-3" href="index.php?c=user&p=connection_form" title="Connexion">
+                    <?php
+                    if(!isset($_SESSION['user'])){
+                        echo '<a class="nav-link text-secondary" href="index.php?c=user&p=register_form" 
+                            title="Inscription">
+                            <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                        </a>
+                        <a class="nav-link text-secondary me-3" href="index.php?c=user&p=connection_form"
+                        title="Connexion">
                         <i class="fa-solid fa-user"></i>
-                    </a>
+                    </a>';
+                    }
+                    else{
+                        echo '<a class="nav-link text-secondary" href="index.php?c=user&p=disconnect" title="Déconnexion">
+                        déconnexion
+                    </a>';
+                    }
+                    ?>
                 </div>
             </div>
-
         </div>
     </nav>
+    <?php
+    if(isset($_SESSION['error'])){
+        echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Erreur : </strong>' . $_SESSION["error"] .
+                '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>';
+        $_SESSION['error'] = null;
+    }
+    ?>
 </header>
+

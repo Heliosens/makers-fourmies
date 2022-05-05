@@ -21,4 +21,21 @@ class Controller
     public function cleanEntries ($param){
         return trim(strip_tags($_POST[$param]));
     }
+
+    /**
+     * check if fields exist and not empty
+     * @param string ...$fields
+     * @return bool
+     */
+    public function fieldsState (string ...$fields) : bool
+    {
+        foreach ($fields as $item){
+            if(!isset($item) || empty($item)){
+                $_SESSION['error'] = "stop";
+                return false;
+            }
+        }
+        return true;
+    }
+
 }
