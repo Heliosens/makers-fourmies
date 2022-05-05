@@ -44,16 +44,17 @@ class UserManager
         $query = DB::getConn()->query("SELECT * FROM mkf_user WHERE mail = '$mail'");
         if($query){
             $result = $query->fetch();
+            $avat = $result['avat_fk'];
+            $role = $result['role_fk'];
             $user->setId($result['id_user'])
                 ->setPseudo($result['pseudo'])
                 ->setEmail($result['mail'])
                 ->setPassword($result['password'])
-                ->setAvatar(AvatarManager::getAvatById($result['avat_fk']))
-                ->setRole(RoleManager::getRoleById($result['role_fk']))
+                ->setAvatar(AvatarManager::getAvatById($avat))
+                ->setRole(RoleManager::getRoleById($role))
                 ;
         }
         return $user;
     }
-
 
 }

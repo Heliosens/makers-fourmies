@@ -13,6 +13,10 @@ body {
     background: #e5eaff;
 }
 
+header img {
+    width: 3vw;
+}
+
 #band, section {
     background-image: url("/img/gears.jpg");
     background-size: cover;

@@ -52,13 +52,11 @@
             </div>
         </div>
     </div>
-    <div>
-        <?php
-            if(isset($_SESSION)){
-                echo '<pre>';
-                var_dump($_SESSION);
-                echo '</pre>';
-            }
-        ?>
-    </div>
+    <?php
+        if (isset($_SESSION['user'])) {
+        echo '<pre>';
+            print_r($_SESSION);
+            echo '</pre>';
+        }
+    ?>
 </main>

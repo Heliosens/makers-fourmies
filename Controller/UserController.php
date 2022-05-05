@@ -75,6 +75,9 @@ class UserController extends Controller
                         ->setAvatar(AvatarManager::defaultAvatar())
                         ;
 
+                    // create token
+
+
                     if(UserManager::addUser($user)){
                         $_SESSION['success'] = "Vous allez recevoir un mail de vérification";
                         $_SESSION['error'] = null;
@@ -106,7 +109,6 @@ class UserController extends Controller
      * connect user
      */
     public function connection (){
-        $error = "";
         // verify if there's not already a connected user & button is press & check fields
         if(!isset($_SESSION['user']) && isset($_POST['sendBtn'])
             && $this->fieldsState($_POST['email'], $_POST['passwrd'])){
@@ -118,18 +120,23 @@ class UserController extends Controller
             // check mail validity
             $email = filter_var($email, FILTER_SANITIZE_EMAIL);
             if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-                $error = "Email (ou mot de passe incorrect)";
+                $_SESSION['error'] = "Email (ou mot de passe incorrect)";
             }
             elseif (!preg_match('/^(?=.*[!+@#$%^&*-\])(?=.*[0-9])(?=.*[A-Z]).{8,20}$/', $password)){
                 // password don't match with attempted characters
-                $error = "Email ou mot de passe incorrect";
+                $_SESSION['error'] = "Email ou mot de passe incorrect";
             }
             elseif (UserManager::mailEverExist($email)){        // check if mail not exist
                 $user = UserManager::getUserByMail($email);             // get mail owner
-                if(password_verify($password, $user->getPassword())){   // check password
+                if($user === null){
+                    $_SESSION['error'] = "Email ou mot de passe incorrect";
+                }
+                elseif(password_verify($password, $user->getPassword())){   // check password
                     $user->setPassword('');
-                    $_SESSION['user'] = $user;
-                    $this->render('home');
+                    $_SESSION['user'] = $user->getPseudo();
+                    $_SESSION['id'] = $user->getId();
+                    $_SESSION['avatar'] = $user->getAvatar()->getAvatar();
+                    $_SESSION['role'] = $user->getRole()->getRoleName();
                 }
                 else{
                     $_SESSION['error'] = "(Email ou) mot de passe incorrect";
@@ -137,18 +144,18 @@ class UserController extends Controller
                 }
             }
             else{
-                $error = 'Cet email a déjà été enregistré';
+                $_SESSION['error'] = 'Cet email a déjà été enregistré';
             }
 
         }
         else {
-            $error = 'Veuillez remplir tous les champs';
+            $_SESSION['error'] = 'Veuillez remplir tous les champs';
         }
         // check error
-        if(strlen($error) > 0){
-            $_SESSION['error'] = $error;
+        if(isset($_SESSION['error'])){
             $this->render('connection');
         }
+        $this->render('techniques');
     }
 
     /**
@@ -156,10 +163,13 @@ class UserController extends Controller
      */
     public function disconnect (){
         if(isset($_SESSION['user'])) {
-            $_SESSION['success'] = null;
+
             $_SESSION['error'] = null;
             $_SESSION['user'] = null;
-
+            $_SESSION['id'] = null;
+            $_SESSION['avatar'] = null;
+            $_SESSION['role'] = null;
+            session_unset();
             setcookie(session_id(), "", time() - 3600);
             session_destroy();
         }
