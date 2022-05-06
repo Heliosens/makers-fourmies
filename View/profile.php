@@ -1,26 +1,44 @@
+<?php
+    $user = $data['user'];
+    /* @var User $user */
+?>
 <main>
     <section>
         <div class="mx-auto py-2 px-5">
             <h2 class="text-center">Mon Profil</h2>
             <header class="row row-cols-1 row-cols-sm-2 g-4">
-                <div class="col">
+                <div>
                     <div class="d-flex justify-content-center align-items-end my-3">
-                        <img class="col-4 col-4 col-sm-5 col-md-4 me-2" src="/img/avatar/<?= $_SESSION['avatar']?>" alt="avatar">
+                        <img class="col-4 col-4 col-sm-5 col-md-4 me-2"
+                             src="/img/avatar/<?=$user->getAvatar()->getAvatar()?>" alt="avatar">
                         <a href="">
                             <i class="fa-solid fa-pencil text-dark" title="changer d'avatar"></i>
                         </a>
                     </div>
                 </div>
-                <div class="col ">
+                <div>
                     <div class="my-3">
-                        <p>Pseudo : <?= $_SESSION['user']?></p>
-                        <p>Email : <?= $_SESSION['id']?></p>
-                        <p>Rôle : <?= $_SESSION['role']?></p>
-                        <a href="">modifier mon mot de passe</a>
+                        <div class="row row-cols-2">
+                            <p class="text-end col-3">Pseudo : </p>
+                            <p class="col-6"><?=$user->getPseudo()?></p>
+                        </div>
+                        <div class="row row-cols-2">
+                            <p class="text-end col-3">Email : </p>
+                            <p class="col-6"><?=$user->getEmail()?></p>
+                        </div>
+                        <div class="row row-cols-2">
+                            <p class="text-end col-3">Rôle : </p>
+                            <p class="col-6"><?=$user->getRole()->getRoleName()?></p>
+                        </div>
+                        <div class="row row-cols-2">
+        <!--                            TODO                    -->
+                            <p class="text-end col-3">Mot de passe : </p>
+                            <a class="col-6" href="">modifier mon mot de passe</a>
+                        </div>
                     </div>
                 </div>
             </header>
-            <div class="row row-cols-1 row-cols-sm-2 g-4">
+            <div class="row row-cols-1 row-cols-sm-2 g-4 pt-5">
                 <div class="col">
                     <h3 class="text-center">Mes articles :</h3>
                     <div class="row row-cols-2">
@@ -35,7 +53,6 @@
                             <a  class="text-decoration-none text-dark" href="">
                                 <i class="fa-solid fa-trash-can p-1" title="supprimer l'article"></i>
                             </a>
-
                         </div>
                     </div>
                 </div>
@@ -51,10 +68,16 @@
                     </div>
                 </div>
             </div>
-            <footer class="d-flex flex-column align-items-center p-5 gap-3">
+            <footer class="d-flex flex-column align-items-center pt-5 gap-3">
+                <?php
+                if($user->getRole()->getRoleName() === 'admin'){
+                    echo '
                 <div>
-                    <a class="btn btn-primary" href="#" role="button">Espace administrateur</a>
+                    <a class="btn btn-primary" href="c=user&p=ad_profile&o=' . $user->getId() . '" role="button">Espace administrateur</a>
                 </div>
+                    ';
+                }
+                ?>
                 <div class="row row-cols-1 row-cols-md-2 justify-content-center">
                     <div class="col-md-9 col-11">
                         <p class="text-danger fw-bold">
@@ -64,7 +87,7 @@
                         </p>
                     </div>
                     <div class="col-md-3 text-center">
-                        <a class="btn btn-danger" href="#" role="button">supprimer mon compte</a>
+                        <a class="btn btn-danger" href="#" role="button">Supprimer mon compte</a>
                     </div>
                 </div>
             </footer>
