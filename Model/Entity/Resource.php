@@ -7,7 +7,7 @@ class Resource
     private string $title;
     private string $description;
     private string $url;
-    private string $category;
+    private Category_link $category;
 
     /**
      * @return int|null
@@ -19,6 +19,7 @@ class Resource
 
     /**
      * @param int|null $id_res
+     * @return Resource
      */
     public function setIdRes(?int $id_res): self
     {
@@ -36,6 +37,7 @@ class Resource
 
     /**
      * @param string $title
+     * @return Resource
      */
     public function setTitle(string $title): self
     {
@@ -53,6 +55,7 @@ class Resource
 
     /**
      * @param string $description
+     * @return Resource
      */
     public function setDescription(string $description): self
     {
@@ -70,6 +73,7 @@ class Resource
 
     /**
      * @param string $url
+     * @return Resource
      */
     public function setUrl(string $url): self
     {
@@ -78,19 +82,21 @@ class Resource
     }
 
     /**
-     * @return string
+     * @return Category_link
      */
-    public function getCategory(): string
+    public function getCategory(): Category_link
     {
         return $this->category;
     }
 
     /**
-     * @param string $category
+     * @param Category_link $category
+     * @return Resource
      */
-    public function setCategory(string $category): self
+    public function setCategory(Category_link $category): self
     {
         $this->category = $category;
         return $this;
     }
+
 }

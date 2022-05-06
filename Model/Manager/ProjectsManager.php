@@ -18,6 +18,7 @@ class ProjectsManager
                     ->setId($item['id_art'])
                     ->setTitle($item['title'])
                     ->setDescription($item['description'])
+                    ->setType(TypeManager::getTypeById($item['type_fk']))
                     ;
             }
         }
@@ -25,18 +26,23 @@ class ProjectsManager
     }
 
     /**
-     * @param $option
+     * @param int $id
      * @return Article
      */
-    public static function oneProject ($option) : Article
+    public static function oneProject (int $id) : Article
     {
         $project = new Article();
-        $query = DB::getConn()->query("SELECT * FROM mkf_article WHERE id_art = '$option'");
+        $query = DB::getConn()->query("SELECT * FROM mkf_article WHERE id_art = $id");
         if($query){
             $item = $query->fetch();
             $project->setId($item['id_art'])
                 ->setTitle($item['title'])
                 ->setDescription($item['description'])
+                ->setType(TypeManager::getTypeById($item['type_fk']))
+                ->setCategory(CategoryManager::categoryByArt($item['id_art']))
+                ->setTechnic(TechnicManager::techByArt($item['id_art']))
+                ->setTool(ToolManager::toolByArt($item['id_art']))
+                ->setMatter(MatterManager::matterByArt($item['id_art']))
             ;
         }
         return $project;

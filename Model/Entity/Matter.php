@@ -5,7 +5,6 @@ class Matter
 {
     private ?int $id_mat = null;
     private string $matter_name;
-    private string $origin;
 
     /**
      * @return int|null
@@ -17,6 +16,7 @@ class Matter
 
     /**
      * @param int|null $id_mat
+     * @return Matter
      */
     public function setIdMat(?int $id_mat): self
     {
@@ -34,6 +34,7 @@ class Matter
 
     /**
      * @param string $matter_name
+     * @return Matter
      */
     public function setMatterName(string $matter_name): self
     {
@@ -41,20 +42,4 @@ class Matter
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getOrigin(): string
-    {
-        return $this->origin;
-    }
-
-    /**
-     * @param string $origin
-     */
-    public function setOrigin(string $origin): self
-    {
-        $this->origin = $origin;
-        return $this;
-    }
 }

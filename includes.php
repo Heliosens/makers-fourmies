@@ -6,6 +6,7 @@ require __DIR__ . '/Model/DB.php';
 require __DIR__ . '/Model/Entity/Technique.php';
 require __DIR__ . '/Model/Entity/Article.php';
 require __DIR__ . '/Model/Entity/Category.php';
+require __DIR__ . '/Model/Entity/Category_link.php';
 require __DIR__ . '/Model/Entity/User.php';
 require __DIR__ . '/Model/Entity/Avatar.php';
 require __DIR__ . '/Model/Entity/Role.php';
@@ -42,4 +43,7 @@ require __DIR__ . '/Model/Manager/TypeManager.php';
 require __DIR__ . '/Model/Manager/RoleManager.php';
 require __DIR__ . '/Model/Manager/UserManager.php';
 require __DIR__ . '/Model/Manager/AvatarManager.php';
+require __DIR__ . '/Model/Manager/MatterManager.php';
+require __DIR__ . '/Model/Manager/ResourceManager.php';
+require __DIR__ . '/Model/Manager/ToolManager.php';
 
