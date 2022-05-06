@@ -8,7 +8,7 @@ class UserController extends Controller
      */
     public function register_form (){
         // verify if there's not already a connected user
-        !isset($_SESSION['user']) ? $this->render('register') : $this->render('home');
+        !isset($_SESSION['user']) ? $this->render('register') : $this->render('profile');
     }
 
     /**
@@ -111,7 +111,7 @@ class UserController extends Controller
     public function connection (){
         // verify if there's not already a connected user
         if(isset($_SESSION['user'])){
-            $this->render('home');
+            $this->render('profile');
         }
         //  check if button is press & fields not empty
         if(isset($_POST['sendBtn']) && $this->fieldsState($_POST['email'], $_POST['passwrd'])){
@@ -178,5 +178,6 @@ class UserController extends Controller
         }
         $this->render('home');
     }
+
 
 }

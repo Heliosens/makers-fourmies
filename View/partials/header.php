@@ -70,7 +70,7 @@
                     }
                     else{
                         echo '
-                    <a href="index.php?c=user&p=connection_form" title="profile">
+                    <a href="index.php?c=profile&p=profile&o=1" title="profile">
                         <img src="/img/avatar/' . $_SESSION['avatar'] . ' ">
                     </a>
                     <a class="nav-link text-secondary" href="index.php?c=user&p=disconnect" title="Déconnexion">

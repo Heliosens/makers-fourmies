@@ -67,18 +67,37 @@ class UserManager
         $user = new User();
         $query = DB::getConn()->query("SELECT * FROM mkf_user WHERE mail = '$mail'");
         if($query){
-            $result = $query->fetch();
-            $avat = $result['avat_fk'];
-            $role = $result['role_fk'];
-            $user->setId($result['id_user'])
-                ->setPseudo($result['pseudo'])
-                ->setEmail($result['mail'])
-                ->setPassword($result['password'])
-                ->setAvatar(AvatarManager::getAvatById($avat))
-                ->setRole(RoleManager::getRoleById($role))
+            $item = $query->fetch();
+            $user->setId($item['id_user'])
+                ->setPseudo($item['pseudo'])
+                ->setEmail($item['mail'])
+                ->setPassword($item['password'])
+                ->setAvatar(AvatarManager::getAvatById($item['avat_fk']))
+                ->setRole(RoleManager::getRoleById($item['role_fk']))
                 ;
         }
         return $user;
     }
 
+    /**
+     * find all users
+     * @return array
+     */
+    public static function allUser (){
+        $users = [];
+        $query = DB::getConn()->query('SELECT * FROM mkf_user');
+        if($query){
+            foreach ($query->fetchAll() as $item){
+                $users[] = (new User())
+                    ->setId($item['id_user'])
+                    ->setPseudo($item['pseudo'])
+                    ->setEmail($item['mail'])
+                    ->setPassword($item['password'])
+                    ->setAvatar(AvatarManager::getAvatById($item['avat_fk']))
+                    ->setRole(RoleManager::getRoleById($item['role_fk']))
+                ;
+            }
+        }
+        return $users;
+    }
 }
