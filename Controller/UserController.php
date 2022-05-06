@@ -109,16 +109,19 @@ class UserController extends Controller
      * connect user
      */
     public function connection (){
-        // verify if there's not already a connected user & button is press & check fields
-        if(!isset($_SESSION['user']) && isset($_POST['sendBtn'])
-            && $this->fieldsState($_POST['email'], $_POST['passwrd'])){
+        // verify if there's not already a connected user
+        if(isset($_SESSION['user'])){
+            $this->render('home');
+        }
+        //  check if button is press & fields not empty
+        if(isset($_POST['sendBtn']) && $this->fieldsState($_POST['email'], $_POST['passwrd'])){
 
             // clean email
             $email = $this->cleanEntries('email');
+            $email = filter_var($email, FILTER_SANITIZE_EMAIL);
             $password = $_POST['passwrd'];
 
             // check mail validity
-            $email = filter_var($email, FILTER_SANITIZE_EMAIL);
             if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
                 $_SESSION['error'] = "Email (ou mot de passe incorrect)";
             }
@@ -155,7 +158,7 @@ class UserController extends Controller
         if(isset($_SESSION['error'])){
             $this->render('connection');
         }
-        $this->render('techniques');
+        $this->render('home');
     }
 
     /**

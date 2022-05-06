@@ -17,7 +17,8 @@ class Router
 
     public function toCtrl ($c, $p, $o){
         $ctrl = $this->getCtrlName($c);
-
+        $p = self::cleanParam($p);
+        $o = self::cleanParam($o);
         $controller = new $ctrl;
         if(null !== $p){
             $controller->$p($o);
