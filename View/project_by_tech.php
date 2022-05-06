@@ -10,7 +10,7 @@
                     <div class="card h-100">
                         <div class="card-body p-0">
                             <a class="text-decoration-none justify-content-center fs-4 text-center my-4 shadow"
-                               href="index?c=projects&p=page&o=<?=$item->getId()?>">
+                               href="index?c=projects&p=one_project&o=<?=$item->getId()?>">
                                 <p class="text-dark m-0 py-5">
                                     <?= $item->getTitle() ?>
                                 </p>

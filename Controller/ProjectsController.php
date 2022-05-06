@@ -25,11 +25,12 @@ class ProjectsController extends Controller
     /**
      * @param $option
      */
-    public function page($option){
+    public function one_project ($option){
         // get selected projects
         $data = [
             'project' => ProjectsManager::oneProject($option)
         ];
+
         $this->render('project', $data);
     }
 

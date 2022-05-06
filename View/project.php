@@ -1,17 +1,21 @@
+<?php
+    $data = $data['project'];
+    echo '<pre>';
+    var_dump($data);
+    echo '</pre>';
+?>
 <main>
     <section>
         <div class="mx-auto py-1 row">
             <nav>
                 <ul class="list-group list-group-horizontal justify-content-center">
+                    <?php
+                    echo '
                     <li class="list-group-item">
-                        <a class="text-decoration-none text-dark" href="">Impression 3D</a>
+                        <a class="text-decoration-none text-dark" href="">' . '</a>
                     </li>
-                    <li class="list-group-item">
-                        <a class="text-decoration-none text-dark" href="">Modélisation</a>
-                    </li>
-                    <li class="list-group-item">
-                        <a class="text-decoration-none text-dark" href="">Recyclage</a>
-                    </li>
+                    ';
+                    ?>
                 </ul>
             </nav>
             <header class="text-center mt-3">
