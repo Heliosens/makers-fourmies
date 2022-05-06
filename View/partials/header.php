@@ -42,13 +42,12 @@
                             <li><hr class="dropdown-divider"></li>
                             <?php
                             $techniques = $tech['technic'];
-                            foreach ($techniques as $item){?>
+                            foreach ($techniques as $item) {
+                                echo '
                             <li>
-                                <a class="dropdown-item"
-                                   href="index?c=projects&p=one_technic&o=<?=$item->getIdTech()?>">
-                                    <?=$item->getTechnique()?>
-                                </a>
-                            </li><?php
+                                <a class="dropdown-item" href="index?c=projects&p=one_technic&o=' . $item->getIdTech() .
+                                    ' ">' . $item->getTechnique() . '</a>
+                            </li>';
                             }
                             ?>
                         </ul>

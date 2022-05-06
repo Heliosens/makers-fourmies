@@ -4,6 +4,28 @@
 class UserManager
 {
     /**
+     * @param $id
+     * @return User
+     */
+    public function getUserById ($id) : User
+    {
+        $user = new User();
+        $query = DB::getConn()->query("SELECT * FROM mkf_user WHERE id_user = $id");
+        if($query){
+            $data = $query->fetch();
+        }
+        $user = (new User())
+            ->setId($data['id_user'])
+            ->setPseudo($data['pseudo'])
+            ->setEmail($data['mail'])
+        ;
+        $role = RoleManager::getRoleById($data['role_fk']);
+        $avat = AvatarManager::getAvatById($data['avat_fk']);
+        $user->setRole($role)->setAvatar($avat);
+        return $user;
+    }
+
+    /**
      * check if email ever exist
      * @param string $email
      * @return bool

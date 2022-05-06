@@ -16,7 +16,7 @@ class UserController extends Controller
      */
     public function connection_form (){
         // verify if there's not already a connected user
-        !isset($_SESSION['user']) ? $this->render('connection') : var_dump("To profile space");
+        !isset($_SESSION['user']) ? $this->render('connection') : $this->render('profile');
     }
 
     /**

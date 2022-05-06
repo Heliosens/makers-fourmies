@@ -7,7 +7,8 @@ class RoleManager
      * @param $option
      * @return Role
      */
-    public static function roleByName ($option){
+    public static function roleByName ($option) : Role
+    {
         $role = new Role();
         $query = DB::getConn()->query("SELECT * FROM mkf_role WHERE role = '$option'");
         if($query){
@@ -21,7 +22,8 @@ class RoleManager
      * @param int $id
      * @return Role
      */
-    public static function getRoleById (int $id){
+    public static function getRoleById (int $id) : Role
+    {
         $role = new Role();
         $query = DB::getConn()->query("SELECT * FROM mkf_role WHERE id_role = $id");
         if($query){
