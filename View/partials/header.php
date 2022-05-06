@@ -59,13 +59,14 @@
                 <div class="d-flex flex-grow-1 justify-content-end">
                     <?php
                     if(!isset($_SESSION['user'])){
-                        echo '<a class="nav-link text-secondary" href="index.php?c=user&p=register_form" 
-                            title="Inscription">
-                            <i class="fa-solid fa-arrow-right-to-bracket"></i>
-                        </a>
-                        <a class="nav-link text-secondary me-3" href="index.php?c=user&p=connection_form"
-                        title="Connexion">
+                        echo '
+                    <a class="nav-link text-secondary me-3" href="index.php?c=user&p=connection_form"
+                    title="Connexion">
                         <i class="fa-solid fa-user"></i>
+                    </a>
+                    <a class="nav-link text-secondary" href="index.php?c=user&p=register_form" 
+                        title="Inscription">
+                        <i class="fa-solid fa-arrow-right-to-bracket"></i>
                     </a>';
                     }
                     else{
