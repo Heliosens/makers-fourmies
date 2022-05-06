@@ -1,6 +1,5 @@
 <?php
     $user = $data['user'];
-    /* @var User $user */
 ?>
 <main>
     <section>
@@ -60,11 +59,11 @@
                     <h3 class="text-center">Mes participations :</h3>
                     <div class="row row-cols-2">
                         <div class="col-8">
-                            <a class="text-decoration-none text-dark" href="">Titre 1 long</a>
+                            <a class="text-decoration-none text-dark" href="#">Titre 1 long</a>
                         </div>
-                        <div class="col-4">
+                        <a href="#" class="col-4 text-dark">
                             <i class="fa-solid fa-trash-can p-1" title="supprimer ma participation"></i>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -73,7 +72,7 @@
                 if($user->getRole()->getRoleName() === 'admin'){
                     echo '
                 <div>
-                    <a class="btn btn-primary" href="c=user&p=ad_profile&o=' . $user->getId() . '" role="button">Espace administrateur</a>
+                    <a class="btn btn-primary" href="index.php?c=profile&p=admin&o=' . $user->getId() . '">Espace administrateur</a>
                 </div>
                     ';
                 }
@@ -82,7 +81,7 @@
                     <div class="col-md-9 col-11">
                         <p class="text-danger fw-bold">
                             Supprimer votre compte supprimera toutes vos informations, tous vos articles et
-                            enlèvera votre nom des projets auxquels vous avez participé, de façon
+                            enlèvera votre nom des projets auxquels vous avez participés, de façon
                             <strong>DEFINITIVE</strong>.
                         </p>
                     </div>

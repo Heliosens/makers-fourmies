@@ -12,12 +12,14 @@ class ProfileController extends Controller
         $this->render('profile', $data);
     }
 
+    /**
+     * @param $id
+     */
     public function admin($id){
         if($_SESSION['role'] === 'admin'){
             $data = [
                 'user' => UserManager::allUser(),
-                'article' => ProjectsManager::AllArticle(),
-//                'rubric' =>,
+                'article' => ProjectsManager::AllArticle()
             ];
             $this->render('admin', $data);
         }
