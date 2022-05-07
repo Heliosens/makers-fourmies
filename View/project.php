@@ -40,7 +40,8 @@
                             <span  class="fw-bold">Technique :</span>
                             <?php
                             foreach ($data->getTechnic() as $item){
-                                echo '<span>' . $item->getTechnique() . '</span>';
+                                echo '<a class="text-dark" href="index?c=projects&p=one_technic&o=' .
+                                    $item->getIdTech() . '">' . $item->getTechnique() . '</a>';
                             }
                             ?>
                         </li>
@@ -62,6 +63,7 @@
                         </li>
                     </ul>
                 </aside>
+
             </div>
             <p>Article par : <?=$data->getAuthor()->getPseudo()?></p>
         </div>
