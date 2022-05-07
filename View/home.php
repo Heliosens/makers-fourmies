@@ -28,7 +28,7 @@
             </div>
             <div class="col">
                 <div class="card shadow">
-                    <a href="index.php?c=projects&p=all_categories" class="text-decoration-none card-header">
+                    <a href="index.php?c=projects&p=all_technic" class="text-decoration-none card-header">
                         <h5 class="text-dark">Projets</h5>
                     </a>
                     <div class="card-body">
