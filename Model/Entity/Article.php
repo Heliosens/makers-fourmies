@@ -6,6 +6,7 @@ class Article
     private ?int $id = null;
     private string $title;
     private string $description;
+    private array $image;
     private Type $type;
     private array $category;
     private array $technic;
@@ -23,6 +24,7 @@ class Article
 
     /**
      * @param int|null $id
+     * @return Article
      */
     public function setId(?int $id): self
     {
@@ -40,6 +42,7 @@ class Article
 
     /**
      * @param string $title
+     * @return Article
      */
     public function setTitle(string $title): self
     {
@@ -57,10 +60,29 @@ class Article
 
     /**
      * @param string $description
+     * @return Article
      */
     public function setDescription(string $description): self
     {
         $this->description = $description;
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getImage(): array
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param array $image
+     * @return Article
+     */
+    public function setImage(array $image): self
+    {
+        $this->image = $image;
         return $this;
     }
 

@@ -7,7 +7,7 @@ class Image
     private string $name;
     private string $title;
     private string $description;
-    private Article $article;
+    private int $id_art;
 
     /**
      * @return int|null
@@ -19,6 +19,7 @@ class Image
 
     /**
      * @param int|null $id_img
+     * @return Image
      */
     public function setIdImg(?int $id_img): self
     {
@@ -36,6 +37,7 @@ class Image
 
     /**
      * @param string $name
+     * @return Image
      */
     public function setName(string $name): self
     {
@@ -53,6 +55,7 @@ class Image
 
     /**
      * @param string $title
+     * @return Image
      */
     public function setTitle(string $title): self
     {
@@ -70,6 +73,7 @@ class Image
 
     /**
      * @param string $description
+     * @return Image
      */
     public function setDescription(string $description): self
     {
@@ -78,19 +82,20 @@ class Image
     }
 
     /**
-     * @return Article
+     * @return int
      */
-    public function getArticle(): Article
+    public function getIdArt(): int
     {
-        return $this->article;
+        return $this->id_art;
     }
 
     /**
-     * @param Article $article
+     * @param int $id_art
+     * @return Image
      */
-    public function setArticle(Article $article): self
+    public function setIdArt(int $id_art): self
     {
-        $this->article = $article;
+        $this->id_art = $id_art;
         return $this;
     }
 }

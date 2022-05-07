@@ -16,10 +16,12 @@ class Category_link
 
     /**
      * @param int|null $id_cat_link
+     * @return Category_link
      */
-    public function setIdCatLink(?int $id_cat_link): void
+    public function setIdCatLink(?int $id_cat_link): self
     {
         $this->id_cat_link = $id_cat_link;
+        return $this;
     }
 
     /**
@@ -32,10 +34,12 @@ class Category_link
 
     /**
      * @param string $category_link
+     * @return Category_link
      */
-    public function setCategoryLink(string $category_link): void
+    public function setCategoryLink(string $category_link): self
     {
         $this->category_link = $category_link;
+        return $this;
     }
 
 }

@@ -4,14 +4,14 @@
 class ProjectsManager
 {
     /**
-     * @param $option
+     * @param $id
      * @return array
      */
-    public static function projectByTechnic ($option) : array
+    public static function projectByTechnic ($id) : array
     {
         $projects = [];
         $query = DB::getConn()->query("SELECT * FROM mkf_article WHERE id_art IN 
-            (SELECT use_tech FROM mkf_use_tech WHERE use_by = '$option')");
+            (SELECT use_tech FROM mkf_use_tech WHERE use_by = '$id')");
         if($query){
             foreach ($query->fetchAll() as $item){
                 $projects[] = (new Article())
@@ -38,11 +38,13 @@ class ProjectsManager
             $project->setId($item['id_art'])
                 ->setTitle($item['title'])
                 ->setDescription($item['description'])
+                ->setImage(ImageManager::imgByArt($item['id_art']))
                 ->setType(TypeManager::getTypeById($item['type_fk']))
                 ->setCategory(CategoryManager::categoryByArt($item['id_art']))
                 ->setTechnic(TechnicManager::techByArt($item['id_art']))
                 ->setTool(ToolManager::toolByArt($item['id_art']))
                 ->setMatter(MatterManager::matterByArt($item['id_art']))
+                ->setResource(ResourceManager::resourceByArt($item['id_art']))
             ;
         }
         return $project;
@@ -53,11 +55,11 @@ class ProjectsManager
      */
     public static function AllArticle () : array
     {
-        $articles = [];
+        $projects = [];
         $query = DB::getConn()->query("SELECT * FROM mkf_article");
         if($query){
             foreach ($query->fetchAll() as $item){
-                $articles[] = (new Article())
+                $projects[] = (new Article())
                     ->setId($item['id_art'])
                     ->setTitle($item['title'])
                     ->setDescription($item['description'])
@@ -65,6 +67,6 @@ class ProjectsManager
                     ;
             }
         }
-        return $articles;
+        return $projects;
     }
 }

@@ -19,8 +19,7 @@ class ResourceManager
                     ->setTitle($item['title'])
                     ->setDescription($item['description'])
                     ->setUrl($item['url'])
-                    ->setCategory()
-
+                    ->setCategory(CategoryLinkManager::catLinkById($item['cat_link_fk']))
                 ;
             }
         }
