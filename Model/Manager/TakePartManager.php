@@ -7,19 +7,17 @@ class TakePartManager
      * @param int $id
      * @return array
      */
-    public static function techByArt (int $id) : array
+    public static function participationByArt (int $id) : array
     {
-        $technics = [];
-        $query = DB::getConn()->query("SELECT * FROM mkf_technic WHERE id_tech IN 
-            (SELECT use_by FROM mkf_use_tech WHERE use_tech = $id)");
+        $part = [];
+        $query = DB::getConn()->query("SELECT * FROM mkf_user WHERE id_user IN 
+            (SELECT user_fk FROM mkf_take_part WHERE art_fk = $id)");
         if($query){
             foreach ($query->fetchAll() as $item){
-                $technics[] = (new Technique())
-                    ->setIdTech($item['id_tech'])
-                    ->setTechnique($item['technic'])
+                $part[] = $item['pseudo']
                 ;
             }
         }
-        return $technics;
+        return $part;
     }
 }

@@ -4,19 +4,6 @@
 <main>
     <section>
         <div class="mx-auto py-1 row">
-            <nav>
-                <ul class="list-group list-group-horizontal justify-content-center">
-                    <?php
-                    foreach ($data->getTechnic() as $item){
-                        echo '
-                    <li class="list-group-item">
-                        <a class="text-decoration-none text-dark" href="">' . $item->getTechnique() . '</a>
-                    </li>
-                    ';
-                    }
-                    ?>
-                </ul>
-            </nav>
             <header class="text-center mt-3">
                 <h2><?=$data->getTitle()?></h2>
             </header>
@@ -43,9 +30,11 @@
                         </li>
                         <li class="list-group-item d-flex flex-column">
                             <span class="fw-bold">Réalisation :</span>
-
-                            <span>...</span>
-                            <span>...</span>
+                            <?php
+                            foreach ($data->getTakePart() as $item){
+                                echo '<span>' . $item . '</span>';
+                            }
+                            ?>
                         </li>
                         <li class="list-group-item d-flex flex-column">
                             <span  class="fw-bold">Technique :</span>
@@ -73,7 +62,6 @@
                         </li>
                     </ul>
                 </aside>
-
             </div>
             <p>Article par : <?=$data->getAuthor()->getPseudo()?></p>
         </div>
