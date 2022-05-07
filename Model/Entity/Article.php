@@ -13,6 +13,8 @@ class Article
     private array $tool;
     private array $matter;
     private array $resource;
+    private array $takePart;
+    private User $author;
 
     /**
      * @return int|null
@@ -194,4 +196,39 @@ class Article
         return $this;
     }
 
+    /**
+     * @return array
+     */
+    public function getTakePart(): array
+    {
+        return $this->takePart;
+    }
+
+    /**
+     * @param array $takePart
+     * @return Article
+     */
+    public function setTakePart(array $takePart): self
+    {
+        $this->takePart = $takePart;
+        return $this;
+    }
+
+    /**
+     * @return User
+     */
+    public function getAuthor(): User
+    {
+        return $this->author;
+    }
+
+    /**
+     * @param User $author
+     * @return Article
+     */
+    public function setAuthor(User $author): self
+    {
+        $this->author = $author;
+        return $this;
+    }
 }

@@ -45,6 +45,7 @@ class ProjectsManager
                 ->setTool(ToolManager::toolByArt($item['id_art']))
                 ->setMatter(MatterManager::matterByArt($item['id_art']))
                 ->setResource(ResourceManager::resourceByArt($item['id_art']))
+                ->setAuthor(UserManager::getUserById($item['author']))
             ;
         }
         return $project;
