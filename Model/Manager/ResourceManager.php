@@ -4,6 +4,28 @@
 class ResourceManager
 {
     /**
+     * @return array
+     */
+    public static function allCatLink (){
+        $cat = [];
+        $queryCat = DB::getConn()->query("SELECT * FROM mkf_category_link");
+        if($queryCat){
+            foreach ($queryCat->fetchAll() as $item){
+                $queryLink = DB::getConn()->query("SELECT * FROM mkf_resource WHERE cat_link_fk = " . $item['id_cat_link']);
+                foreach ($queryLink as $link){
+                    $cat[$item['category_link']][] =
+                            [
+                                'title' => $link['title'],
+                                'description' => $link['description'],
+                                'url' => $link['url']
+                            ];
+                }
+            }
+        }
+        return $cat;
+    }
+
+    /**
      * @param int $id
      * @return array
      */
