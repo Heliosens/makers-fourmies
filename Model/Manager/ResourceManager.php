@@ -13,7 +13,7 @@ class ResourceManager
             foreach ($queryCat->fetchAll() as $item){
                 $queryLink = DB::getConn()->query("SELECT * FROM mkf_resource WHERE cat_link_fk = " . $item['id_cat_link']);
                 foreach ($queryLink as $link){
-                    $cat[$item['category_link']][] =
+                    $cat[$item['id_cat_link']][] =
                             [
                                 'title' => $link['title'],
                                 'description' => $link['description'],

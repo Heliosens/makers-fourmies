@@ -39,6 +39,7 @@ require __DIR__ . '/Controller/ProfileController.php';
 require __DIR__ . '/Model/Manager/ImageManager.php';
 require __DIR__ . '/Model/Manager/TechnicManager.php';
 require __DIR__ . '/Model/Manager/CategoryManager.php';
+require __DIR__ . '/Model/Manager/CategoryLinkManager.php';
 require __DIR__ . '/Model/Manager/ProjectsManager.php';
 require __DIR__ . '/Model/Manager/TypeManager.php';
 require __DIR__ . '/Model/Manager/RoleManager.php';

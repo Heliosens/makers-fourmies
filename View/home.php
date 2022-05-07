@@ -22,7 +22,7 @@
                     </a>
                     <div class="card-body">
                         <h5 class="card-title">Les liens utiles</h5>
-                        <p class="card-text">Les logiels gratuits<br>Les applications en ligne<br>Les formations</p>
+                        <p class="card-text">Les logiels gratuits<br>Les applications en ligne<br>Les tutos</p>
                     </div>
                 </div>
             </div>
