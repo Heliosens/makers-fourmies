@@ -2,7 +2,6 @@
     <section>
         <div class="mx-auto py-3 row row-cols-1 row-cols-md-3 g-4 justify-content-center">
             <?php
-            /* @var Technique $item */
             foreach ($techniques as $item){?>
                 <div class="col">
                     <div class="card h-100">

@@ -1,6 +1,5 @@
 <main>
     <section>
-
         <div class="d-grid py-3 gap-3 mx-auto">
             <?php
             $data = $data['cat'];

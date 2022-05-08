@@ -34,4 +34,9 @@ class ProjectsController extends Controller
         $this->render('project', $data);
     }
 
+
+    public function create_art (){
+        $this->render('art_form');
+    }
+
 }

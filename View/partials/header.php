@@ -16,7 +16,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="index.php">MAKERS FOURMIES</a>
-            <!--  button for responsive    -->
+            <!--  button appear on responsive    -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                     aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -56,7 +56,7 @@
                         <a class="nav-link" href="index.php?c=contact">Contact</a>
                     </li>
                 </ul>
-                <div class="d-flex flex-grow-1 justify-content-end">
+                <div class="d-flex flex-grow-1 justify-content-end align-items-center gap-4">
                     <?php
                     if(!isset($_SESSION['user'])){
                         echo '
@@ -71,6 +71,9 @@
                     }
                     else{
                         echo '
+                    <div>
+                    <a class="btn btn-primary btn-sm" href="index.php?c=projects&p=create_art">Créer un article</a>
+                    </div>
                     <a href="index.php?c=profile&p=profile&o=1" title="profile">
                         <img src="/img/avatar/' . $_SESSION['avatar'] . ' ">
                     </a>
