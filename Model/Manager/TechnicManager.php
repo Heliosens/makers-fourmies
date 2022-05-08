@@ -11,10 +11,9 @@ class TechnicManager
         $query = DB::getConn()->query('SELECT * FROM mkf_technic ORDER BY technic');
         if($query){
             foreach ($query->fetchAll() as $item){
-                $techniques[] = (new Technique())
-                    ->setIdTech($item['id_tech'])
-                    ->setTechnique($item['technic'])
-                    ;
+                $techniques[$item['id_tech']] = [
+                    'tech' => $item['technic']
+                ];
             }
         }
         return $techniques;

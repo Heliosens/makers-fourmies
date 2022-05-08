@@ -100,4 +100,19 @@ class UserManager
         }
         return $users;
     }
+
+    /**
+     * @param int $id
+     * @return mixed|string
+     */
+    public static function getAvatar(int $id){
+        $avat = "";
+        $query = DB::getConn()->query("SELECT * FROM mkf_user WHERE id_user = $id");
+        if($query){
+            $item = $query->fetch();
+            $avat = AvatarManager::getAvatById($item['avat_fk']);
+        }
+        return $avat;
+    }
+
 }

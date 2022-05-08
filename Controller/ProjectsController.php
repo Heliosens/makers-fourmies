@@ -34,9 +34,15 @@ class ProjectsController extends Controller
         $this->render('project', $data);
     }
 
-
+    /**
+     * create article form
+     */
     public function create_art (){
-        $this->render('art_form');
+        $data = [
+            'type' => TypeManager::allType(),
+            'technic' => TechnicManager::allTechnique(),
+        ];
+        $this->render('art_form', $data);
     }
 
 }

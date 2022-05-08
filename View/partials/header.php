@@ -42,11 +42,11 @@
                             <li><hr class="dropdown-divider"></li>
                             <?php
                             $techniques = $tech['technic'];
-                            foreach ($techniques as $item) {
+                            foreach ($techniques as $key => $item) {
                                 echo '
                             <li>
-                                <a class="dropdown-item" href="index?c=projects&p=one_technic&o=' . $item->getIdTech() .
-                                    ' ">' . $item->getTechnique() . '</a>
+                                <a class="dropdown-item" href="index?c=projects&p=one_technic&o=' . $key . ' ">' .
+                                    $item['tech'] . '</a>
                             </li>';
                             }
                             ?>
@@ -70,12 +70,13 @@
                     </a>';
                     }
                     else{
+                        $avatar = UserManager::getAvatar($_SESSION['id']);
                         echo '
                     <div>
                     <a class="btn btn-primary btn-sm" href="index.php?c=projects&p=create_art">Créer un article</a>
                     </div>
                     <a href="index.php?c=profile&p=profile&o=1" title="profile">
-                        <img src="/img/avatar/' . $_SESSION['avatar'] . ' ">
+                        <img src="/img/avatar/'. $avatar->getAvatar() .'">
                     </a>
                     <a class="nav-link text-secondary" href="index.php?c=user&p=disconnect" title="Déconnexion">
                         <i class="fa-solid fa-arrow-right-from-bracket"></i>
@@ -96,4 +97,3 @@
     }
     ?>
 </header>
-
