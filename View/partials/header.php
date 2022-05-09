@@ -70,7 +70,8 @@
                     </a>';
                     }
                     else{
-                        $avatar = UserManager::getAvatar($_SESSION['id']);
+                        $avatar = isset($_SESSION['id']) ? UserManager::getAvatar($_SESSION['id']) :
+                            UserManager::getAvatar(1);
                         echo '
                     <div>
                     <a class="btn btn-primary btn-sm" href="index.php?c=projects&p=create_art">Créer un article</a>

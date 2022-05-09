@@ -63,7 +63,6 @@
                         </li>
                     </ul>
                 </aside>
-
             </div>
             <p>Article par : <?=$data->getAuthor()->getPseudo()?></p>
         </div>
