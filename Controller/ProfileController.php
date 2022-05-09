@@ -15,13 +15,22 @@ class ProfileController extends Controller
     /**
      * @param $id
      */
-    public function admin($id){
+    public function admin(){
         if($_SESSION['role'] === 'admin'){
+            $rubrics = RubricManager::allRubrics();
             $data = [
                 'user' => UserManager::allUser(),
-                'article' => ProjectsManager::AllArticle(),
-//                'rubric' =>
+                'article' => [
+                    'pr' => ProjectsManager::artByState('1'),
+                    'sb' => ProjectsManager::artByState('2'),
+                    'pu' => ProjectsManager::artByState('3'),
+                ],
             ];
+            foreach ($rubrics as $key => $value){
+                $data['rubrics'][] = [
+                    $key => $value
+                ];
+            }
             $this->render('admin', $data);
         }
     }

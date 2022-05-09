@@ -49,5 +49,5 @@ require __DIR__ . '/Model/Manager/AvatarManager.php';
 require __DIR__ . '/Model/Manager/MatterManager.php';
 require __DIR__ . '/Model/Manager/ResourceManager.php';
 require __DIR__ . '/Model/Manager/ToolManager.php';
-
+require __DIR__ . '/Model/Manager/RubricManager.php';
 

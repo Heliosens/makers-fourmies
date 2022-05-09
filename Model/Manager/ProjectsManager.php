@@ -55,7 +55,7 @@ class ProjectsManager
     /**
      * @return array
      */
-    public static function AllArticle () : array
+    public static function allArticle () : array
     {
         $projects = [];
         $query = DB::getConn()->query("SELECT * FROM mkf_article");
@@ -70,5 +70,21 @@ class ProjectsManager
             }
         }
         return $projects;
+    }
+
+    /**
+     * @param $state
+     * @return array
+     */
+    public static function artByState (int $state) : array
+    {
+        $articles = [];
+        $query = DB::getConn()->query("SELECT * FROM mkf_article WHERE state = $state");
+        if ($query){
+            foreach ($query->fetchAll() as $item){
+                $articles[$item['id_art']] = $item['title'];
+            }
+        }
+        return $articles;
     }
 }

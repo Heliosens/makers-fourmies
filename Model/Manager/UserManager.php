@@ -92,7 +92,7 @@ class UserManager
                     ->setId($item['id_user'])
                     ->setPseudo($item['pseudo'])
                     ->setEmail($item['mail'])
-                    ->setPassword($item['password'])
+                    ->setPassword('')
                     ->setAvatar(AvatarManager::getAvatById($item['avat_fk']))
                     ->setRole(RoleManager::getRoleById($item['role_fk']))
                 ;

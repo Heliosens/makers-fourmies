@@ -20,23 +20,6 @@ class TechnicManager
     }
 
     /**
-     * @param $option
-     * @return Technique
-     */
-    public static function techName ($option){
-        $tech = new Technique();
-        $query = DB::getConn()->query("SELECT * FROM mkf_technic WHERE id_tech = '$option'");
-        if($query){
-            $item = $query->fetch();
-            $tech
-                ->setIdTech($item['id_tech'])
-                ->setTechnique($item['technic'])
-                ;
-        }
-        return $tech;
-    }
-
-    /**
      * @param int $id
      * @return array
      */
