@@ -19,7 +19,8 @@ class ProfileController extends Controller
         if($_SESSION['role'] === 'admin'){
             $data = [
                 'user' => UserManager::allUser(),
-                'article' => ProjectsManager::AllArticle()
+                'article' => ProjectsManager::AllArticle(),
+//                'rubric' =>
             ];
             $this->render('admin', $data);
         }
