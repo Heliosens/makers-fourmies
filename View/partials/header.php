@@ -41,6 +41,7 @@
                             </li>
                             <li><hr class="dropdown-divider"></li>
                             <?php
+                            $info = $_SESSION['user'];
                             $techniques = $tech['technic'];
                             foreach ($techniques as $key => $item) {
                                 echo '
@@ -70,13 +71,12 @@
                     </a>';
                     }
                     else{
-                        $avatar = isset($_SESSION['id']) ? UserManager::getAvatar($_SESSION['id']) :
-                            UserManager::getAvatar(1);
+                        $avatar = UserManager::getAvatar($info['id']);
                         echo '
                     <div>
                     <a class="btn btn-primary btn-sm" href="index.php?c=projects&p=create_art">Créer un article</a>
                     </div>
-                    <a href="index.php?c=profile&p=profile&o=1" title="profile">
+                    <a href="index.php?c=profile&p=profile&o=' . $info['id'] . '" title="profile">
                         <img src="/img/avatar/'. $avatar->getAvatar() .'">
                     </a>
                     <a class="nav-link text-secondary" href="index.php?c=user&p=disconnect" title="Déconnexion">
@@ -95,6 +95,13 @@
                 '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>';
         $_SESSION['error'] = null;
+    }
+    if (isset($_SESSION['success'])){
+        echo '<div class="alert alert-success alert-dismissible fade show position-absolute w-100" role="alert">
+                <strong>Erreur : </strong>' . $_SESSION["success"] .
+            '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>';
+        $_SESSION['success'] = null;
     }
     ?>
 </header>
