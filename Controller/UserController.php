@@ -79,10 +79,11 @@ class UserController extends Controller
 
 
                     if(UserManager::addUser($user)){
-                        $_SESSION['success'] = "Vous allez recevoir un mail de vérification";
+//                        $_SESSION['success'] = "Vous allez recevoir un mail de vérification";
                         $_SESSION['error'] = null;
-                        $user->setPassword("");
-                        $_SESSION['user'] = $user;
+                        $_SESSION['user'] = [
+                            'id' => $user->getId(),
+                        ];
                         // todo send validation link by mail
                     }
                     else {
@@ -91,18 +92,16 @@ class UserController extends Controller
                 }
                 else {
                     $_SESSION['error'] = $error;
+                    $this->render('register');
                 }
             }
             $this->render('home');
         }
         else {
-            $error = 'Veuillez remplir tous les champs';
-        }
-        // check error
-        if(strlen($error) > 0){
-            $_SESSION['error'] = $error;
+            $_SESSION['error'] = 'Veuillez remplir tous les champs';
             $this->render('register');
         }
+
     }
 
     /**
@@ -136,13 +135,14 @@ class UserController extends Controller
                 }
                 elseif(password_verify($password, $user->getPassword())){   // check password
                     $user->setPassword('');
-                    $_SESSION['user'] = $user->getPseudo();
-                    $_SESSION['id'] = $user->getId();
-                    $_SESSION['avatar'] = $user->getAvatar()->getAvatar();
-                    $_SESSION['role'] = $user->getRole()->getRoleName();
+                    $_SESSION['user'] = [
+                        'id' => $user->getId(),
+                        'pseudo' => $user->getPseudo(),
+                        'role' => $user->getRole()->getRoleName()
+                    ];
                 }
                 else{
-                    $_SESSION['error'] = "(Email ou) mot de passe incorrect";
+                    $_SESSION['error'] = "Email ou mot de passe incorrect";
                     $this->render('connection');
                 }
             }
@@ -169,9 +169,6 @@ class UserController extends Controller
 
             $_SESSION['error'] = null;
             $_SESSION['user'] = null;
-            $_SESSION['id'] = null;
-            $_SESSION['avatar'] = null;
-            $_SESSION['role'] = null;
             session_unset();
             setcookie(session_id(), "", time() - 3600);
             session_destroy();

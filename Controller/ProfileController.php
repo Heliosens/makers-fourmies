@@ -7,16 +7,16 @@ class ProfileController extends Controller
      * display profile data
      * @param $id
      */
-    public function profile($id){
-        $data = ['user' => UserManager::getUserById($id)];
+    public function profile(){
+        $data = ['user' => UserManager::getUserById($_SESSION['user']['id'])];
         $this->render('profile', $data);
     }
 
     /**
-     * @param $id
+     * admin space
      */
     public function admin(){
-        if($_SESSION['role'] === 'admin'){
+        if($_SESSION['user']['role'] === 'admin'){
             $rubrics = RubricManager::allRubrics();
             $data = [
                 'user' => UserManager::allUser(),

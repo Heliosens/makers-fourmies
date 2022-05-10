@@ -31,7 +31,7 @@ class Controller
     {
         foreach ($fields as $item){
             if(!isset($item) || empty($item)){
-                $_SESSION['error'] = "stop";
+                $_SESSION['error'] = "Tous les champs doivent être remplis !";
                 return false;
             }
         }

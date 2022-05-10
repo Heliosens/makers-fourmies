@@ -6,9 +6,6 @@
     echo '<pre>';
     var_dump($data);
     echo '</pre>';
-//    foreach ($users as $user){
-//        var_dump($user);
-//    }
 ?>
 <main>
     <section>

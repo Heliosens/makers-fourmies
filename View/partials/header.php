@@ -76,7 +76,7 @@
                     <div>
                     <a class="btn btn-primary btn-sm" href="index.php?c=projects&p=create_art">Créer un article</a>
                     </div>
-                    <a href="index.php?c=profile&p=profile&o=' . $info['id'] . '" title="profile">
+                    <a href="index.php?c=profile&p=profile" title="profile">
                         <img src="/img/avatar/'. $avatar->getAvatar() .'">
                     </a>
                     <a class="nav-link text-secondary" href="index.php?c=user&p=disconnect" title="Déconnexion">
@@ -97,8 +97,8 @@
         $_SESSION['error'] = null;
     }
     if (isset($_SESSION['success'])){
-        echo '<div class="alert alert-success alert-dismissible fade show position-absolute w-100" role="alert">
-                <strong>Erreur : </strong>' . $_SESSION["success"] .
+        echo '<div class="alert alert-success alert-dismissible fade show position-absolute w-100" role="alert">'
+            . $_SESSION["success"] .
             '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>';
         $_SESSION['success'] = null;
