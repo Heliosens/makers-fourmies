@@ -83,6 +83,8 @@ class UserController extends Controller
                         $_SESSION['error'] = null;
                         $_SESSION['user'] = [
                             'id' => $user->getId(),
+                            'pseudo' => $user->getPseudo(),
+                            'role' => $user->getRole()->getRoleName()
                         ];
                         // todo send validation link by mail
                     }
@@ -96,12 +98,12 @@ class UserController extends Controller
                 }
             }
             $this->render('home');
+            die();
         }
         else {
             $_SESSION['error'] = 'Veuillez remplir tous les champs';
             $this->render('register');
         }
-
     }
 
     /**
@@ -159,6 +161,7 @@ class UserController extends Controller
             $this->render('connection');
         }
         $this->render('home');
+        die();
     }
 
     /**
@@ -176,5 +179,28 @@ class UserController extends Controller
         $this->render('home');
     }
 
+    /**
+     * @param $id
+     */
+    public function del_user ($id){
+
+        if($_SESSION['user']['role'] === 'admin'){
+            if(UserManager::getRole($id) === 'admin' && $this->testAdmin() || UserManager::getRole($id) !== 'admin'){
+                UserManager::delById($id);
+            }
+            else{
+                $_SESSION['error'] = "Attention vous ne pouvez pas supprimer le dernier administrateur du site !";
+            };
+            header('Location: index.php?c=profile&p=admin');
+        }
+    }
+
+    /**
+     * @return bool
+     */
+    public function testAdmin (){
+        $admin = UserManager::adminNbr();
+        return $admin['nbr'] > 2;
+    }
 
 }

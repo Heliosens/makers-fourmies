@@ -5,9 +5,8 @@ class ProfileController extends Controller
 {
     /**
      * display profile data
-     * @param $id
      */
-    public function profile(){
+    public function page(){
         $data = ['user' => UserManager::getUserById($_SESSION['user']['id'])];
         $this->render('profile', $data);
     }
@@ -16,7 +15,7 @@ class ProfileController extends Controller
      * admin space
      */
     public function admin(){
-        if($_SESSION['user']['role'] === 'admin'){
+        if(isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin'){
             $rubrics = RubricManager::allRubrics();
             $data = [
                 'user' => UserManager::allUser(),
@@ -33,5 +32,6 @@ class ProfileController extends Controller
             }
             $this->render('admin', $data);
         }
+        else $this->render('home');
     }
 }

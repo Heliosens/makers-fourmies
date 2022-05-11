@@ -34,6 +34,7 @@ class Role
 
     /**
      * @param string $role_name
+     * @return Role
      */
     public function setRoleName(string $role_name): self
     {

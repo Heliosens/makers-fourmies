@@ -5,7 +5,7 @@ class CategoryLinkManager
 {
     public static function catLinkById (int $id){
         $catLink = new Category_link();
-        $query = DB::getConn()->query("SELECT * FROM mkf_category_link WHERE id_cat_link = $id");
+        $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "category_link WHERE id_cat_link = $id");
         if($query){
             $item = $query->fetch();
             $catLink

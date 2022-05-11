@@ -10,7 +10,7 @@ class UserManager
     public static function getUserById ($id) : User
     {
         $user = new User();
-        $query = DB::getConn()->query("SELECT * FROM mkf_user WHERE id_user = $id");
+        $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "user WHERE id_user = $id");
         if($query){
             $data = $query->fetch();
         }
@@ -23,7 +23,6 @@ class UserManager
             ->setRole($role)
             ->setAvatar($avat)
         ;
-
         return $user;
     }
 
@@ -34,7 +33,7 @@ class UserManager
      */
     public static function mailEverExist (string $email) : bool
     {
-        $result = DB::getConn()->query("SELECT count(*) as nbr FROM mkf_user WHERE mail = '$email'");
+        $result = DB::getConn()->query("SELECT count(*) as nbr FROM " . Config::PRE . "user WHERE mail = '$email'");
         return $result->fetch()['nbr'] > 0;
     }
 
@@ -46,7 +45,7 @@ class UserManager
     public static function addUser(User &$user) : bool
     {
         $stm = DB::getConn()->prepare("
-        INSERT INTO mkf_user (pseudo, mail, password, avat_fk, role_fk) VALUES (:pseudo, :email, :password, 1, 3)");
+        INSERT INTO " . Config::PRE . "user (pseudo, mail, password, avat_fk, role_fk) VALUES (:pseudo, :email, :password, 1, 3)");
 
         $stm->bindValue(':pseudo', $user->getPseudo());
         $stm->bindValue(':email', $user->getEmail());
@@ -65,7 +64,7 @@ class UserManager
     public static function getUserByMail($mail) : User
     {
         $user = new User();
-        $query = DB::getConn()->query("SELECT * FROM mkf_user WHERE mail = '$mail'");
+        $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "user WHERE mail = '$mail'");
         if($query){
             $item = $query->fetch();
             $user->setId($item['id_user'])
@@ -85,7 +84,7 @@ class UserManager
      */
     public static function allUser (){
         $users = [];
-        $query = DB::getConn()->query('SELECT * FROM mkf_user');
+        $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "user");
         if($query){
             foreach ($query->fetchAll() as $item){
                 $users[] = (new User())
@@ -103,16 +102,46 @@ class UserManager
 
     /**
      * @param int $id
-     * @return mixed|string
+     * @return Avatar|false
      */
     public static function getAvatar(int $id){
-        $avat = "";
-        $query = DB::getConn()->query("SELECT * FROM mkf_user WHERE id_user = $id");
+        $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "user WHERE id_user = $id");
         if($query){
             $item = $query->fetch();
-            $avat = AvatarManager::getAvatById($item['avat_fk']);
+            return $avat = AvatarManager::getAvatById($item['avat_fk']);
         }
-        return $avat;
+        return false;
+    }
+
+    /**
+     * @param int $id
+     * @return false|Role
+     */
+    public static function getRole (int $id){
+        $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "user WHERE id_user = $id");
+        if($query){
+            $item = $query->fetch();
+            return $role = RoleManager::getRoleById($item['role_fk']);
+        }
+        return false;
+    }
+
+    /**
+     * @param string $id
+     * @return mixed
+     */
+    public static function delById (string $id){
+        return DB::getConn()->query("DELETE FROM " . Config::PRE . "user WHERE id_user = '$id'");
+    }
+
+    /**
+     * count nbr of admin
+     * @return mixed
+     */
+    public static function adminNbr (){
+        $query = DB::getConn()->query("
+            SELECT count(*) as nbr FROM " . Config::PRE . "user WHERE role_fk = 1");
+        return $query->fetch();
     }
 
 }

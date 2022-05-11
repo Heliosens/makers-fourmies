@@ -10,8 +10,8 @@ class ToolManager
     public static function toolByArt (int $id) : array
     {
         $tools = [];
-        $query = DB::getConn()->query("SELECT * FROM mkf_tool WHERE id_tool IN 
-            (SELECT tool_fk FROM mkf_use_tool WHERE art_fk = $id)");
+        $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "tool WHERE id IN 
+            (SELECT tool_fk FROM " . Config::PRE . "art_tool WHERE art_fk = $id)");
         if($query){
             foreach ($query->fetchAll() as $item){
                 $tools[] = (new Tool())

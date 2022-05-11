@@ -8,11 +8,11 @@ class TechnicManager
      */
     public static function allTechnique (){
         $techniques = [];
-        $query = DB::getConn()->query('SELECT * FROM mkf_technic ORDER BY technic');
+        $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "technical ORDER BY name");
         if($query){
             foreach ($query->fetchAll() as $item){
-                $techniques[$item['id_tech']] = [
-                    'tech' => $item['technic']
+                $techniques[$item['id']] = [
+                    'tech' => $item['name']
                 ];
             }
         }
@@ -26,13 +26,13 @@ class TechnicManager
     public static function techByArt (int $id) : array
     {
         $technics = [];
-        $query = DB::getConn()->query("SELECT * FROM mkf_technic WHERE id_tech IN 
-            (SELECT use_by FROM mkf_use_tech WHERE use_tech = $id)");
+        $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "technical WHERE id IN 
+            (SELECT tech_fk FROM " . Config::PRE . "art_tech WHERE art_fk = $id)");
         if($query){
             foreach ($query->fetchAll() as $item){
                 $technics[] = (new Technique())
-                    ->setIdTech($item['id_tech'])
-                    ->setTechnique($item['technic'])
+                    ->setIdTech($item['id'])
+                    ->setTechnique($item['name'])
                 ;
             }
         }

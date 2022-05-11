@@ -72,7 +72,7 @@
                 if($user->getRole()->getRoleName() === 'admin'){
                     echo '
                 <div>
-                    <a class="btn btn-primary" href="index.php?c=profile&p=admin&o=' . $user->getId() . '">Espace administrateur</a>
+                    <a class="btn btn-primary" href="index.php?c=profile&p=admin">Espace administrateur</a>
                 </div>
                     ';
                 }

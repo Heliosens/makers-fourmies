@@ -11,10 +11,19 @@ class Router
         return trim(strtolower(strip_tags($param)));
     }
 
+    /**
+     * @param $ctrl
+     * @return string
+     */
     public function getCtrlName ($ctrl){
         return ucfirst($ctrl) . 'Controller';
     }
 
+    /**
+     * @param $c
+     * @param $p
+     * @param $o
+     */
     public function toCtrl ($c, $p, $o){
         $ctrl = $this->getCtrlName($c);
         $p = self::cleanParam($p);

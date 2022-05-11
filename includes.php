@@ -1,4 +1,6 @@
 <?php
+
+require __DIR__ . '/Config.php';
 // connection class
 require __DIR__ . '/Model/DB.php';
 

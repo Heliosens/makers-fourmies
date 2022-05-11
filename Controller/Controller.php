@@ -38,4 +38,33 @@ class Controller
         return true;
     }
 
+    /**
+     * @param $test
+     */
+    public function testParam ($test){
+        if($test){
+            $this->render('404page');
+        }
+    }
+
+    /**
+     * @param $param
+     * @return string
+     */
+    public static function roleName($param){
+        switch ($param){
+            case 'admin' :
+                return'Administrateur';
+                break;
+            case 'modo' :
+                return 'Modérateur';
+                break;
+            case 'user' :
+                return 'Utilisateur';
+                break;
+            default :
+                return 'Unknown';
+        }
+    }
+
 }

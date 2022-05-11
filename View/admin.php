@@ -1,12 +1,15 @@
 <?php
-    /* @var User $user */
+//    /* @var User $user */
     $users = $data['user'];
     $articles = $data['article'];
     $rubrics = $data['rubrics'];
+
     echo '<pre>';
     var_dump($data);
     echo '</pre>';
-?>
+
+    if($_SESSION['user']['role'] === 'admin'){
+        ?>
 <main>
     <section>
         <div class="mx-auto py-2 px-5">
@@ -26,9 +29,10 @@
                             <article>
                                 <?php
                                 foreach ($users as $user){
-                                    echo '<div class="row row-cols-2 px-5">
-                                    <a class="text-decoration-none text-dark col-8" href="#">' . $user->getPseudo() . '</a>
-                                    <a href="" class="col-4 text-dark">
+                                    echo '<div class="row row-cols-3 px-5">
+                                    <a class="text-decoration-none text-dark" href="">' . $user->getPseudo() . '</a>
+                                    <a class="text-decoration-none text-dark" href="">' . Controller::roleName($user->getRole()->getRoleName()) . '</a>
+                                    <a href="index.php?c=user&p=del_user&o=' . $user->getId() . '" class="text-dark">
                                         <i class="fa-solid fa-trash-can p-1" title="supprimer l\'utilisateur"></i>
                                     </a>
                                 </div>';
@@ -278,3 +282,8 @@
         </div>
     </section>
 </main>
+<?php
+}
+else{
+    header('Location : index.php');
+}

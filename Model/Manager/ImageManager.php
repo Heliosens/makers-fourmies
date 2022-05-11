@@ -5,7 +5,7 @@ class ImageManager
 {
     public static function imgByArt (int $id){
         $images = [];
-        $query = DB::getConn()->query("SELECT * FROM mkf_image WHERE art_fk = $id");
+        $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "step WHERE art_fk = $id");
         if($query){
             foreach ($query->fetchAll() as $item){
                 $images[] = (new Image())

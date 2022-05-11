@@ -10,8 +10,8 @@ class ProjectsManager
     public static function projectByTechnic ($id) : array
     {
         $projects = [];
-        $query = DB::getConn()->query("SELECT * FROM mkf_article WHERE id_art IN 
-            (SELECT use_tech FROM mkf_use_tech WHERE use_by = '$id')");
+        $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "article WHERE id_art IN 
+            (SELECT art_fk FROM " . Config::PRE . "art_tech WHERE tech_fk = '$id')");
         if($query){
             foreach ($query->fetchAll() as $item){
                 $projects[] = (new Article())
@@ -32,7 +32,7 @@ class ProjectsManager
     public static function oneProject (int $id) : Article
     {
         $project = new Article();
-        $query = DB::getConn()->query("SELECT * FROM mkf_article WHERE id_art = $id");
+        $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "article WHERE id_art = $id");
         if($query){
             $item = $query->fetch();
             $project->setId($item['id_art'])
@@ -58,7 +58,7 @@ class ProjectsManager
     public static function allArticle () : array
     {
         $projects = [];
-        $query = DB::getConn()->query("SELECT * FROM mkf_article");
+        $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "article");
         if($query){
             foreach ($query->fetchAll() as $item){
                 $projects[] = (new Article())
@@ -79,7 +79,7 @@ class ProjectsManager
     public static function artByState (int $state) : array
     {
         $articles = [];
-        $query = DB::getConn()->query("SELECT * FROM mkf_article WHERE state = $state");
+        $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "article WHERE state = $state");
         if ($query){
             foreach ($query->fetchAll() as $item){
                 $articles[$item['id_art']] = $item['title'];

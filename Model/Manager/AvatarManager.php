@@ -9,7 +9,7 @@ class AvatarManager
      */
     public static function defaultAvatar (){
         $avatar = new Avatar();
-        $query = DB::getConn()->query("SELECT * FROM mkf_avatar WHERE id_avat = 1");
+        $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "avatar WHERE id_avat = 1");
         if($query){
             $result = $query->fetch();
             $avatar->setIdAvat($result['id_avat'])->setAvatar($result['avatar']);
@@ -23,7 +23,7 @@ class AvatarManager
      */
     public static function getAvatById (int $id){
         $avatar = new Avatar();
-        $query = DB::getConn()->query("SELECT * FROM mkf_avatar WHERE id_avat = $id");
+        $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "avatar WHERE id_avat = $id");
         if($query){
             $result = $query->fetch();
             $avatar->setIdAvat($result['id_avat'])->setAvatar($result['avatar']);

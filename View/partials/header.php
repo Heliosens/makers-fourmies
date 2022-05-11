@@ -41,7 +41,7 @@
                             </li>
                             <li><hr class="dropdown-divider"></li>
                             <?php
-                            $info = $_SESSION['user'];
+                            $info = isset($_SESSION['user']) ? $_SESSION['user'] : null;
                             $techniques = $tech['technic'];
                             foreach ($techniques as $key => $item) {
                                 echo '
@@ -76,7 +76,7 @@
                     <div>
                     <a class="btn btn-primary btn-sm" href="index.php?c=projects&p=create_art">Créer un article</a>
                     </div>
-                    <a href="index.php?c=profile&p=profile" title="profile">
+                    <a href="index.php?c=profile" title="profile">
                         <img src="/img/avatar/'. $avatar->getAvatar() .'">
                     </a>
                     <a class="nav-link text-secondary" href="index.php?c=user&p=disconnect" title="Déconnexion">

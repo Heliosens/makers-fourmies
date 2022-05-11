@@ -4,10 +4,10 @@
 class DB
 {
     private static ?PDO $pdo = null;
-    private static string $server = 'localhost';
-    private static string $db = 'makersfourmies';
-    private static string $user = 'root';
-    private static string $pwd = '';
+    private static string $server = Config::HOST;
+    private static string $db = Config::DB;
+    private static string $user = Config::USER;
+    private static string $pwd = Config::PASSWORD;
 
     /**
      * @return PDO
