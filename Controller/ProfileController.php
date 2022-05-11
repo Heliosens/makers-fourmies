@@ -10,6 +10,7 @@ class ProfileController extends Controller
         $id = $_SESSION['user']['id'];
         $data = [
             'user' => UserManager::getUserById($id),
+            'avatar' => AvatarManager::getAllAvatar(),
             'art' => [
                 'write' => ProjectsManager::artByAuthor($id),
                 'make' => ProjectsManager::artByMaker($id)

@@ -8,7 +8,8 @@ class UserController extends Controller
      */
     public function register_form (){
         // verify if there's not already a connected user
-        !isset($_SESSION['user']) ? $this->render('register') : $this->render('home');
+        $this->userConnectionExist(false);
+        $this->render('register');
     }
 
     /**
@@ -16,6 +17,7 @@ class UserController extends Controller
      */
     public function connection_form (){
         // verify if there's not already a connected user
+        $this->userConnectionExist(false);
         !isset($_SESSION['user']) ? $this->render('connection') : $this->render('home');
     }
 
@@ -86,7 +88,6 @@ class UserController extends Controller
                             'pseudo' => $user->getPseudo(),
                             'role' => $user->getRole()->getRoleName()
                         ];
-                        // todo send validation link by mail
                     }
                     else {
                         $_SESSION['error'] = "Une erreur s'est produite";
@@ -110,11 +111,9 @@ class UserController extends Controller
      * connect user
      */
     public function connection (){
-        $this->userConnectionExist(false);
         // verify if there's not already a connected user
-        if(isset($_SESSION['user'])){
-            $this->render('profile');
-        }
+        $this->userConnectionExist(false);
+
         //  check if button is press & fields not empty
         if(isset($_POST['sendBtn']) && $this->fieldsState($_POST['email'], $_POST['passwrd'])){
 
@@ -169,7 +168,6 @@ class UserController extends Controller
      */
     public function disconnect (){
         if(isset($_SESSION['user'])) {
-
             $_SESSION['error'] = null;
             $_SESSION['user'] = null;
             session_unset();
@@ -183,7 +181,6 @@ class UserController extends Controller
      * @param $id
      */
     public function del_user ($id){
-
         if($_SESSION['user']['role'] === 'admin' || $_SESSION['user']['id'] === $id){
             if(UserManager::getRoleByUser($id) === 'admin' && $this->testAdmin()){
                 UserManager::delById($id);

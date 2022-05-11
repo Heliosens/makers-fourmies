@@ -32,7 +32,7 @@ header a img {
 
 #band h1 {
     padding: 1rem;
-    background: #e5eaff;
+    background: #ebeefd;
     text-align: center;
 }
 
@@ -48,7 +48,7 @@ section {
 
 section >  div {
     width: 90%;
-    background: #e5eaff;
+    background: #ebeefd;
 }
 
 #home {
@@ -68,7 +68,7 @@ article {
 }
 
 .card-header {
-    background-color: #9ec5fe;
+    background-color: #b2d1ff;
 }
 
 .picture {
@@ -77,4 +77,8 @@ article {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+}
+
+.logo {
+    width: 5vw;
 }

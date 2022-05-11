@@ -74,11 +74,12 @@
                         $avatar = UserManager::getAvatar($info['id']);
                         echo '
                     <div>
-                    <a class="btn btn-primary btn-sm" href="index.php?c=projects&p=create_art">Créer un article</a>
+                        <a class="btn btn-primary btn-sm" href="index.php?c=projects&p=create_art">Créer un article</a>
                     </div>
                     <a href="index.php?c=profile" title="profile">
                         <img src="/img/avatar/'. $avatar->getAvatar() .'">
                     </a>
+                    <span>'. $_SESSION['user']['pseudo'] .'</span>
                     <a class="nav-link text-secondary" href="index.php?c=user&p=disconnect" title="Déconnexion">
                         <i class="fa-solid fa-arrow-right-from-bracket"></i>
                     </a>';

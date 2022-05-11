@@ -100,15 +100,14 @@ class Controller
     }
 
     /**
-     * test if user is connected
+     * test if user is connected continue
+     * !$bool switch result
+     * bool
+     * @param $bool
      */
     public function userConnectionExist($bool){
-        // if session and bool = 1
-        if(!isset($_SESSION['user']) && $bool){
-            $this->render('home');
-        }
-        // if !session and !bool = 1
-        if (isset($_SESSION['user']) && !$bool){
+        // if session and bool = 1 or if !session and bool = 0
+        if(!isset($_SESSION['user']) && $bool || isset($_SESSION['user']) && !$bool){
             $this->render('home');
         }
     }
