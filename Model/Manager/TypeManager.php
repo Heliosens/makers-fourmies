@@ -13,7 +13,7 @@ class TypeManager
         $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "type WHERE id = $id");
         if($query){
             $item = $query->fetch();
-            $type->setIdType($item['id_type'])->setTypeName($item['type_name']);
+            $type->setIdType($item['id'])->setTypeName($item['name']);
         }
         return $type;
     }
@@ -28,7 +28,7 @@ class TypeManager
         if($query){
             foreach ($query->fetchAll() as $item){
                 $type[] = [
-                    $item['id_type'] => $item['type_name']
+                    $item['id'] => $item['name']
                 ];
             }
         }

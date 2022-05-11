@@ -4,10 +4,6 @@
 class DB
 {
     private static ?PDO $pdo = null;
-    private static string $server = Config::HOST;
-    private static string $db = Config::DB;
-    private static string $user = Config::USER;
-    private static string $pwd = Config::PASSWORD;
 
     /**
      * @return PDO
@@ -18,8 +14,8 @@ class DB
         }
         else {
             try {
-                self::$pdo = new PDO("mysql:host=" . self::$server . ";dbname=" . self::$db . ";charset=utf8",
-                    self::$user, self::$pwd);
+                self::$pdo = new PDO("mysql:host=" . Config::HOST . ";dbname=" . Config::DB . ";charset=utf8",
+                    Config::USER, Config::PASSWORD);
                 self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 // get result as associative array
                 self::$pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);

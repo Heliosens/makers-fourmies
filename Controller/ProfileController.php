@@ -4,10 +4,17 @@
 class ProfileController extends Controller
 {
     /**
-     * display profile data
+     * display user profile data
      */
     public function page(){
-        $data = ['user' => UserManager::getUserById($_SESSION['user']['id'])];
+        $id = $_SESSION['user']['id'];
+        $data = [
+            'user' => UserManager::getUserById($id),
+            'art' => [
+                'write' => ProjectsManager::artByAuthor($id),
+                'make' => ProjectsManager::artByMaker($id)
+                ]
+        ];
         $this->render('profile', $data);
     }
 
@@ -16,7 +23,6 @@ class ProfileController extends Controller
      */
     public function admin(){
         if(isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin'){
-            $rubrics = RubricManager::allRubrics();
             $data = [
                 'user' => UserManager::allUser(),
                 'article' => [
@@ -25,11 +31,6 @@ class ProfileController extends Controller
                     'pu' => ProjectsManager::artByState('3'),
                 ],
             ];
-            foreach ($rubrics as $key => $value){
-                $data['rubrics'][] = [
-                    $key => $value
-                ];
-            }
             $this->render('admin', $data);
         }
         else $this->render('home');

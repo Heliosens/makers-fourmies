@@ -1,7 +1,7 @@
 <?php
 
 
-class ImageManager
+class StepManager
 {
     public static function imgByArt (int $id){
         $images = [];
@@ -9,7 +9,7 @@ class ImageManager
         if($query){
             foreach ($query->fetchAll() as $item){
                 $images[] = (new Image())
-                    ->setIdImg($item['id_img'])
+                    ->setIdImg($item['id_step'])
                     ->setName($item['name'])
                     ->setTitle($item['title'])
                     ->setDescription($item['description'])

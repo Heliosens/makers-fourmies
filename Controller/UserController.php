@@ -8,7 +8,7 @@ class UserController extends Controller
      */
     public function register_form (){
         // verify if there's not already a connected user
-        !isset($_SESSION['user']) ? $this->render('register') : $this->render('profile');
+        !isset($_SESSION['user']) ? $this->render('register') : $this->render('home');
     }
 
     /**
@@ -16,13 +16,14 @@ class UserController extends Controller
      */
     public function connection_form (){
         // verify if there's not already a connected user
-        !isset($_SESSION['user']) ? $this->render('connection') : $this->render('profile');
+        !isset($_SESSION['user']) ? $this->render('connection') : $this->render('home');
     }
 
     /**
      * register and connect new user
      */
     public function new_user (){
+        $this->userConnectionExist(false);
         $error = "";
         // verify if there's not already a connected user & button is press & check fields
         if(!isset($_SESSION['user']) && isset($_POST['sendBtn'])
@@ -77,7 +78,6 @@ class UserController extends Controller
 
                     // create token
 
-
                     if(UserManager::addUser($user)){
 //                        $_SESSION['success'] = "Vous allez recevoir un mail de vérification";
                         $_SESSION['error'] = null;
@@ -110,6 +110,7 @@ class UserController extends Controller
      * connect user
      */
     public function connection (){
+        $this->userConnectionExist(false);
         // verify if there's not already a connected user
         if(isset($_SESSION['user'])){
             $this->render('profile');
@@ -161,7 +162,6 @@ class UserController extends Controller
             $this->render('connection');
         }
         $this->render('home');
-        die();
     }
 
     /**
@@ -184,8 +184,8 @@ class UserController extends Controller
      */
     public function del_user ($id){
 
-        if($_SESSION['user']['role'] === 'admin'){
-            if(UserManager::getRole($id) === 'admin' && $this->testAdmin() || UserManager::getRole($id) !== 'admin'){
+        if($_SESSION['user']['role'] === 'admin' || $_SESSION['user']['id'] === $id){
+            if(UserManager::getRoleByUser($id) === 'admin' && $this->testAdmin()){
                 UserManager::delById($id);
             }
             else{
@@ -193,14 +193,6 @@ class UserController extends Controller
             };
             header('Location: index.php?c=profile&p=admin');
         }
-    }
-
-    /**
-     * @return bool
-     */
-    public function testAdmin (){
-        $admin = UserManager::adminNbr();
-        return $admin['nbr'] > 2;
     }
 
 }

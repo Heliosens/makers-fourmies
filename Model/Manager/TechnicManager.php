@@ -8,7 +8,7 @@ class TechnicManager
      */
     public static function allTechnique (){
         $techniques = [];
-        $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "technical ORDER BY name");
+        $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "technique ORDER BY name");
         if($query){
             foreach ($query->fetchAll() as $item){
                 $techniques[$item['id']] = [
@@ -26,7 +26,7 @@ class TechnicManager
     public static function techByArt (int $id) : array
     {
         $technics = [];
-        $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "technical WHERE id IN 
+        $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "technique WHERE id IN 
             (SELECT tech_fk FROM " . Config::PRE . "art_tech WHERE art_fk = $id)");
         if($query){
             foreach ($query->fetchAll() as $item){

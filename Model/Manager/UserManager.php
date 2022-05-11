@@ -117,7 +117,7 @@ class UserManager
      * @param int $id
      * @return false|Role
      */
-    public static function getRole (int $id){
+    public static function getRoleByUser (int $id){
         $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "user WHERE id_user = $id");
         if($query){
             $item = $query->fetch();

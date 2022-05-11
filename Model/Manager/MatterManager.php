@@ -15,8 +15,8 @@ class MatterManager
         if($query){
             foreach ($query->fetchAll() as $item){
                 $matter[] = (new Matter())
-                    ->setIdMat($item['id_matter'])
-                    ->setMatterName($item['matter'])
+                    ->setIdMat($item['id'])
+                    ->setMatterName($item['name'])
                 ;
             }
         }

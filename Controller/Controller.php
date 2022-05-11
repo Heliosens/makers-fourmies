@@ -39,15 +39,6 @@ class Controller
     }
 
     /**
-     * @param $test
-     */
-    public function testParam ($test){
-        if($test){
-            $this->render('404page');
-        }
-    }
-
-    /**
      * @param $param
      * @return string
      */
@@ -67,4 +58,58 @@ class Controller
         }
     }
 
+    /**
+     * @param $param
+     * @return string|null
+     */
+    public static function stateName($param){
+        switch ($param){
+            case 1 :
+                return 'Privé';
+                break;
+            case 2 :
+                return 'En attente de validation';
+                break;
+            case 3 :
+                return 'Publié';
+                break;
+            default :
+                return null;
+        }
+    }
+
+    /**
+     * test if there's one admin at least
+     * @return bool
+     */
+    public function testAdmin (){
+        $admin = UserManager::adminNbr();
+        return $admin['nbr'] > 1;
+    }
+
+    /**
+     * test if current user exist and is authorized
+     * @param int $currentUserId
+     * @param array $authorized
+     */
+    public function testAccess(int $currentUserId, array $authorized){
+        $role = UserManager::getRoleByUser($currentUserId);
+        if(!in_array($role, $authorized)){
+            $this->render('home');
+        }
+    }
+
+    /**
+     * test if user is connected
+     */
+    public function userConnectionExist($bool){
+        // if session and bool = 1
+        if(!isset($_SESSION['user']) && $bool){
+            $this->render('home');
+        }
+        // if !session and !bool = 1
+        if (isset($_SESSION['user']) && !$bool){
+            $this->render('home');
+        }
+    }
 }

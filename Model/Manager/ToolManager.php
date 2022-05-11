@@ -15,8 +15,8 @@ class ToolManager
         if($query){
             foreach ($query->fetchAll() as $item){
                 $tools[] = (new Tool())
-                    ->setIdTool($item['id_tool'])
-                    ->setToolName($item['tool'])
+                    ->setIdTool($item['id'])
+                    ->setToolName($item['name'])
                 ;
             }
         }

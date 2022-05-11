@@ -4,10 +4,11 @@
 class ProjectsManager
 {
     /**
+     * return projects which use a technique
      * @param $id
      * @return array
      */
-    public static function projectByTechnic ($id) : array
+    public static function projectByTechnic (int $id) : array
     {
         $projects = [];
         $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "article WHERE id_art IN 
@@ -38,7 +39,7 @@ class ProjectsManager
             $project->setId($item['id_art'])
                 ->setTitle($item['title'])
                 ->setDescription($item['description'])
-                ->setImage(ImageManager::imgByArt($item['id_art']))
+                ->setImage(StepManager::imgByArt($item['id_art']))
                 ->setType(TypeManager::getTypeById($item['type_fk']))
                 ->setCategory(CategoryManager::categoryByArt($item['id_art']))
                 ->setTechnic(TechnicManager::techByArt($item['id_art']))
@@ -78,13 +79,52 @@ class ProjectsManager
      */
     public static function artByState (int $state) : array
     {
-        $articles = [];
+        $projects = [];
         $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "article WHERE state = $state");
         if ($query){
             foreach ($query->fetchAll() as $item){
-                $articles[$item['id_art']] = $item['title'];
+                $projects[$item['id_art']] = $item['title'];
             }
         }
-        return $articles;
+        return $projects;
+    }
+
+    /**
+     * @param int $id
+     * @return array
+     */
+    public static function artByAuthor (int $id) : array
+    {
+        $projects = [];
+        $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "article WHERE author = $id");
+        if ($query){
+            foreach ($query->fetchAll() as $item){
+                $projects[$item['id_art']] = [
+                    'title' => $item['title'],
+                    'state' => $item['state']
+                ];
+            }
+        }
+        return $projects;
+    }
+
+    /**
+     * @param int $id
+     * @return array
+     */
+    public static function artByMaker (int $id) : array
+    {
+        $projects = [];
+        $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "article WHERE id_art IN
+        (SELECT art_fk FROM " . Config::PRE . "take_part WHERE user_fk = $id)
+        ");
+        if($query){
+            foreach ($query->fetchAll() as $item){
+                $projects[$item['id_art']] = [
+                  'title' => $item['title']
+                ];
+            }
+        }
+        return $projects;
     }
 }

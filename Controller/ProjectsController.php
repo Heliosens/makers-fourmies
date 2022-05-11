@@ -17,7 +17,7 @@ class ProjectsController extends Controller
     public function one_technic($option){
         $data = [
             'projects' => ProjectsManager::projectByTechnic($option),
-            'title' => TechnicManager::techName($option)
+            'title' => "XXX"
             ];
         $this->render('project_by_tech', $data);
     }
