@@ -1,2 +1,5 @@
 let main = document.querySelector('main');
-main.style.minHeight = innerHeight - 56 - 25 + "px";
+let h = document.querySelector('header').offsetHeight;
+let f = document.querySelector('footer').offsetHeight;
+
+main.style.minHeight = innerHeight - h - f + "px";
