@@ -18,7 +18,6 @@ require __DIR__ . '/Model/Entity/Art_tech.php';
 require __DIR__ . '/Model/Entity/Category_link.php';
 require __DIR__ . '/Model/Entity/Resource.php';
 require __DIR__ . '/Model/Entity/Favorite.php';
-require __DIR__ . '/Model/Entity/Resource.php';
 require __DIR__ . '/Model/Entity/State.php';
 
 // router class
