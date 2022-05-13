@@ -1,7 +1,7 @@
 <?php
 
 
-class TypeManager
+class TypeManager extends Manager
 {
     /**
      * @param $id
@@ -27,9 +27,7 @@ class TypeManager
         $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "type");
         if($query){
             foreach ($query->fetchAll() as $item){
-                $type[] = [
-                    $item['id'] => $item['name']
-                ];
+                $type[] = $item['name'];
             }
         }
         return $type;

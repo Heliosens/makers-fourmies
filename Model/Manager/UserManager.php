@@ -1,7 +1,7 @@
 <?php
 
 
-class UserManager
+class UserManager extends Manager
 {
     /**
      * @param $id

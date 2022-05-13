@@ -1,7 +1,7 @@
 <?php
 
 
-class TakePartManager
+class TakePartManager extends Manager
 {
     /**
      * @param int $id

@@ -1,7 +1,7 @@
 <?php
 
 
-class StepManager
+class StepManager extends Manager
 {
     public static function imgByArt (int $id){
         $images = [];

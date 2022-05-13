@@ -1,7 +1,7 @@
 <?php
 
 
-class Image
+class Step
 {
     private ?int $id_img;
     private string $name;

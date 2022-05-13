@@ -1,10 +1,10 @@
 <?php
 
 
-class Use_tech
+class Art_cat
 {
     private int $art_fk;
-    private int $tech_fk;
+    private int $cat_fk;
 
     /**
      * @return int
@@ -26,17 +26,17 @@ class Use_tech
     /**
      * @return int
      */
-    public function getTechFk(): int
+    public function getCatFk(): int
     {
-        return $this->tech_fk;
+        return $this->cat_fk;
     }
 
     /**
-     * @param int $tech_fk
+     * @param int $cat_fk
      */
-    public function setTechFk(int $tech_fk): self
+    public function setCatFk(int $cat_fk): self
     {
-        $this->tech_fk = $tech_fk;
+        $this->cat_fk = $cat_fk;
         return $this;
     }
 }

@@ -1,10 +1,10 @@
 <?php
 
 
-class Own_category
+class Art_tech
 {
     private int $art_fk;
-    private int $cat_fk;
+    private int $tech_fk;
 
     /**
      * @return int
@@ -16,6 +16,7 @@ class Own_category
 
     /**
      * @param int $art_fk
+     * @return Art_tech
      */
     public function setArtFk(int $art_fk): self
     {
@@ -26,17 +27,18 @@ class Own_category
     /**
      * @return int
      */
-    public function getCatFk(): int
+    public function getTechFk(): int
     {
-        return $this->cat_fk;
+        return $this->tech_fk;
     }
 
     /**
-     * @param int $cat_fk
+     * @param int $tech_fk
+     * @return Art_tech
      */
-    public function setCatFk(int $cat_fk): self
+    public function setTechFk(int $tech_fk): self
     {
-        $this->cat_fk = $cat_fk;
+        $this->tech_fk = $tech_fk;
         return $this;
     }
 }

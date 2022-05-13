@@ -1,7 +1,7 @@
 <?php
 
 
-class CategoryManager
+class CategoryManager extends Manager
 {
     /**
      * @return array
@@ -12,10 +12,7 @@ class CategoryManager
         $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "category ORDER BY name");
         if($query){
             foreach ($query->fetchAll() as $item) {
-                $categories[] = (new Category())
-                    ->setIdCat($item['id'])
-                    ->setCategoryName($item['name'])
-                    ;
+                $categories[] = $item['name'];
             }
         }
         return $categories;

@@ -1,7 +1,7 @@
 <?php
 
 
-class MatterManager
+class MatterManager extends Manager
 {
     /**
      * @param int $id

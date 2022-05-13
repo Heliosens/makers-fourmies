@@ -16,11 +16,12 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="index.php">MAKERS FOURMIES</a>
-            <!--  button appear on responsive    -->
+<!--        button appear on responsive    -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                     aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+<!--        menu    -->
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item">
@@ -40,6 +41,7 @@
                                     techniques</a>
                             </li>
                             <li><hr class="dropdown-divider"></li>
+<!--        technique list    -->
                             <?php
                             $info = isset($_SESSION['user']) ? $_SESSION['user'] : null;
                             $techniques = $tech['technic'];
@@ -74,7 +76,7 @@
                         $avatar = UserManager::getAvatar($info['id']);
                         echo '
                     <div>
-                        <a class="btn btn-primary btn-sm" href="index.php?c=projects&p=create_art">Créer un article</a>
+                        <a class="btn btn-primary btn-sm" href="index.php?c=projects&p=art_form">Créer un article</a>
                     </div>
                     <a href="index.php?c=profile" title="profile">
                         <img src="/img/avatar/'. $avatar->getAvatar() .'">

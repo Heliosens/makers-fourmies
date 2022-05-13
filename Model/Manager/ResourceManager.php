@@ -1,8 +1,9 @@
 <?php
 
 
-class ResourceManager
+class ResourceManager extends Manager
 {
+
     /**
      * @return array
      */

@@ -1,7 +1,7 @@
 <?php
 
 
-class TechnicManager
+class TechnicManager extends Manager
 {
     /**
      * @return array
@@ -17,6 +17,18 @@ class TechnicManager
             }
         }
         return $techniques;
+    }
+
+    /**
+     * @param $option
+     * @return array|false
+     */
+    public static function techName ($option){
+        $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "technique WHERE id = '$option'");
+        if($query){
+            return $query->fetch();
+        }
+        return false;
     }
 
     /**

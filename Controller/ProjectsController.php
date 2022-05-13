@@ -17,7 +17,7 @@ class ProjectsController extends Controller
     public function one_technic($option){
         $data = [
             'projects' => ProjectsManager::projectByTechnic($option),
-            'title' => "XXX"
+            'title' => TechnicManager::techName($option)
             ];
         $this->render('project_by_tech', $data);
     }
@@ -37,12 +37,23 @@ class ProjectsController extends Controller
     /**
      * create article form
      */
-    public function create_art (){
+    public function art_form (){
         $data = [
-            'type' => TypeManager::allType(),
-            'technic' => TechnicManager::allTechnique(),
+            'type' => TypeManager::getAllName('type'),
+            'category' => CategoryManager::getAllName('category'),
+            'technique' => TechnicManager::getAllName('technique'),
         ];
         $this->render('art_form', $data);
     }
+
+    /**
+     *
+     */
+    public function add_art (){
+        $data = [];
+
+        $this->render('404page', $data);
+    }
+
 
 }

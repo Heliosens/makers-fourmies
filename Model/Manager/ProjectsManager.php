@@ -1,7 +1,7 @@
 <?php
 
 
-class ProjectsManager
+class ProjectsManager extends Manager
 {
     /**
      * return projects which use a technique
@@ -116,8 +116,7 @@ class ProjectsManager
     {
         $projects = [];
         $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "article WHERE id_art IN
-        (SELECT art_fk FROM " . Config::PRE . "take_part WHERE user_fk = $id)
-        ");
+        (SELECT art_fk FROM " . Config::PRE . "take_part WHERE user_fk = $id)");
         if($query){
             foreach ($query->fetchAll() as $item){
                 $projects[$item['id_art']] = [

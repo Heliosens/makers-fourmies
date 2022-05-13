@@ -1,7 +1,7 @@
 <?php
 
 
-class ToolManager
+class ToolManager extends Manager
 {
     /**
      * @param int $id
