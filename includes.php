@@ -43,11 +43,8 @@ require __DIR__ . '/Model/Manager/CategoryLinkManager.php';
 require __DIR__ . '/Model/Manager/ProjectsManager.php';
 require __DIR__ . '/Model/Manager/TypeManager.php';
 require __DIR__ . '/Model/Manager/RoleManager.php';
-require __DIR__ . '/Model/Manager/TakePartManager.php';
 require __DIR__ . '/Model/Manager/UserManager.php';
 require __DIR__ . '/Model/Manager/AvatarManager.php';
-require __DIR__ . '/Model/Manager/MatterManager.php';
 require __DIR__ . '/Model/Manager/ResourceManager.php';
-require __DIR__ . '/Model/Manager/ToolManager.php';
 
 
