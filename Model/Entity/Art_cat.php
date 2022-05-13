@@ -16,6 +16,7 @@ class Art_cat
 
     /**
      * @param int $art_fk
+     * @return Art_cat
      */
     public function setArtFk(int $art_fk): self
     {
@@ -33,6 +34,7 @@ class Art_cat
 
     /**
      * @param int $cat_fk
+     * @return Art_cat
      */
     public function setCatFk(int $cat_fk): self
     {
