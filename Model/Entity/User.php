@@ -7,7 +7,6 @@ class User
     private string $pseudo;
     private string $email;
     private string $password;
-    private ?string $token = null;
     private Avatar $avatar;
     private Role $role;
 
@@ -80,24 +79,6 @@ class User
     public function setPassword(string $password): self
     {
         $this->password = $password;
-        return $this;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getToken(): ?string
-    {
-        return $this->token;
-    }
-
-    /**
-     * @param string|null $token
-     * @return User
-     */
-    public function setToken(?string $token): self
-    {
-        $this->token = $token;
         return $this;
     }
 

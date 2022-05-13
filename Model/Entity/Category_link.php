@@ -41,5 +41,4 @@ class Category_link
         $this->category_link = $category_link;
         return $this;
     }
-
 }

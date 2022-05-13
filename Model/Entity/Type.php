@@ -16,6 +16,7 @@ class Type
 
     /**
      * @param int|null $id_type
+     * @return Type
      */
     public function setIdType(?int $id_type): self
     {
@@ -33,6 +34,7 @@ class Type
 
     /**
      * @param string $type_name
+     * @return Type
      */
     public function setTypeName(string $type_name): self
     {

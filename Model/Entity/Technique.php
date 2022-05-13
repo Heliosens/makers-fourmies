@@ -16,6 +16,7 @@ class Technique
 
     /**
      * @param int|null $id_tech
+     * @return Technique
      */
     public function setIdTech(?int $id_tech): self
     {
@@ -33,6 +34,7 @@ class Technique
 
     /**
      * @param string $technique
+     * @return Technique
      */
     public function setTechnique(string $technique): self
     {

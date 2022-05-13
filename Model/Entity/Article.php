@@ -6,14 +6,10 @@ class Article
     private ?int $id = null;
     private string $title;
     private string $description;
-    private array $image;
-    private Type $type;
-    private array $category;
-    private array $technic;
-    private array $tool;
-    private array $matter;
-    private array $resource;
-    private array $takePart;
+    private ?array $step;
+    private ?Type $type;
+    private ?array $category;
+    private ?array $technic;
     private User $author;
 
     /**
@@ -71,146 +67,74 @@ class Article
     }
 
     /**
-     * @return array
+     * @return array|null
      */
-    public function getImage(): array
+    public function getStep(): ?array
     {
-        return $this->image;
+        return $this->step;
     }
 
     /**
-     * @param array $image
+     * @param array|null $step
      * @return Article
      */
-    public function setImage(array $image): self
+    public function setStep(?array $step): self
     {
-        $this->image = $image;
+        $this->step = $step;
         return $this;
     }
 
     /**
-     * @return Type
+     * @return Type|null
      */
-    public function getType(): Type
+    public function getType(): ?Type
     {
         return $this->type;
     }
 
     /**
-     * @param Type $type
+     * @param Type|null $type
      * @return Article
      */
-    public function setType(Type $type): self
+    public function setType(?Type $type): self
     {
         $this->type = $type;
         return $this;
     }
 
     /**
-     * @return array
+     * @return array|null
      */
-    public function getCategory(): array
+    public function getCategory(): ?array
     {
         return $this->category;
     }
 
     /**
-     * @param array $category
+     * @param array|null $category
      * @return Article
      */
-    public function setCategory(array $category): self
+    public function setCategory(?array $category): self
     {
         $this->category = $category;
         return $this;
     }
 
     /**
-     * @return array
+     * @return array|null
      */
-    public function getTechnic(): array
+    public function getTechnic(): ?array
     {
         return $this->technic;
     }
 
     /**
-     * @param array $technic
+     * @param array|null $technic
      * @return Article
      */
-    public function setTechnic(array $technic): self
+    public function setTechnic(?array $technic): self
     {
         $this->technic = $technic;
-        return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function getTool(): array
-    {
-        return $this->tool;
-    }
-
-    /**
-     * @param array $tool
-     * @return Article
-     */
-    public function setTool(array $tool): self
-    {
-        $this->tool = $tool;
-        return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function getMatter(): array
-    {
-        return $this->matter;
-    }
-
-    /**
-     * @param array $matter
-     * @return Article
-     */
-    public function setMatter(array $matter): self
-    {
-        $this->matter = $matter;
-        return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function getResource(): array
-    {
-        return $this->resource;
-    }
-
-    /**
-     * @param array $resource
-     * @return Article
-     */
-    public function setResource(array $resource): self
-    {
-        $this->resource = $resource;
-        return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function getTakePart(): array
-    {
-        return $this->takePart;
-    }
-
-    /**
-     * @param array $takePart
-     * @return Article
-     */
-    public function setTakePart(array $takePart): self
-    {
-        $this->takePart = $takePart;
         return $this;
     }
 
@@ -231,4 +155,6 @@ class Article
         $this->author = $author;
         return $this;
     }
+
+
 }

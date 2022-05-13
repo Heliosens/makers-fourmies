@@ -7,7 +7,7 @@ class Resource
     private string $title;
     private string $description;
     private string $url;
-    private Category_link $category;
+    private Category_link $category_link;
 
     /**
      * @return int|null
@@ -84,19 +84,18 @@ class Resource
     /**
      * @return Category_link
      */
-    public function getCategory(): Category_link
+    public function getCategoryLink(): Category_link
     {
-        return $this->category;
+        return $this->category_link;
     }
 
     /**
-     * @param Category_link $category
+     * @param Category_link $category_link
      * @return Resource
      */
-    public function setCategory(Category_link $category): self
+    public function setCategory(Category_link $category_link): self
     {
-        $this->category = $category;
+        $this->category_link = $category_link;
         return $this;
     }
-
 }

@@ -16,6 +16,7 @@ class Category
 
     /**
      * @param int|null $id_cat
+     * @return Category
      */
     public function setIdCat(?int $id_cat): self
     {
@@ -33,6 +34,7 @@ class Category
 
     /**
      * @param string $category_name
+     * @return Category
      */
     public function setCategoryName(string $category_name): self
     {

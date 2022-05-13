@@ -3,24 +3,24 @@
 
 class Avatar
 {
-    private int $id_avat;
+    private ?int $id = null;
     private string $avatar;
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getIdAvat(): int
+    public function getId(): ?int
     {
-        return $this->id_avat;
+        return $this->id;
     }
 
     /**
-     * @param $id_avat
+     * @param int|null $id
      * @return Avatar
      */
-    public function setIdAvat($id_avat): self
+    public function setId(?int $id): self
     {
-        $this->id_avat = $id_avat;
+        $this->id = $id;
         return $this;
     }
 

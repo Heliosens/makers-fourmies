@@ -3,45 +3,45 @@
 
 class Step
 {
-    private ?int $id_img;
-    private string $name;
+    private ?int $id_step = null;
+    private ?string $img_name;
     private string $title;
-    private string $description;
-    private int $id_art;
+    private ?string $description;
+    private Article $article;
 
     /**
      * @return int|null
      */
-    public function getIdImg(): ?int
+    public function getIdStep(): ?int
     {
-        return $this->id_img;
+        return $this->id_step;
     }
 
     /**
-     * @param int|null $id_img
-     * @return Image
+     * @param int|null $id_step
+     * @return Step
      */
-    public function setIdImg(?int $id_img): self
+    public function setIdStep(?int $id_step): self
     {
-        $this->id_img = $id_img;
+        $this->id_step = $id_step;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getName(): string
+    public function getImgName(): ?string
     {
-        return $this->name;
+        return $this->img_name;
     }
 
     /**
-     * @param string $name
-     * @return Image
+     * @param string|null $img_name
+     * @return Step
      */
-    public function setName(string $name): self
+    public function setImgName(?string $img_name): self
     {
-        $this->name = $name;
+        $this->img_name = $img_name;
         return $this;
     }
 
@@ -55,7 +55,7 @@ class Step
 
     /**
      * @param string $title
-     * @return Image
+     * @return Step
      */
     public function setTitle(string $title): self
     {
@@ -64,38 +64,38 @@ class Step
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
 
     /**
-     * @param string $description
-     * @return Image
+     * @param string|null $description
+     * @return Step
      */
-    public function setDescription(string $description): self
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
         return $this;
     }
 
     /**
-     * @return int
+     * @return Article
      */
-    public function getIdArt(): int
+    public function getArticle(): Article
     {
-        return $this->id_art;
+        return $this->article;
     }
 
     /**
-     * @param int $id_art
-     * @return Image
+     * @param Article $article
+     * @return Step
      */
-    public function setIdArt(int $id_art): self
+    public function setArticle(Article $article): self
     {
-        $this->id_art = $id_art;
+        $this->article = $article;
         return $this;
     }
 }
