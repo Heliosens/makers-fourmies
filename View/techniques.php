@@ -7,7 +7,7 @@
                     <div class="card h-100">
                         <div class="card-body p-0">
                             <a class="text-decoration-none fs-4 text-center"
-                               href="index?c=projects&p=one_technic&o=<?=$key?>">
+                               href="index?c=articles&p=one_technic&o=<?=$key?>">
                                 <p class="text-dark m-0 py-5">
                                     <?=$item?>
                                 </p>

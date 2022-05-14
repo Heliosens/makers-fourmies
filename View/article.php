@@ -1,5 +1,5 @@
 <?php
-    $data = $data['project'];
+    $data = $data['article'];
 ?>
 <main>
     <section>
@@ -16,7 +16,7 @@
                     foreach ($data->getStep() as $item){
                         echo '
                         <div class="d-flex flex-column align-items-center pb-3">
-                        <div class="picture" alt="'. $item->getTitle() .'" style="background-image: url(/img/article/'. $item->getName() .');" ></div>
+                        <div class="picture" alt="'. $item->getTitle() .'" style="background-image: url(/img/article/'. $item->getImgName() .');" ></div>
                               <span>' . $item->getDescription() . '</span>
                               </div>
                               ';

@@ -28,7 +28,7 @@ require __DIR__ . '/Controller/Controller.php';
 require __DIR__ . '/Controller/HomeController.php';
 require __DIR__ . '/Controller/MakerController.php';
 require __DIR__ . '/Controller/ResourcesController.php';
-require __DIR__ . '/Controller/ProjectsController.php';
+require __DIR__ . '/Controller/ArticlesController.php';
 require __DIR__ . '/Controller/ContactController.php';
 require __DIR__ . '/Controller/UserController.php';
 require __DIR__ . '/Controller/ProfileController.php';

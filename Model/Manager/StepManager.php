@@ -3,20 +3,24 @@
 
 class StepManager extends Manager
 {
-    public static function imgByArt (int $id){
-        $images = [];
+    /**
+     * @param int $id
+     * @return array
+     */
+    public static function stepByArt (int $id){
+        $steps = [];
         $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "step WHERE art_fk = $id");
         if($query){
             foreach ($query->fetchAll() as $item){
-                $images[] = (new Image())
-                    ->setIdImg($item['id_step'])
-                    ->setName($item['name'])
+                $steps[] = (new Step())
+                    ->setIdStep($item['id_step'])
+                    ->setImgName($item['img_name'])
                     ->setTitle($item['title'])
                     ->setDescription($item['description'])
-                    ->setIdArt($id)
+                    ->setIdStep($id)
                     ;
             }
         }
-        return $images;
+        return $steps;
     }
 }

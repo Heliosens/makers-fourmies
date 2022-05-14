@@ -65,13 +65,13 @@
                 <div class="col">
                     <div class="d-flex justify-content-around">
                         <h3 class="text-center">Mes articles :</h3>
-                        <a href="index.php?c=projects&p=art_form">Créer un article</a>
+                        <a href="index.php?c=articles&p=art_form">Créer un article</a>
                     </div>
                     <?php
                     foreach ($art as $key => $item){
                             echo '<div class="row row-cols-2 bg-light mx-3">
                             <div class="row col-8">
-                                <a class="text-decoration-none text-dark col-9" href="index?c=projects&p=one_project&o='
+                                <a class="text-decoration-none text-dark col-9" href="index?c=articles&p=one_article&o='
                                 . $key . '">' . $item['title'] . '</a>
                                 <span class="col-3">' . Config::stateName($item['state']) . '</span>
                                 </div>
@@ -96,7 +96,7 @@
                         foreach ($art as $key => $item){
                             echo '<div class="row row-cols-2 bg-light">
                         <div class="col-8">
-                            <a class="text-decoration-none text-dark" href="index?c=projects&p=one_project&o=' . $key
+                            <a class="text-decoration-none text-dark" href="index?c=articles&p=one_article&o=' . $key
                                 . '">' . $item['title'] . '</a>
                             </div>
                             <a href="#" class="col-4 text-dark">

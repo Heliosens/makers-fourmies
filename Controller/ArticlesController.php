@@ -1,7 +1,7 @@
 <?php
 
 
-class ProjectsController extends Controller
+class ArticlesController extends Controller
 {
 
     /**
@@ -25,13 +25,13 @@ class ProjectsController extends Controller
     /**
      * @param $option
      */
-    public function one_project ($option){
+    public function one_article ($option){
         // get selected projects
         $data = [
-            'project' => ArticleManager::oneArticle($option)
+            'article' => ArticleManager::oneArticle($option)
         ];
 
-        $this->render('project', $data);
+        $this->render('article', $data);
     }
 
     /**

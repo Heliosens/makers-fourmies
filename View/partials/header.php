@@ -31,13 +31,13 @@
                         <a class="nav-link" href="index.php?c=resources">Ressources</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="index.php?c=projects" id="navbarDropdownMenuLink"
+                        <a class="nav-link dropdown-toggle" href="index.php?c=articles" id="navbarDropdownMenuLink"
                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Projets
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <li>
-                                <a class="dropdown-item" href="index.php?c=projects&p=all_technic">Toutes les
+                                <a class="dropdown-item" href="index.php?c=articles&p=all_technic">Toutes les
                                     techniques</a>
                             </li>
                             <li><hr class="dropdown-divider"></li>
@@ -48,7 +48,7 @@
                             foreach ($tech as $key => $item) {
                                 echo '
                             <li>
-                                <a class="dropdown-item" href="index?c=projects&p=one_technic&o=' . $key . ' ">' .
+                                <a class="dropdown-item" href="index?c=articles&p=one_technic&o=' . $key . ' ">' .
                                     $item . '</a>
                             </li>';
                             }
@@ -76,7 +76,7 @@
                         $avatar = UserManager::getAvatar($info['id']);
                         echo '
                     <div>
-                        <a class="btn btn-primary btn-sm" href="index.php?c=projects&p=art_form">Créer un article</a>
+                        <a class="btn btn-primary btn-sm" href="index.php?c=articles&p=art_form">Créer un article</a>
                     </div>
                     <a href="index.php?c=profile" title="profile">
                         <img src="/img/avatar/'. $avatar->getAvatar() .'">
