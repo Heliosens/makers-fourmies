@@ -16,7 +16,7 @@ class ProjectsController extends Controller
      */
     public function one_technic($option){
         $data = [
-            'projects' => ProjectsManager::projectByTechnic($option),
+            'projects' => ArticleManager::artByTechnic($option),
             'title' => TechnicManager::techName($option)
             ];
         $this->render('project_by_tech', $data);
@@ -28,7 +28,7 @@ class ProjectsController extends Controller
     public function one_project ($option){
         // get selected projects
         $data = [
-            'project' => ProjectsManager::oneProject($option)
+            'project' => ArticleManager::oneArticle($option)
         ];
 
         $this->render('project', $data);
@@ -60,19 +60,22 @@ class ProjectsController extends Controller
         $author = UserManager::getUserById($_SESSION['user']['id']);
         $type = $this->fieldsState('type') ? TypeManager::getTypeById($_POST['type']) : null;
         $cat = $this->fieldsState('cat') ? $_POST['cat'] : null;
+        $step = null;   // if step => title require
 
         $article = new Article();
         $article
             ->setTitle($title)
             ->setDescription($description)
+            ->setStep($step)
             ->setType($type)
             ->setCategory($cat)
             ->setAuthor($author);
 
-        echo '<pre>';
-            var_dump($_POST);
-        echo '</pre>';
-        // if step => title require
-    }
 
+
+//        echo '<pre>';
+//            var_dump($_POST);
+//        echo '</pre>';
+
+    }
 }

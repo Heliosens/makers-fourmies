@@ -4,6 +4,7 @@
 class Manager
 {
     /**
+     * return name & id as key
      * @param $table
      * @return array
      */

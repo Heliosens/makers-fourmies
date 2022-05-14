@@ -12,7 +12,7 @@ class ProfileController extends Controller
             'user' => UserManager::getUserById($id),
             'avatar' => AvatarManager::getAllAvatar(),
             'art' => [
-                'write' => ProjectsManager::artByAuthor($id),
+                'write' => ArticleManager::artByAuthor($id),
                 ]
         ];
         $this->render('profile', $data);
@@ -26,9 +26,9 @@ class ProfileController extends Controller
             $data = [
                 'user' => UserManager::allUser(),
                 'article' => [
-                    'pr' => ProjectsManager::artByState('1'),
-                    'sb' => ProjectsManager::artByState('2'),
-                    'pu' => ProjectsManager::artByState('3'),
+                    'pr' => ArticleManager::artByState('1'),
+                    'sb' => ArticleManager::artByState('2'),
+                    'pu' => ArticleManager::artByState('3'),
                 ],
             ];
             $this->render('admin', $data);
