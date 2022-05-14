@@ -39,9 +39,9 @@ class ProjectsController extends Controller
      */
     public function art_form (){
         $data = [
-            'type' => TypeManager::getAllName('type'),
-            'category' => CategoryManager::getAllName('category'),
-            'technique' => TechnicManager::getAllName('technique'),
+            'type' => TypeManager::getAllKeyName('type'),
+            'category' => CategoryManager::getAllKeyName('category'),
+            'technique' => TechnicManager::getAllKeyName('technique'),
         ];
         $this->render('art_form', $data);
     }
@@ -51,17 +51,22 @@ class ProjectsController extends Controller
      */
     public function add_art (){
         if(!$this->fieldsState('artTitle', 'artDescription')){
+            $_SESSION['error'] = "Les champs obligatoires doivent être remplis !";
             header('Location: index.php?c=projects&p=art_form');
         }
 
         $title = $this->cleanEntries('artTitle');
         $description = $this->cleanEntries('artDescription');
         $author = UserManager::getUserById($_SESSION['user']['id']);
+        $type = $this->fieldsState('type') ? TypeManager::getTypeById($_POST['type']) : null;
+        $cat = $this->fieldsState('cat') ? $_POST['cat'] : null;
 
         $article = new Article();
         $article
             ->setTitle($title)
             ->setDescription($description)
+            ->setType($type)
+            ->setCategory($cat)
             ->setAuthor($author);
 
         echo '<pre>';

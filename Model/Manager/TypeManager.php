@@ -27,7 +27,7 @@ class TypeManager extends Manager
         $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "type");
         if($query){
             foreach ($query->fetchAll() as $item){
-                $type[] = $item['name'];
+                $type[$item['id']] = $item['name'];
             }
         }
         return $type;

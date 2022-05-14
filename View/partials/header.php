@@ -44,12 +44,12 @@
 <!--        technique list    -->
                             <?php
                             $info = isset($_SESSION['user']) ? $_SESSION['user'] : null;
-                            $techniques = $tech['technic'];
-                            foreach ($techniques as $key => $item) {
+
+                            foreach ($tech as $key => $item) {
                                 echo '
                             <li>
                                 <a class="dropdown-item" href="index?c=projects&p=one_technic&o=' . $key . ' ">' .
-                                    $item['tech'] . '</a>
+                                    $item . '</a>
                             </li>';
                             }
                             ?>

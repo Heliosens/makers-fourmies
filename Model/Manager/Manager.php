@@ -3,6 +3,10 @@
 
 class Manager
 {
+    /**
+     * @param $table
+     * @return array
+     */
     public static function getAllKeyName ($table) : array
     {
         $result = [];
