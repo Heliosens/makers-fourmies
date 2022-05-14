@@ -1,15 +1,15 @@
 <?php
 
 
-class manager
+class Manager
 {
-    public static function getAllName ($table) : array
+    public static function getAllKeyName ($table) : array
     {
         $result = [];
         $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . $table);
         if ($query){
             foreach ($query->fetchAll() as $item) {
-                $result[] = $item['name'];
+                $result[$item['id']] = $item['name'];
             }
         }
         return $result;
