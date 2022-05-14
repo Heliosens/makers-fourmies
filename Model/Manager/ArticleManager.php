@@ -104,4 +104,23 @@ class ArticleManager extends Manager
         return $articles;
     }
 
+    /**
+     * @param Article $article
+     * @return bool
+     */
+    public static function addArticle (Article &$article){
+        $stm = DB::getConn()->prepare("INSERT INTO mkf_article (title, description, type_fk, state, author)
+            VALUES (:title, :description, :type_fk, :state, :author)
+        ");
+
+        $stm->bindValue(':title', $article->getTitle());
+        $stm->bindValue(':description', $article->getDescription());
+        $stm->bindValue(':type_fk', $article->getType()->getIdType());
+        $stm->bindValue(':state', $article->getState()->getId());
+        $stm->bindValue(':author', $article->getAuthor()->getId());
+
+        $result = $stm->execute();
+        $article->setId(DB::getConn()->lastInsertId());
+        return $result;
+    }
 }

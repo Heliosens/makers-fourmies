@@ -46,5 +46,6 @@ require __DIR__ . '/Model/Manager/RoleManager.php';
 require __DIR__ . '/Model/Manager/UserManager.php';
 require __DIR__ . '/Model/Manager/AvatarManager.php';
 require __DIR__ . '/Model/Manager/ResourceManager.php';
+require __DIR__ . '/Model/Manager/StateManager.php';
 
 

@@ -95,10 +95,12 @@ class Article
 
     /**
      * @param State $state
+     * @return Article
      */
-    public function setState(State $state): void
+    public function setState(State $state): self
     {
         $this->state = $state;
+        return $this;
     }
 
     /**

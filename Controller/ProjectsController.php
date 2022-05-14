@@ -59,6 +59,7 @@ class ProjectsController extends Controller
         $description = $this->cleanEntries('artDescription');
         $author = UserManager::getUserById($_SESSION['user']['id']);
         $type = $this->fieldsState('type') ? TypeManager::getTypeById($_POST['type']) : null;
+        $state = StateManager::stateByName('pr');
         $cat = $this->fieldsState('cat') ? $_POST['cat'] : null;
         $step = null;   // if step => title require
 
@@ -68,11 +69,13 @@ class ProjectsController extends Controller
             ->setDescription($description)
             ->setStep($step)
             ->setType($type)
+            ->setState($state)
             ->setCategory($cat)
             ->setAuthor($author);
 
-
-
+        if(ArticleManager::addArticle($article)){
+            header('Location: index.php?c=profile');
+        }
 //        echo '<pre>';
 //            var_dump($_POST);
 //        echo '</pre>';
