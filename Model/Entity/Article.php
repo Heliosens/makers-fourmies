@@ -6,11 +6,12 @@ class Article
     private ?int $id = null;
     private string $title;
     private string $description;
-    private ?array $step =null;
     private ?Type $type = null;
+    private State $state;
+    private ?array $step =null;
+    private User $author;
     private ?array $category = null;
     private ?array $technic = null;
-    private User $author;
 
     /**
      * @return int|null
@@ -67,24 +68,6 @@ class Article
     }
 
     /**
-     * @return array|null
-     */
-    public function getStep(): ?array
-    {
-        return $this->step;
-    }
-
-    /**
-     * @param array|null $step
-     * @return Article
-     */
-    public function setStep(?array $step): self
-    {
-        $this->step = $step;
-        return $this;
-    }
-
-    /**
      * @return Type|null
      */
     public function getType(): ?Type
@@ -99,6 +82,58 @@ class Article
     public function setType(?Type $type): self
     {
         $this->type = $type;
+        return $this;
+    }
+
+    /**
+     * @return State
+     */
+    public function getState(): State
+    {
+        return $this->state;
+    }
+
+    /**
+     * @param State $state
+     */
+    public function setState(State $state): void
+    {
+        $this->state = $state;
+    }
+
+    /**
+     * @return User
+     */
+    public function getAuthor(): User
+    {
+        return $this->author;
+    }
+
+    /**
+     * @param User $author
+     * @return Article
+     */
+    public function setAuthor(User $author): self
+    {
+        $this->author = $author;
+        return $this;
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getStep(): ?array
+    {
+        return $this->step;
+    }
+
+    /**
+     * @param array|null $step
+     * @return Article
+     */
+    public function setStep(?array $step): self
+    {
+        $this->step = $step;
         return $this;
     }
 
@@ -135,24 +170,6 @@ class Article
     public function setTechnic(?array $technic): self
     {
         $this->technic = $technic;
-        return $this;
-    }
-
-    /**
-     * @return User
-     */
-    public function getAuthor(): User
-    {
-        return $this->author;
-    }
-
-    /**
-     * @param User $author
-     * @return Article
-     */
-    public function setAuthor(User $author): self
-    {
-        $this->author = $author;
         return $this;
     }
 }
