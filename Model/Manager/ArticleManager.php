@@ -1,21 +1,21 @@
 <?php
 
 
-class ProjectsManager extends Manager
+class ArticleManager extends Manager
 {
     /**
      * return projects which use a technique
      * @param $id
      * @return array
      */
-    public static function projectByTechnic (int $id) : array
+    public static function artByTechnic (int $id) : array
     {
-        $projects = [];
+        $articles = [];
         $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "article WHERE id_art IN 
             (SELECT art_fk FROM " . Config::PRE . "art_tech WHERE tech_fk = '$id')");
         if($query){
             foreach ($query->fetchAll() as $item){
-                $projects[] = (new Article())
+                $articles[] = (new Article())
                     ->setId($item['id_art'])
                     ->setTitle($item['title'])
                     ->setDescription($item['description'])
@@ -23,20 +23,20 @@ class ProjectsManager extends Manager
                     ;
             }
         }
-        return $projects;
+        return $articles;
     }
 
     /**
      * @param int $id
      * @return Article
      */
-    public static function oneProject (int $id) : Article
+    public static function oneArticle (int $id) : Article
     {
-        $project = new Article();
+        $article = new Article();
         $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "article WHERE id_art = $id");
         if($query){
             $item = $query->fetch();
-            $project->setId($item['id_art'])
+            $article->setId($item['id_art'])
                 ->setTitle($item['title'])
                 ->setDescription($item['description'])
                 ->setStep(StepManager::imgByArt($item['id_art']))
@@ -46,7 +46,7 @@ class ProjectsManager extends Manager
                 ->setAuthor(UserManager::getUserById($item['author']))
             ;
         }
-        return $project;
+        return $article;
     }
 
     /**
@@ -54,11 +54,11 @@ class ProjectsManager extends Manager
      */
     public static function allArticle () : array
     {
-        $projects = [];
+        $articles = [];
         $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "article");
         if($query){
             foreach ($query->fetchAll() as $item){
-                $projects[] = (new Article())
+                $articles[] = (new Article())
                     ->setId($item['id_art'])
                     ->setTitle($item['title'])
                     ->setDescription($item['description'])
@@ -66,7 +66,7 @@ class ProjectsManager extends Manager
                     ;
             }
         }
-        return $projects;
+        return $articles;
     }
 
     /**
@@ -75,14 +75,14 @@ class ProjectsManager extends Manager
      */
     public static function artByState (int $state) : array
     {
-        $projects = [];
+        $articles = [];
         $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "article WHERE state = $state");
         if ($query){
             foreach ($query->fetchAll() as $item){
-                $projects[$item['id_art']] = $item['title'];
+                $articles[$item['id_art']] = $item['title'];
             }
         }
-        return $projects;
+        return $articles;
     }
 
     /**
@@ -91,17 +91,17 @@ class ProjectsManager extends Manager
      */
     public static function artByAuthor (int $id) : array
     {
-        $projects = [];
+        $articles = [];
         $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "article WHERE author = $id");
         if ($query){
             foreach ($query->fetchAll() as $item){
-                $projects[$item['id_art']] = [
+                $articles[$item['id_art']] = [
                     'title' => $item['title'],
                     'state' => $item['state']
                 ];
             }
         }
-        return $projects;
+        return $articles;
     }
 
 }
