@@ -55,19 +55,22 @@ class ArticlesController extends Controller
             header('Location: index.php?c=projects&p=art_form');
         }
 
+//         get article data
         $title = $this->cleanEntries('artTitle');
         $description = $this->cleanEntries('artDescription');
         $author = UserManager::getUserById($_SESSION['user']['id']);
         $type = $this->fieldsState('type') ? TypeManager::getTypeById($_POST['type']) : null;
         $state = StateManager::stateByName('pr');
         $cat = $this->fieldsState('cat') ? $_POST['cat'] : null;
-        $step = null;   // if step => title require
+
+//         get step
+        $steps[] = $this->addStep();   // if step => title is required
 
         $article = new Article();
         $article
             ->setTitle($title)
             ->setDescription($description)
-            ->setStep($step)
+            ->setStep($steps)
             ->setType($type)
             ->setState($state)
             ->setCategory($cat)
@@ -81,4 +84,55 @@ class ArticlesController extends Controller
 //        echo '</pre>';
 
     }
+
+    /**
+     * @return Step|null
+     */
+    private function addStep ()
+    {
+        if($this->fieldsState('stepTitle')){
+            $step = new Step();
+            // get step image
+
+            if(isset($_FILES['stepImage']) && $_FILES['stepImage']['error'] === 0){
+                $allowed = ['image/jpeg', 'image/jpg', 'image/png'];  // allowed mime type
+                $maxSize = 3 * 1024 * 1024; // = 3 Mo
+                if((int)$_FILES['stepImage']['size'] <= $maxSize && in_array($_FILES['stepImage']['type'], $allowed)){
+                    $tmp_name = $_FILES['stepImage']['tmp_name'];    // image temporary name
+                    $ext = pathinfo($_FILES['stepImage']['name'], PATHINFO_EXTENSION);   // file extension
+                    $name = $this->createRandomName() . "." . $ext;
+                    $step->setImgName($name);
+                    move_uploaded_file($tmp_name, 'uploads/' . $name);
+                }
+                else{
+                    $_SESSION['error'] = "L'image " . $this->cleanEntries($_FILES['name']) . " est trop grande";
+//                    header("Location: index.php?c=articles&p=art_form");
+                }
+            }
+            else{
+                $_SESSION['error'] = "erreur lors du chargement de l'image " . $this->cleanEntries($_FILES['name']);
+//                header("Location: index.php?c=articles&p=art_form");
+            }
+            $stepTitle = $this->cleanEntries('stepTitle');
+            $stepDescription = $this->cleanEntries('stepDescription');
+            $step
+                ->setTitle($stepTitle)
+                ->setDescription($stepDescription);
+            return $step;
+        }
+        return null;
+    }
+
+    /**
+     * @return string
+     */
+    private function createRandomName (): string {
+        try {
+            $bytes = random_bytes(15);
+        } catch (Exception $e) {
+            $bytes = openssl_random_pseudo_bytes(15);
+        }
+        return bin2hex($bytes);
+    }
+
 }
