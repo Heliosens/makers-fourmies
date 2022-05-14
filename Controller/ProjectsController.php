@@ -50,10 +50,24 @@ class ProjectsController extends Controller
      *
      */
     public function add_art (){
-        $data = [];
+        if(!$this->fieldsState('artTitle', 'artDescription')){
+            header('Location: index.php?c=projects&p=art_form');
+        }
 
-        $this->render('404page', $data);
+        $title = $this->cleanEntries('artTitle');
+        $description = $this->cleanEntries('artDescription');
+        $author = UserManager::getUserById($_SESSION['user']['id']);
+
+        $article = new Article();
+        $article
+            ->setTitle($title)
+            ->setDescription($description)
+            ->setAuthor($author);
+
+        echo '<pre>';
+            var_dump($_POST);
+        echo '</pre>';
+        // if step => title require
     }
-
 
 }

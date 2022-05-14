@@ -23,15 +23,15 @@ class Controller
     }
 
     /**
-     * check if fields exist and not empty
+     * check if fields exist and not empty if submit button is pressed
      * @param string ...$fields
      * @return bool
      */
     public function fieldsState (string ...$fields) : bool
     {
         foreach ($fields as $item){
-            if(!isset($item) || empty($item)){
-                $_SESSION['error'] = "Tous les champs doivent être remplis !";
+            if(!isset($_POST[$item]) || empty($_POST[$item])){
+                $_SESSION['error'] = "Les champs obligatoires doivent être remplis !";
                 return false;
             }
         }
@@ -48,7 +48,7 @@ class Controller
     }
 
     /**
-     * test if current user exist and is authorized
+     * test if current user is authorized
      * @param int $currentUserId
      * @param array $authorized
      */
@@ -60,8 +60,8 @@ class Controller
     }
 
     /**
-     * test if user is connected continue
-     * !$bool switch result
+     * continue if user is connected or display home page
+     * $bool = false switch result
      * bool
      * @param $bool
      */

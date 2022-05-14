@@ -81,7 +81,6 @@ class UserController extends Controller
                     // create token
 
                     if(UserManager::addUser($user)){
-//                        $_SESSION['success'] = "Vous allez recevoir un mail de vérification";
                         $_SESSION['error'] = null;
                         $_SESSION['user'] = [
                             'id' => $user->getId(),

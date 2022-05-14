@@ -6,10 +6,10 @@ class Article
     private ?int $id = null;
     private string $title;
     private string $description;
-    private ?array $step;
-    private ?Type $type;
-    private ?array $category;
-    private ?array $technic;
+    private ?array $step =null;
+    private ?Type $type = null;
+    private ?array $category = null;
+    private ?array $technic = null;
     private User $author;
 
     /**
@@ -155,6 +155,4 @@ class Article
         $this->author = $author;
         return $this;
     }
-
-
 }

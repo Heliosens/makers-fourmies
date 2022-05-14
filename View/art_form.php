@@ -10,7 +10,7 @@
                     </p>
                 </div>
 <!--                form to create article  -->
-                <form action="index.php?c=projects&p=add_art" method="post" enctype="multipart/form-data">
+                <form action="index.php?c=projects&p=add_art" method="POST" enctype="multipart/form-data">
                     <div class="row row-cols-lg-3 row-cols-sm-2 row-cols-1">
 <!--                type    -->
                         <div>
@@ -18,7 +18,7 @@
                             <?php
                             foreach ($data['type'] as $key => $item){
                                 echo '<div class="form-check">
-                                <input class="form-check-input" type="radio" name="type" id="radio' . $key . '">
+                                <input class="form-check-input" type="radio" name="type" value="' . $key . '" id="radio' . $key . '">
                                 <label class="form-check-label" for="radio' . $key . '">' . $item . '</label>
                             </div>';
                             }
@@ -26,11 +26,11 @@
                         </div>
 <!--                category    -->
                         <div>
-                            <span class="fw-bold">Catégorie </span><span>*</span>
+                            <span class="fw-bold">Catégorie *</span>
                             <?php
                             foreach ($data['category'] as $key => $item){
                                 echo '<div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="cat' . $key . '" id="catCheck' . $key . '">
+                                <input class="form-check-input" type="checkbox" name="cat[]" value="' . $key . '" id="catCheck' . $key . '">
                                 <label class="form-check-label" for="catCheck' . $key . '">' . $item . '</label>
                             </div>';
                             }
@@ -38,13 +38,12 @@
                         </div>
 <!--                technique   -->
                         <div>
-                            <span class="fw-bold">Technique </span><span>*</span>
+                            <span class="fw-bold">Technique *</span>
                             <?php
                             foreach ($data['technique'] as $key => $item){
                                 echo '<div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="tech' . $key . '" 
-                                id="techCheck' . $key . '">
-                                <label class="form-check-label" for="techCheck' . $key . '">' . $item . '</label>
+                                <input class="form-check-input" type="checkbox" name="tech[]" value="' . $key . '">
+                                <label class="form-check-label">' . $item . '</label>
                             </div>';
                             }
                             ?>
@@ -52,11 +51,11 @@
                         <span class="fst-italic text-end w-100 mt-2">* Plusieurs choix possible</span>
                     </div>
                     <hr>
-
+                    <p class="fst-italic text-end w-100 mt-2">** Champs obligatoires</p>
                     <div class="text-center">
                         <!--            title   -->
                         <div>
-                            <span class="fw-bold">Titre de l'article </span>
+                            <span class="fw-bold">Titre de l'article **</span>
                             <span class="fst-italic">(100 caractères max.)</span>
                             <div class="mb-3 mx-auto fw-bold w-75">
                                 <input maxlength="100" type="text" name="artTitle" class="form-control" id="arTitle">
@@ -66,7 +65,7 @@
                         <div>
                             <label for="artDescription">Décrivez le but du projet, le temps necessaire, le niveau de
                                 difficulté...</label>
-                            <span class="fst-italic">(255 caractères max.)</span>
+                            <span class="fst-italic">(255 caractères max.) **</span>
                             <textarea maxlength="255" name="artDescription" class="form-control mb-3 mx-auto w-75"
                                       id="artDescription"
                                       rows="3"></textarea>
@@ -98,11 +97,12 @@
                     </div>
 <!--            submit button  -->
                     <div class="text-center">
-                        <input class="btn btn-success" type="submit" value="Valider">
+                        <input class="btn btn-success" type="submit" name="submitBtn" value="Valider"
+                               title="Créer l'article">
                         <p class="fst-italic">
                             En cliquant sur valider votre article sera créer en mode privé, vous pourrez le consulter
-                            dans votre espace profil et le soumettre afin qu'un administrateur puisse accepter
-                            sa publication.
+                            dans votre espace profil, le modifier, le supprimer ou le soumettre afin qu'un
+                            administrateur puisse accepter sa publication.
                         </p>
                     </div>
                 </form>
