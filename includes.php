@@ -40,7 +40,7 @@ require __DIR__ . '/Model/Manager/StepManager.php';
 require __DIR__ . '/Model/Manager/TechnicManager.php';
 require __DIR__ . '/Model/Manager/CategoryManager.php';
 require __DIR__ . '/Model/Manager/CategoryLinkManager.php';
-require __DIR__ . '/Model/Manager/ProjectsManager.php';
+require __DIR__ . '/Model/Manager/ArticleManager.php';
 require __DIR__ . '/Model/Manager/TypeManager.php';
 require __DIR__ . '/Model/Manager/RoleManager.php';
 require __DIR__ . '/Model/Manager/UserManager.php';
