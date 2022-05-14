@@ -3,42 +3,42 @@
 
 class Category
 {
-    private ?int $id_cat = null;
-    private string $category_name;
+    private ?int $id = null;
+    private string $name;
 
     /**
      * @return int|null
      */
-    public function getIdCat(): ?int
+    public function getId(): ?int
     {
-        return $this->id_cat;
+        return $this->id;
     }
 
     /**
-     * @param int|null $id_cat
+     * @param int|null $id
      * @return Category
      */
-    public function setIdCat(?int $id_cat): self
+    public function setId(?int $id): self
     {
-        $this->id_cat = $id_cat;
+        $this->id_cat = $id;
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getCategoryName(): string
+    public function getName(): string
     {
-        return $this->category_name;
+        return $this->name;
     }
 
     /**
-     * @param string $category_name
+     * @param string $name
      * @return Category
      */
-    public function setCategoryName(string $category_name): self
+    public function setName(string $name): self
     {
-        $this->category_name = $category_name;
+        $this->name = $name;
         return $this;
     }
 }

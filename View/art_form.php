@@ -10,7 +10,7 @@
                     </p>
                 </div>
 <!--                form to create article  -->
-                <form action="index.php?c=projects&p=add_art" method="POST" enctype="multipart/form-data">
+                <form action="index.php?c=articles&p=add_art" method="POST" enctype="multipart/form-data">
                     <div class="row row-cols-lg-3 row-cols-sm-2 row-cols-1">
 <!--                type    -->
                         <div>
@@ -76,8 +76,8 @@
                         <div id="step">
                             <p class="fs-5 fw-bold">Ajoutez les étapes :</p>
 <!--                title-->
-                            <label for="stepTitle" class="fw-bold">Titre de l'étape **</label>
-                            <span>(50 caractères max.)</span>
+                            <label for="stepTitle" class="fw-bold">Titre de l'étape</label>
+                            <span>(50 caractères max.) **</span>
                             <div class="mb-3 mx-auto fw-bold w-75">
                                 <input maxlength="50" type="text" name="stepTitle" class="form-control" id="stepTitle">
                             </div>
@@ -93,6 +93,26 @@
                                 <input type="file" name="stepImage" id="picture" accept=".jpeg, .jpg, .png">
                             </div>
                         </div>
+
+<!--                        TEST second step-->
+                        <label for="stepTitle2" class="fw-bold">Titre de l'étape 2</label>
+                        <span>(50 caractères max.) **</span>
+                        <div class="mb-3 mx-auto fw-bold w-75">
+                            <input maxlength="50" type="text" name="stepTitle2" class="form-control" id="stepTitle2">
+                        </div>
+                        <!--                description-->
+                        <span>Décrivez l'étape</span>
+                        <span class="fst-italic">(255 caractères max.)</span>
+                        <textarea maxlength="255" name="stepDescription2" class="form-control mb-3 mx-auto w-75"
+                                  id="stepDescription2"
+                                  rows="3"></textarea>
+                        <!--                illustration-->
+                        <div>
+                            <label for="picture">Choisissez une image</label>
+                            <input type="file" name="stepImage2" id="picture" accept=".jpeg, .jpg, .png">
+                        </div>
+                    </div>
+
 <!--                add step-->
                         <span class="fst-italic">Cliquez ici ajouter une étape supplémentaire</span>
                         <a id="addStep" href="#" class="btn btn-primary m-3 btn-sm">Ajouter une étape</a>

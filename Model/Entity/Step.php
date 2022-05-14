@@ -7,6 +7,8 @@ class Step
     private ?string $img_name;
     private string $title;
     private ?string $description;
+    private ?string $tool = null;
+    private ?string $matter = null;
     private Article $article;
 
     /**
@@ -78,6 +80,42 @@ class Step
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getTool(): ?string
+    {
+        return $this->tool;
+    }
+
+    /**
+     * @param string|null $tool
+     * @return Step
+     */
+    public function setTool(?string $tool): self
+    {
+        $this->tool = $tool;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getMatter(): ?string
+    {
+        return $this->matter;
+    }
+
+    /**
+     * @param string|null $matter
+     * @return Step
+     */
+    public function setMatter(?string $matter): self
+    {
+        $this->matter = $matter;
         return $this;
     }
 

@@ -37,6 +37,11 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <li>
+                                <a class="dropdown-item" href="index.php?c=articles&p=all_articles">Tous les
+                                    articles</a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
                                 <a class="dropdown-item" href="index.php?c=articles&p=all_technic">Toutes les
                                     techniques</a>
                             </li>

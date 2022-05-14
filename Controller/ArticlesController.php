@@ -4,6 +4,11 @@
 class ArticlesController extends Controller
 {
 
+    public function all_articles(){
+        $data = ['art' => ArticleManager::allArticles()];
+        $this->render('all_articles', $data);
+    }
+
     /**
      * display every techniques name
      */
@@ -52,7 +57,7 @@ class ArticlesController extends Controller
     public function add_art (){
         if(!$this->fieldsState('artTitle', 'artDescription')){
             $_SESSION['error'] = "Les champs obligatoires doivent être remplis !";
-            header('Location: index.php?c=projects&p=art_form');
+            header('Location: index.php?c=articles&p=art_form');
         }
 
 //         get article data
@@ -62,6 +67,7 @@ class ArticlesController extends Controller
         $type = $this->fieldsState('type') ? TypeManager::getTypeById($_POST['type']) : null;
         $state = StateManager::stateByName('pr');
         $cat = $this->fieldsState('cat') ? $_POST['cat'] : null;
+        $tech = $this->fieldsState('tech') ? $_POST['tech'] : null;
 
 //         get step
         $steps[] = $this->addStep();   // if step => title is required
@@ -70,15 +76,18 @@ class ArticlesController extends Controller
         $article
             ->setTitle($title)
             ->setDescription($description)
-            ->setStep($steps)
             ->setType($type)
             ->setState($state)
+            ->setStep($steps)
+            ->setAuthor($author)
             ->setCategory($cat)
-            ->setAuthor($author);
+            ->setTechnic($tech)
+        ;
 
         if(ArticleManager::addArticle($article)){
             header('Location: index.php?c=profile');
         }
+
 //        echo '<pre>';
 //            var_dump($_POST);
 //        echo '</pre>';
@@ -96,7 +105,7 @@ class ArticlesController extends Controller
 
             if(isset($_FILES['stepImage']) && $_FILES['stepImage']['error'] === 0){
                 $allowed = ['image/jpeg', 'image/jpg', 'image/png'];  // allowed mime type
-                $maxSize = 3 * 1024 * 1024; // = 3 Mo
+                $maxSize = 4 * 1024 * 1024; // = 4 Mo
                 if((int)$_FILES['stepImage']['size'] <= $maxSize && in_array($_FILES['stepImage']['type'], $allowed)){
                     $tmp_name = $_FILES['stepImage']['tmp_name'];    // image temporary name
                     $ext = pathinfo($_FILES['stepImage']['name'], PATHINFO_EXTENSION);   // file extension
@@ -128,9 +137,9 @@ class ArticlesController extends Controller
      */
     private function createRandomName (): string {
         try {
-            $bytes = random_bytes(15);
+            $bytes = random_bytes(10);
         } catch (Exception $e) {
-            $bytes = openssl_random_pseudo_bytes(15);
+            $bytes = openssl_random_pseudo_bytes(10);
         }
         return bin2hex($bytes);
     }

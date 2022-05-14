@@ -52,7 +52,7 @@ class ArticleManager extends Manager
     /**
      * @return array
      */
-    public static function allArticle () : array
+    public static function allArticles () : array
     {
         $articles = [];
         $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "article");
@@ -109,10 +109,12 @@ class ArticleManager extends Manager
      * @return bool
      */
     public static function addArticle (Article &$article){
-        $stm = DB::getConn()->prepare("INSERT INTO mkf_article (title, description, type_fk, state, author)
+        $stm = DB::getConn()->prepare("
+            INSERT INTO " . Config::PRE . "article (title, description, type_fk, state, author)
             VALUES (:title, :description, :type_fk, :state, :author)
         ");
 
+        // create article
         $stm->bindValue(':title', $article->getTitle());
         $stm->bindValue(':description', $article->getDescription());
         $stm->bindValue(':type_fk', $article->getType()->getIdType());
@@ -121,6 +123,64 @@ class ArticleManager extends Manager
 
         $result = $stm->execute();
         $article->setId(DB::getConn()->lastInsertId());
+
+        if($result && $article->getCategory()){
+            foreach ($article->getCategory() as $value){
+                $stm = DB::getConn()->prepare("
+                    INSERT INTO " . Config::PRE . "art_cat (cat_fk, art_fk)
+                    VALUES (:cat_fk, :art_fk)
+                ");
+                $stm->bindValue(':cat_fk', $value);
+                $stm->bindValue('art_fk', $article->getId());
+
+                $result = $stm->execute();
+            }
+        }
+        else {
+            $_SESSION['error'] = "Erreur de catégorie";
+            header('Location: index.php?c=articles&p=art_form');
+        }
+
+        if($result && $article->getTechnic()){
+            foreach ($article->getTechnic() as $value){
+                $stm = DB::getConn()->prepare("
+                    INSERT INTO " . Config::PRE . "art_tech (tech_fk, art_fk)
+                    VALUES (:tech_fk, :art_fk)
+                ");
+                $stm->bindValue(':tech_fk', $value);
+                $stm->bindValue('art_fk', $article->getId());
+
+                $result = $stm->execute();
+            }
+        }
+        else{
+            $_SESSION['error'] = "Erreur de technique";
+            header('Location: index.php?c=articles&p=art_form');
+        }
+
+        // create steps
+        if($result){
+            foreach ($article->getStep() as $step){
+                $stm = DB::getConn()->prepare("
+                    INSERT INTO " . Config::PRE . "step (img_name, title, description, tool, matter, art_fk)
+                    VALUES (:img_name, :title, :description, :tool, :matter, :art_fk)
+                ");
+                // create step
+                $stm->bindValue(':img_name', $step->getImgName());
+                $stm->bindValue(':title', $step->getTitle());
+                $stm->bindValue(':description', $step->getDescription());
+                $stm->bindValue(':tool', $step->getTool());
+                $stm->bindValue(':matter', $step->getMatter());
+                $stm->bindValue(':art_fk', $article->getId());
+
+                $result = $stm->execute();
+                $step->setIdStep(DB::getConn()->lastInsertId());
+            }
+        }
+        else{
+            $_SESSION['error'] = "Erreur à l'enregistrement des étapes";
+            header('Location: index.php?c=articles&p=art_form');
+        }
         return $result;
     }
 }

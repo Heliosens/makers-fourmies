@@ -30,8 +30,8 @@ class CategoryManager extends Manager
         if($query){
             foreach ($query->fetchAll() as $item){
                 $categories[] = (new Category())
-                    ->setIdCat($item['id'])
-                    ->setCategoryName($item['name'])
+                    ->setId($item['id'])
+                    ->setName($item['name'])
                 ;
             }
         }
