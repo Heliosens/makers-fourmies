@@ -18,7 +18,7 @@
                             <?php
                             foreach ($data['type'] as $key => $item){
                                 echo '<div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="radio' . $key . '">
+                                <input class="form-check-input" type="radio" name="type" id="radio' . $key . '">
                                 <label class="form-check-label" for="radio' . $key . '">' . $item . '</label>
                             </div>';
                             }
@@ -30,7 +30,7 @@
                             <?php
                             foreach ($data['category'] as $key => $item){
                                 echo '<div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="catCheck' . $key . '">
+                                <input class="form-check-input" type="checkbox" name="cat' . $key . '" id="catCheck' . $key . '">
                                 <label class="form-check-label" for="catCheck' . $key . '">' . $item . '</label>
                             </div>';
                             }
@@ -42,7 +42,8 @@
                             <?php
                             foreach ($data['technique'] as $key => $item){
                                 echo '<div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="techCheck' . $key . '">
+                                <input class="form-check-input" type="checkbox" name="tech' . $key . '" 
+                                id="techCheck' . $key . '">
                                 <label class="form-check-label" for="techCheck' . $key . '">' . $item . '</label>
                             </div>';
                             }
@@ -58,7 +59,7 @@
                             <span class="fw-bold">Titre de l'article </span>
                             <span class="fst-italic">(100 caractères max.)</span>
                             <div class="mb-3 mx-auto fw-bold w-75">
-                                <input maxlength="100" type="text" class="form-control" id="art_title">
+                                <input maxlength="100" type="text" name="artTitle" class="form-control" id="arTitle">
                             </div>
                         </div>
                         <!--            description -->
@@ -66,28 +67,33 @@
                             <label for="artDescription">Décrivez le but du projet, le temps necessaire, le niveau de
                                 difficulté...</label>
                             <span class="fst-italic">(255 caractères max.)</span>
-                            <textarea maxlength="255" class="form-control mb-3 mx-auto w-75" id="artDescription"
+                            <textarea maxlength="255" name="artDescription" class="form-control mb-3 mx-auto w-75"
+                                      id="artDescription"
                                       rows="3"></textarea>
                         </div>
                         <!--            first step -->
                         <div id="step">
                             <p class="fs-5 fw-bold">Ajoutez les étapes :</p>
+<!--                            title-->
                             <label for="stepTitle" class="fw-bold">Titre de l'étape</label>
                             <span>(50 caractères max.)</span>
                             <div class="mb-3 mx-auto fw-bold w-75">
-                                <input maxlength="50" type="text" class="form-control" id="stepTitle">
+                                <input maxlength="50" type="text" name="stepTitle" class="form-control" id="stepTitle">
                             </div>
+<!--                            description-->
                             <span>Décrivez l'étape</span>
                             <span class="fst-italic">(255 caractères max.)</span>
-                            <textarea maxlength="255" class="form-control mb-3 mx-auto w-75" id="artDescription"
+                            <textarea maxlength="255" name="stepDescription" class="form-control mb-3 mx-auto w-75"
+                                      id="stepDescription"
                                       rows="3"></textarea>
+<!--                            illustration-->
                             <div>
                                 <label for="picture">Choisissez une image</label>
                                 <input type="file" name="stepImage" id="picture" accept=".jpeg, .jpg, .png">
                             </div>
                         </div>
+<!--                        add step-->
                         <span class="fst-italic">Cliquez ici ajouter une étape supplémentaire</span>
-                        <!--            Button add step -->
                         <a id="addStep" href="#" class="btn btn-primary m-3 btn-sm">Ajouter une étape</a>
                     </div>
 <!--            submit button  -->
@@ -96,7 +102,7 @@
                         <p class="fst-italic">
                             En cliquant sur valider votre article sera créer en mode privé, vous pourrez le consulter
                             dans votre espace profil et le soumettre afin qu'un administrateur puisse accepter
-                            la publication.
+                            sa publication.
                         </p>
                     </div>
                 </form>
