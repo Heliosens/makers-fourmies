@@ -10,10 +10,10 @@ class AvatarManager
      */
     public static function defaultAvatar (){
         $avatar = new Avatar();
-        $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "avatar WHERE id_avat = 1");
+        $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "avatar WHERE id = 1");
         if($query){
             $result = $query->fetch();
-            $avatar->setIdAvat($result['id_avat'])->setAvatar($result['avatar']);
+            $avatar->setId($result['id'])->setAvatar($result['avatar']);
         }
         return $avatar;
     }
@@ -25,10 +25,10 @@ class AvatarManager
      */
     public static function getAvatById (int $id){
         $avatar = new Avatar();
-        $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "avatar WHERE id_avat = $id");
+        $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "avatar WHERE id = $id");
         if($query){
             $result = $query->fetch();
-            $avatar->setIdAvat($result['id_avat'])->setAvatar($result['avatar']);
+            $avatar->setId($result['id'])->setAvatar($result['avatar']);
         }
         return $avatar;
     }
@@ -41,7 +41,7 @@ class AvatarManager
         $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "avatar");
         if ($query){
             foreach ($query->fetchAll() as $item){
-                $avatars[] = (new Avatar())->setIdAvat($item['id_avat'])->setAvatar($item['avatar']);
+                $avatars[] = (new Avatar())->setId($item['id'])->setAvatar($item['avatar']);
             }
         }
         return $avatars;

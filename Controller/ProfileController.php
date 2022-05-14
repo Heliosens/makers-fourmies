@@ -13,7 +13,6 @@ class ProfileController extends Controller
             'avatar' => AvatarManager::getAllAvatar(),
             'art' => [
                 'write' => ProjectsManager::artByAuthor($id),
-                'make' => ProjectsManager::artByMaker($id)
                 ]
         ];
         $this->render('profile', $data);

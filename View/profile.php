@@ -1,7 +1,6 @@
 <?php
     $user = $data['user'];
     $art = $data['art']['write'];
-    $make = $data['art']['make'];
     $avatar = $data['avatar'];
 ?>
 <main>
@@ -19,7 +18,7 @@
                         <div class="modal-body gap-4 d-flex flex-wrap justify-content-between">
                             <?php
                             foreach ($avatar as $item){
-                                echo '<a href="index.php?c=avatar&p=change&o=' . $item->getIdAvat() . '">
+                                echo '<a href="index.php?c=avatar&p=change&o=' . $item->getId() . '">
                                     <img class="logo" src="/img/avatar/' . $item->getAvatar() . '" alt="avatar">
                                 </a>';
                             }
@@ -52,7 +51,7 @@
                         </div>
                         <div>
                             <p>
-                                Rôle : <?=Controller::roleName($user->getRole()->getRoleName())?>
+                                Rôle : <?=Config::roleName($user->getRole()->getRoleName())?>
                             </p>
                         </div>
                         <div>
@@ -66,7 +65,7 @@
                 <div class="col">
                     <div class="d-flex justify-content-around">
                         <h3 class="text-center">Mes articles :</h3>
-                        <a href="index.php?c=projects&p=create_art">Créer un article</a>
+                        <a href="index.php?c=projects&p=art_form">Créer un article</a>
                     </div>
                     <?php
                     foreach ($art as $key => $item){
@@ -74,7 +73,7 @@
                             <div class="row col-8">
                                 <a class="text-decoration-none text-dark col-9" href="index?c=projects&p=one_project&o='
                                 . $key . '">' . $item['title'] . '</a>
-                                <span class="col-3">' . Controller::stateName($item['state']) . '</span>
+                                <span class="col-3">' . Config::stateName($item['state']) . '</span>
                                 </div>
                             <div class="col-4">
                                 <a  class="text-decoration-none text-dark" href="">
@@ -90,20 +89,21 @@
                 </div>
                 <div class="col">
                     <div class="d-flex justify-content-around">
-                        <h3 class="text-center">Mes participations :</h3>
-<!--                <a href="index.php?c=projects">Ajouter une participation</a>-->
+                        <h3 class="text-center">Mes favoris :</h3>
                     </div>
                     <?php
-                    foreach ($make as $key => $item){
-                        echo '<div class="row row-cols-2 bg-light">
+                    if(isset($art)){
+                        foreach ($art as $key => $item){
+                            echo '<div class="row row-cols-2 bg-light">
                         <div class="col-8">
                             <a class="text-decoration-none text-dark" href="index?c=projects&p=one_project&o=' . $key
-                            . '">' . $item['title'] . '</a>
+                                . '">' . $item['title'] . '</a>
                             </div>
-<!--                <a href="#" class="col-4 text-dark">
-                            <i class="fa-solid fa-trash-can p-1" title="supprimer ma participation"></i>
-                        </a>-->
+                            <a href="#" class="col-4 text-dark">
+                                <i class="fa-solid fa-heart-crack" title="Retirer des favoris"></i>
+                            </a>
                     </div>';
+                        }
                     }
                     ?>
                 </div>
@@ -133,8 +133,8 @@
                                 </h5>
                             </div>
                             <p class="modal-body text-danger gap-4">
-                                Supprimer votre compte supprimera <br>
-                                toutes vos informations, tous vos articles et toutes vos participations de
+                                Supprimer votre compte supprimera
+                                toutes vos informations, tous vos articles de
                                 façon <strong>DEFINITIVE</strong>.
                             </p>
                             <div class="modal-footer justify-content-between">

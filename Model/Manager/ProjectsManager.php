@@ -39,14 +39,10 @@ class ProjectsManager extends Manager
             $project->setId($item['id_art'])
                 ->setTitle($item['title'])
                 ->setDescription($item['description'])
-                ->setImage(StepManager::imgByArt($item['id_art']))
+                ->setStep(StepManager::imgByArt($item['id_art']))
                 ->setType(TypeManager::getTypeById($item['type_fk']))
                 ->setCategory(CategoryManager::categoryByArt($item['id_art']))
                 ->setTechnic(TechnicManager::techByArt($item['id_art']))
-                ->setTool(ToolManager::toolByArt($item['id_art']))
-                ->setMatter(MatterManager::matterByArt($item['id_art']))
-                ->setResource(ResourceManager::resourceByArt($item['id_art']))
-                ->setTakePart(TakePartManager::participationByArt($item['id_art']))
                 ->setAuthor(UserManager::getUserById($item['author']))
             ;
         }
@@ -108,22 +104,4 @@ class ProjectsManager extends Manager
         return $projects;
     }
 
-    /**
-     * @param int $id
-     * @return array
-     */
-    public static function artByMaker (int $id) : array
-    {
-        $projects = [];
-        $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "article WHERE id_art IN
-        (SELECT art_fk FROM " . Config::PRE . "take_part WHERE user_fk = $id)");
-        if($query){
-            foreach ($query->fetchAll() as $item){
-                $projects[$item['id_art']] = [
-                  'title' => $item['title']
-                ];
-            }
-        }
-        return $projects;
-    }
 }

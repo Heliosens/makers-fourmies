@@ -2,7 +2,6 @@
 //    /* @var User $user */
     $users = $data['user'];
     $articles = $data['article'];
-    $rubrics = $data['rubrics'];
 
     echo '<pre>';
     var_dump($data);
@@ -31,7 +30,7 @@
                                 foreach ($users as $user){
                                     echo '<div class="row row-cols-3 px-5">
                                     <a class="text-decoration-none text-dark" href="">' . $user->getPseudo() . '</a>
-                                    <a class="text-decoration-none text-dark" href="">' . Controller::roleName($user->getRole()->getRoleName()) . '</a>
+                                    <a class="text-decoration-none text-dark" href="">' . Config::roleName($user->getRole()->getRoleName()) . '</a>
                                     <a href="index.php?c=user&p=del_user&o=' . $user->getId() . '" class="text-dark">
                                         <i class="fa-solid fa-trash-can p-1" title="supprimer l\'utilisateur"></i>
                                     </a>
@@ -235,7 +234,7 @@
                         <h3>Logiciel</h3>
                         <article class="row row-cols-2 px-5">
                             <div class="row col-8">
-                                <a class="text-decoration-none text-dark" href="">Titre article 1</a>
+                                <a class="text-decoration-none text-dark" href="">ressource 1</a>
                             </div>
                             <div class="col-4">
                                 <a  class="text-decoration-none text-dark" href="">
@@ -250,7 +249,7 @@
                         <h3>Application</h3>
                         <article class="row row-cols-2 px-5">
                             <div class="row col-8">
-                                <a class="text-decoration-none text-dark" href="">Titre article 1</a>
+                                <a class="text-decoration-none text-dark" href="">ressource 1</a>
                             </div>
                             <div class="col-4">
                                 <a  class="text-decoration-none text-dark" href="">
@@ -265,7 +264,7 @@
                         <h3>Tuto</h3>
                         <article class="row row-cols-2 px-5">
                             <div class="row col-8">
-                                <a class="text-decoration-none text-dark" href="">Titre article 1</a>
+                                <a class="text-decoration-none text-dark" href="">ressource 1</a>
                             </div>
                             <div class="col-4">
                                 <a  class="text-decoration-none text-dark" href="">
