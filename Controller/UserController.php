@@ -28,8 +28,7 @@ class UserController extends Controller
         $this->userConnectionExist(false);
         $error = "";
         // verify if there's not already a connected user & button is press & check fields
-        if(!isset($_SESSION['user']) && isset($_POST['sendBtn'])
-            && $this->fieldsState($_POST['email'], $_POST['passwrd'])){
+        if(!isset($_SESSION['user']) && isset($_POST['sendBtn'])){
             // check button
             if(isset($_POST['sendBtn'])){
                 // clean user entries data
