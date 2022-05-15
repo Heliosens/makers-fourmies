@@ -20,6 +20,7 @@ class Router
     }
 
     /**
+     * get parameters, get instance of controller
      * @param $c
      * @param $p
      * @param $o
@@ -28,9 +29,20 @@ class Router
         $ctrl = $this->getCtrlName($c);
         $p = self::cleanParam($p);
         $o = self::cleanParam($o);
-        $controller = new $ctrl;
-        if(null !== $p){
-            $controller->$p($o);
+
+        if(class_exists($ctrl)){
+            $controller = new $ctrl;
+            if(method_exists($controller, $p)){
+                $controller->$p($o);
+            }
+            else{
+                $controller = new ErrorController();
+                $controller->page();
+            }
+        }
+        else{
+            $controller = new ErrorController();
+            $controller->page();
         }
     }
 
