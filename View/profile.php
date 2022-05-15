@@ -54,10 +54,6 @@
                                 Rôle : <?=Config::roleName($user->getRole()->getRoleName())?>
                             </p>
                         </div>
-                        <div>
-<!--        TODO            -->
-                            <p>Mot de passe : <a href="">modifier mon mot de passe</a>
-                        </div>
                     </div>
                 </div>
             </header>
@@ -139,8 +135,9 @@
                             </p>
                             <div class="modal-footer justify-content-between">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Retour</button>
-                                <a href="" type="button" class="btn btn-danger">
-                                    Confirmer la suppression de mon compte</a>
+                                <a href="index.php?c=user&p=del_own_count" type="button" class="btn btn-danger">
+                                    Confirmer la suppression de mon compte
+                                </a>
                             </div>
                         </div>
                     </div>

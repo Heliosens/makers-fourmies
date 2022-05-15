@@ -30,7 +30,7 @@
                                 foreach ($users as $user){
                                     echo '<div class="row row-cols-3 px-5">
                                     <a class="text-decoration-none text-dark" href="">' . $user->getPseudo() . '</a>
-                                    <a class="text-decoration-none text-dark" href="">' . Config::roleName($user->getRole()->getRoleName()) . '</a>
+                                    <span class="text-decoration-none text-dark">' . Config::roleName($user->getRole()->getRoleName()) . '</span>
                                     <a href="index.php?c=user&p=del_user&o=' . $user->getId() . '" class="text-dark">
                                         <i class="fa-solid fa-trash-can p-1" title="supprimer l\'utilisateur"></i>
                                     </a>
@@ -57,16 +57,19 @@
                             <?php
                             foreach ($articles['pr'] as $article){
                                 echo '<div class="row col-8">
-                                <a class="text-decoration-none text-dark" href="">' . $article .'</a>
+                                    <a class="text-decoration-none text-dark" href="">' . $article['title'] .'</a>
                                 </div>
-                            <div class="col-4">
-                                <a  class="text-decoration-none text-dark" href="">
-                                    <i class="fa-solid fa-pencil p-1" title="modifier"></i>
-                                </a>
-                                <a  class="text-decoration-none text-dark" href="">
-                                    <i class="fa-solid fa-trash-can p-1" title="supprimer l\'article"></i>
-                                </a>
-                            </div>
+                                <div class="col-2">
+                                    <span>' . $article['author'] .'</span>
+                                </div>
+                                <div class="col-2">
+                                    <a  class="text-decoration-none text-dark" href="">
+                                        <i class="fa-solid fa-pencil p-1" title="modifier"></i>
+                                    </a>
+                                    <a  class="text-decoration-none text-dark" href="">
+                                        <i class="fa-solid fa-trash-can p-1" title="supprimer l\'article"></i>
+                                    </a>
+                                </div>
                                 ';
                             }
                             ?>
@@ -79,6 +82,7 @@
                                 echo '<div class="row col-8">
                                 <a class="text-decoration-none text-dark" href="">' . $article .'</a>
                                 </div>
+                                
                             <div class="col-4">
                                 <a  class="text-decoration-none text-dark" href="">
                                     <i class="fa-solid fa-pencil p-1" title="modifier"></i>
@@ -163,44 +167,6 @@
                         </article>
 <!--                        technical    -->
                         <h3>Techniques</h3>
-                        <article class="row px-5">
-                            <div>
-                                <?php
-                                foreach ($data['technic'] as $item){
-                                    echo '<div>
-                                    <span>' . $item . '</span>
-                                    <a class="text-decoration-none text-dark" href="">
-                                        <i class="fa-solid fa-pencil p-1" title="modifier"></i>
-                                    </a>
-                                    <a class="text-decoration-none text-dark" href="">
-                                        <i class="fa-solid fa-trash-can p-1" title="supprimer l\'article"></i>
-                                    </a>
-                                </div>';
-                                }
-                                ?>
-                            </div>
-                        </article>
-<!--                        tool    -->
-                        <h3>Outils</h3>
-                        <article class="row px-5">
-                            <div>
-                                <?php
-                                foreach ($data['technic'] as $item){
-                                    echo '<div>
-                                    <span>' . $item . '</span>
-                                    <a class="text-decoration-none text-dark" href="">
-                                        <i class="fa-solid fa-pencil p-1" title="modifier"></i>
-                                    </a>
-                                    <a class="text-decoration-none text-dark" href="">
-                                        <i class="fa-solid fa-trash-can p-1" title="supprimer l\'article"></i>
-                                    </a>
-                                </div>';
-                                }
-                                ?>
-                            </div>
-                        </article>
-<!--                        matter  -->
-                        <h3>Matières</h3>
                         <article class="row px-5">
                             <div>
                                 <?php

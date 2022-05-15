@@ -112,8 +112,8 @@ class UserController extends Controller
         // verify if there's not already a connected user
         $this->userConnectionExist(false);
 
-        //  check if button is press & fields not empty
-        if(isset($_POST['sendBtn']) && $this->fieldsState($_POST['email'], $_POST['passwrd'])){
+        //  check if button is pressed
+        if(isset($_POST['sendBtn'])){
 
             // clean email
             $email = $this->cleanEntries('email');
@@ -176,11 +176,14 @@ class UserController extends Controller
     }
 
     /**
-     * @param $id
+     * only admin delete user count and only if user is not the last admin
+     * @param int $id
      */
-    public function del_user ($id){
-        if($_SESSION['user']['role'] === 'admin' || $_SESSION['user']['id'] === $id){
-            if(UserManager::getRoleByUser($id) === 'admin' && $this->testAdmin()){
+    public function del_user (int $id){
+        if($_SESSION['user']['role'] === 'admin'){
+//          get del user role
+            $role = UserManager::getRoleByUser($id)->getRoleName();
+            if($this->testAdmin() || $role !== 'admin'){
                 UserManager::delById($id);
             }
             else{
@@ -190,4 +193,19 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * delete count by owner
+     */
+    public function del_own_count (){
+//      get del user role
+        $role = $_SESSION['user']['role'];
+        if($this->testAdmin() || $role !== 'admin'){
+            UserManager::delById($_SESSION['user']['id']);
+            $this->disconnect();
+        }
+        else{
+            $_SESSION['error'] = "Attention vous ne pouvez pas supprimer le dernier administrateur du site !";
+            header('Location: index.php');
+        }
+    }
 }

@@ -19,7 +19,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * admin space
+     * admin space if user is admin
      */
     public function admin(){
         if(isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin'){
@@ -35,4 +35,5 @@ class ProfileController extends Controller
         }
         else $this->render('home');
     }
+
 }

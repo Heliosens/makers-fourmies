@@ -79,7 +79,10 @@ class ArticleManager extends Manager
         $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "article WHERE state = $state");
         if ($query){
             foreach ($query->fetchAll() as $item){
-                $articles[$item['id_art']] = $item['title'];
+                $articles[$item['id_art']] = [
+                    'title' => $item['title'],
+                    'author' => UserManager::getUserById($item['author'])->getPseudo()
+                ];
             }
         }
         return $articles;

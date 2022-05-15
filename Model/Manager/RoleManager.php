@@ -28,9 +28,13 @@ class RoleManager extends Manager
         $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "role WHERE id_role = $id");
         if($query){
             $result = $query->fetch();
-            $role->setId($result['id_role'])->setRoleName($result['role']);
+            $role
+                ->setId($result['id_role'])
+                ->setRoleName($result['role']);
         }
         return $role;
     }
+
+
 
 }
