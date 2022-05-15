@@ -172,7 +172,7 @@ class UserController extends Controller
             setcookie(session_id(), "", time() - 3600);
             session_destroy();
         }
-        $this->render('home');
+        header('Location: index.php');
     }
 
     /**
