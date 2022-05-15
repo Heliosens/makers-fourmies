@@ -15,11 +15,21 @@ class Controller
     }
 
     /**
+     * clean user entries
      * @param $param
      * @return string
      */
     public function cleanEntries ($param){
         return trim(strip_tags($_POST[$param]));
+    }
+
+    /**
+     * clean string
+     * @param $item
+     * @return string
+     */
+    public function cleanItem ($item){
+        return trim(strip_tags($item));
     }
 
     /**
@@ -47,15 +57,12 @@ class Controller
     }
 
     /**
-     * test if current user is authorized
-     * @param int $currentUserId
+     * test if current user is authorized function of provided array
      * @param array $authorized
+     * @return bool
      */
-    public function testAccess(int $currentUserId, array $authorized){
-        $role = UserManager::getRoleByUser($currentUserId);
-        if(!in_array($role, $authorized)){
-            $this->render('home');
-        }
+    public function testAccess(array $authorized){
+        return in_array($_SESSION['user']['role'], $authorized);
     }
 
     /**
@@ -64,12 +71,18 @@ class Controller
      * bool
      * @param $bool
      */
-    public function userConnectionExist($bool){
+    public function connectedKeepGoing($bool){
         // if session and bool = 1 or if !session and bool = 0
-        if(!isset($_SESSION['user']) && $bool || isset($_SESSION['user']) && !$bool){
-            $this->render('home');
+        if(!$this->userIsConnected() && $bool || $this->userIsConnected() && !$bool){
+            header('Location: index.php');
         }
     }
 
+    /**
+     * @return bool
+     */
+    private function userIsConnected (){
+        return isset($_SESSION['user']);
+    }
 
 }

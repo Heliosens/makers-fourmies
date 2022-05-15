@@ -27,8 +27,7 @@ class Router
      */
     public function toCtrl ($c, $p, $o){
         $ctrl = $this->getCtrlName($c);
-        $p = self::cleanParam($p);
-        $o = self::cleanParam($o);
+        $o = is_numeric($o) ? intval($o) : null;
 
         if(class_exists($ctrl)){
             $controller = new $ctrl;
@@ -36,14 +35,20 @@ class Router
                 $controller->$p($o);
             }
             else{
-                $controller = new ErrorController();
-                $controller->page();
+                $this->error();
             }
         }
         else{
-            $controller = new ErrorController();
-            $controller->page();
+            $this->error();
         }
+    }
+
+    /**
+     * create error controller & display page 404
+     */
+    public static function error (){
+        $controller = new ErrorController();
+        $controller->page();
     }
 
 }

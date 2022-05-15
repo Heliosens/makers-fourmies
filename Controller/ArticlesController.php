@@ -10,11 +10,26 @@ class ArticlesController extends Controller
     }
 
     /**
+     * admin, modo, user -> publish articles        : publish
+     * admin, modo -> publish, stand by articles    : !private
+     * admin -> publish, stand by, private articles : all
+     */
+    public function articlesAccess ($param){
+        // publish
+
+        // !private
+
+        // all
+
+    }
+
+    /**
      * display every techniques name
      */
     public function all_technic(){
         $this->render('techniques');
     }
+
 
     /**
      * @param $option
@@ -31,12 +46,17 @@ class ArticlesController extends Controller
      * @param $option
      */
     public function one_article ($option){
-        // get selected projects
-        $data = [
-            'article' => ArticleManager::oneArticle($option)
-        ];
-
-        $this->render('article', $data);
+        $this->connectedKeepGoing(true);
+        if(null !== $option && $option !== 0){
+            // get selected projects
+            $data = [
+                'article' => ArticleManager::oneArticle($option)
+            ];
+            $this->render('article', $data);
+        }
+        else{
+            Router::error();
+        }
     }
 
     /**
@@ -70,7 +90,7 @@ class ArticlesController extends Controller
         $tech = $this->fieldsState('tech') ? $_POST['tech'] : null;
 
 //         get step
-        $steps[] = $this->addStep();   // if step => title is required
+        $steps = $this->addStep();   // if step => title is required
 
         $article = new Article();
         $article
@@ -85,51 +105,59 @@ class ArticlesController extends Controller
         ;
 
         if(ArticleManager::addArticle($article)){
-            header('Location: index.php?c=profile');
+            $id = $article->getId();
+            header('Location: index.php?c=articles&p=all_articles' . $id);
         }
-
-//        echo '<pre>';
-//            var_dump($_POST);
-//        echo '</pre>';
-
     }
 
     /**
-     * @return Step|null
+     * @return array
      */
     private function addStep ()
     {
-        if($this->fieldsState('stepTitle')){
+        $steps = [];
+        foreach ($_POST['stepTitle'] as $key => $item){
+            $title = $this->cleanItem($item);
+
             $step = new Step();
             // get step image
-
-            if(isset($_FILES['stepImage']) && $_FILES['stepImage']['error'] === 0){
+            if(isset($_FILES['stepImage']) && $_FILES['stepImage']['error'][$key] === 0){
                 $allowed = ['image/jpeg', 'image/jpg', 'image/png'];  // allowed mime type
                 $maxSize = 4 * 1024 * 1024; // = 4 Mo
-                if((int)$_FILES['stepImage']['size'] <= $maxSize && in_array($_FILES['stepImage']['type'], $allowed)){
-                    $tmp_name = $_FILES['stepImage']['tmp_name'];    // image temporary name
-                    $ext = pathinfo($_FILES['stepImage']['name'], PATHINFO_EXTENSION);   // file extension
+                if((int)$_FILES['stepImage']['size'][$key] <= $maxSize && in_array($_FILES['stepImage']['type'][$key], $allowed)){
+                    $tmp_name = $_FILES['stepImage']['tmp_name'][$key];    // image temporary name
+                    $ext = pathinfo($_FILES['stepImage']['name'][$key], PATHINFO_EXTENSION);   // file extension
                     $name = $this->createRandomName() . "." . $ext;
                     $step->setImgName($name);
                     move_uploaded_file($tmp_name, 'uploads/' . $name);
                 }
                 else{
-                    $_SESSION['error'] = "L'image " . $this->cleanEntries($_FILES['name']) . " est trop grande";
-//                    header("Location: index.php?c=articles&p=art_form");
+                    $_SESSION['error'] = "L'image " . $this->cleanEntries($_FILES['name'][$key]) . " est trop grande";
+                    header("Location: index.php?c=articles&p=art_form");
                 }
             }
             else{
-                $_SESSION['error'] = "erreur lors du chargement de l'image " . $this->cleanEntries($_FILES['name']);
-//                header("Location: index.php?c=articles&p=art_form");
+                $_SESSION['error'] = "erreur lors du chargement de l'image " . $this->cleanEntries($_FILES['name'][$key]);
+                header("Location: index.php?c=articles&p=art_form");
             }
-            $stepTitle = $this->cleanEntries('stepTitle');
-            $stepDescription = $this->cleanEntries('stepDescription');
+
+            $description = $this->cleanItem($_POST['stepDescription'][$key]);
+            $tool = $this->cleanItem($_POST['stepTool'][$key]);
+            $matter = $this->cleanItem($_POST['stepMatter'][$key]);
+
             $step
-                ->setTitle($stepTitle)
-                ->setDescription($stepDescription);
-            return $step;
+                ->setTitle($title)
+                ->setDescription($description)
+                ->setTool($tool)
+                ->setMatter($matter)
+            ;
+
+            $steps[] = $step;
         }
-        return null;
+
+
+
+        return $steps;
     }
 
     /**

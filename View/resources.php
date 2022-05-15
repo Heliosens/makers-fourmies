@@ -2,6 +2,7 @@
     <section>
         <div class="d-grid py-3 gap-3 mx-auto">
             <?php
+            var_dump($data);
             $data = $data['cat'];
             foreach ($data as $key => $item){
                 $name = CategoryLinkManager::catLinkById($key);

@@ -8,7 +8,7 @@ class UserController extends Controller
      */
     public function register_form (){
         // verify if there's not already a connected user
-        $this->userConnectionExist(false);
+        $this->connectedKeepGoing(false);
         $this->render('register');
     }
 
@@ -17,7 +17,7 @@ class UserController extends Controller
      */
     public function connection_form (){
         // verify if there's not already a connected user
-        $this->userConnectionExist(false);
+        $this->connectedKeepGoing(false);
         !isset($_SESSION['user']) ? $this->render('connection') : $this->render('home');
     }
 
@@ -25,7 +25,7 @@ class UserController extends Controller
      * register and connect new user
      */
     public function new_user (){
-        $this->userConnectionExist(false);
+        $this->connectedKeepGoing(false);
         $error = "";
         // verify if there's not already a connected user & button is press & check fields
         if(!isset($_SESSION['user']) && isset($_POST['sendBtn'])){
@@ -110,7 +110,7 @@ class UserController extends Controller
      */
     public function connection (){
         // verify if there's not already a connected user
-        $this->userConnectionExist(false);
+        $this->connectedKeepGoing(false);
 
         //  check if button is pressed
         if(isset($_POST['sendBtn'])){

@@ -1,7 +1,7 @@
 <?php
 
 
-class ArticleManager extends Manager
+class ArticleManager
 {
     /**
      * return projects which use a technique
@@ -15,12 +15,7 @@ class ArticleManager extends Manager
             (SELECT art_fk FROM " . Config::PRE . "art_tech WHERE tech_fk = '$id')");
         if($query){
             foreach ($query->fetchAll() as $item){
-                $articles[] = (new Article())
-                    ->setId($item['id_art'])
-                    ->setTitle($item['title'])
-                    ->setDescription($item['description'])
-                    ->setType(TypeManager::getTypeById($item['type_fk']))
-                    ;
+                $articles[] = self::setArticle($item);
             }
         }
         return $articles;
@@ -28,26 +23,17 @@ class ArticleManager extends Manager
 
     /**
      * @param int $id
-     * @return Article
+     * @return Article|null
      */
-    public static function oneArticle (int $id) : Article
+    public static function oneArticle (int $id) : ?Article
     {
-        $article = new Article();
         $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "article WHERE id_art = $id");
         if($query){
-            $item = $query->fetch();
-            $article->setId($item['id_art'])
-                ->setTitle($item['title'])
-                ->setDescription($item['description'])
-                ->setStep(StepManager::stepByArt($item['id_art']))
-                ->setType(TypeManager::getTypeById($item['type_fk']))
-                ->setCategory(CategoryManager::categoryByArt($item['id_art']))
-                ->setTechnic(TechnicManager::techByArt($item['id_art']))
-                ->setAuthor(UserManager::getUserById($item['author']))
-            ;
+            return self::setArticle($query->fetch());
         }
-        return $article;
+        return null;
     }
+
 
     /**
      * @return array
@@ -58,12 +44,7 @@ class ArticleManager extends Manager
         $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "article");
         if($query){
             foreach ($query->fetchAll() as $item){
-                $articles[] = (new Article())
-                    ->setId($item['id_art'])
-                    ->setTitle($item['title'])
-                    ->setDescription($item['description'])
-                    ->setType(TypeManager::getTypeById($item['type_fk']))
-                    ;
+                $articles[] = self::setArticle($item);
             }
         }
         return $articles;
@@ -153,12 +134,8 @@ class ArticleManager extends Manager
                 $stm->bindValue(':tech_fk', $value);
                 $stm->bindValue('art_fk', $article->getId());
 
-                $result = $stm->execute();
+                $stm->execute();
             }
-        }
-        else{
-            $_SESSION['error'] = "Erreur de technique";
-            header('Location: index.php?c=articles&p=art_form');
         }
 
         // create steps
@@ -185,5 +162,24 @@ class ArticleManager extends Manager
             header('Location: index.php?c=articles&p=art_form');
         }
         return $result;
+    }
+
+    /**
+     * @param $item
+     * @return Article
+     */
+    private static function setArticle ($item)
+    {
+        $article = new Article();
+        $article->setId($item['id_art'])
+            ->setTitle($item['title'])
+            ->setDescription($item['description'])
+            ->setStep(StepManager::stepByArt($item['id_art']))
+            ->setType(TypeManager::getTypeById($item['type_fk']))
+            ->setCategory(CategoryManager::categoryByArt($item['id_art']))
+            ->setTechnic(TechnicManager::techByArt($item['id_art']))
+            ->setAuthor(UserManager::getUserById($item['author']))
+        ;
+        return $article;
     }
 }

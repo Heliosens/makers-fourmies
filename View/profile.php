@@ -87,21 +87,21 @@
                     <div class="d-flex justify-content-around">
                         <h3 class="text-center">Mes favoris :</h3>
                     </div>
-                    <?php
-                    if(isset($art)){
-                        foreach ($art as $key => $item){
-                            echo '<div class="row row-cols-2 bg-light">
-                        <div class="col-8">
-                            <a class="text-decoration-none text-dark" href="index?c=articles&p=one_article&o=' . $key
-                                . '">' . $item['title'] . '</a>
-                            </div>
-                            <a href="#" class="col-4 text-dark">
-                                <i class="fa-solid fa-heart-crack" title="Retirer des favoris"></i>
-                            </a>
-                    </div>';
-                        }
-                    }
-                    ?>
+<!--                    --><?php
+//                    if(isset($art)){
+//                        foreach ($art as $key => $item){
+//                            echo '<div class="row row-cols-2 bg-light">
+//                        <div class="col-8">
+//                            <a class="text-decoration-none text-dark" href="index?c=articles&p=one_article&o=' . $key
+//                                . '">' . $item['title'] . '</a>
+//                            </div>
+//                            <a href="#" class="col-4 text-dark">
+//                                <i class="fa-solid fa-heart-crack" title="Retirer des favoris"></i>
+//                            </a>
+//                    </div>';
+//                        }
+//                    }
+//                    ?>
                 </div>
             </div>
             <div class="d-flex flex-column align-items-center pt-5 gap-3">
@@ -109,7 +109,7 @@
                 if($user->getRole()->getRoleName() === 'admin'){
                     echo '
                 <div>
-                    <a class="btn btn-sm btn-primary" href="index.php?c=profile&p=admin">Espace administrateur</a>
+                    <a class="btn btn-sm btn-danger" href="index.php?c=profile&p=admin">Espace administrateur</a>
                 </div>';
                 }
                 ?>

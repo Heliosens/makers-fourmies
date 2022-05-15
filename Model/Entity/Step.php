@@ -6,7 +6,7 @@ class Step
     private ?int $id_step = null;
     private ?string $img_name;
     private string $title;
-    private ?string $description;
+    private ?string $description = null;
     private ?string $tool = null;
     private ?string $matter = null;
     private Article $article;
