@@ -17,7 +17,9 @@ class StepManager extends Manager
                     ->setImgName($item['img_name'])
                     ->setTitle($item['title'])
                     ->setDescription($item['description'])
-                    ->setIdStep($id)
+                    ->setTool($item['tool'])
+                    ->setMatter($item['matter'])
+                    ->setArtFk($id)
                     ;
             }
         }

@@ -9,7 +9,7 @@ class Step
     private ?string $description = null;
     private ?string $tool = null;
     private ?string $matter = null;
-    private Article $article;
+    private int $art_fk;
 
     /**
      * @return int|null
@@ -120,20 +120,21 @@ class Step
     }
 
     /**
-     * @return Article
+     * @return int
      */
-    public function getArticle(): Article
+    public function getArtFk(): int
     {
-        return $this->article;
+        return $this->art_fk;
     }
 
     /**
-     * @param Article $article
+     * @param int $art_fk
      * @return Step
      */
-    public function setArticle(Article $article): self
+    public function setArtFk(int $art_fk): self
     {
-        $this->article = $article;
+        $this->art_fk = $art_fk;
         return $this;
     }
+
 }

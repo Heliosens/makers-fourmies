@@ -174,11 +174,12 @@ class ArticleManager
         $article->setId($item['id_art'])
             ->setTitle($item['title'])
             ->setDescription($item['description'])
-            ->setStep(StepManager::stepByArt($item['id_art']))
             ->setType(TypeManager::getTypeById($item['type_fk']))
+            ->setState(StateManager::stateById($item['state']))
+            ->setStep(StepManager::stepByArt($item['id_art']))
+            ->setAuthor(UserManager::getUserById($item['author']))
             ->setCategory(CategoryManager::categoryByArt($item['id_art']))
             ->setTechnic(TechnicManager::techByArt($item['id_art']))
-            ->setAuthor(UserManager::getUserById($item['author']))
         ;
         return $article;
     }
