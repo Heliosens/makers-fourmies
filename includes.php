@@ -34,6 +34,7 @@ require __DIR__ . '/Controller/UserController.php';
 require __DIR__ . '/Controller/ProfileController.php';
 require __DIR__ . '/Controller/AvatarController.php';
 require __DIR__ . '/Controller/ErrorController.php';
+require __DIR__ . '/Controller/StepController.php';
 
 // Manager class
 require __DIR__ . '/Model/Manager/Manager.php';

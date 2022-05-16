@@ -90,7 +90,8 @@ class ArticlesController extends Controller
         $tech = $this->fieldsState('tech') ? $_POST['tech'] : null;
 
 //         get step
-        $steps = $this->addStep();   // if step => title is required
+        $stepController = new StepController();
+        $steps = $stepController->addStep();   // if step => title is required
 
         $article = new Article();
         $article
@@ -106,70 +107,8 @@ class ArticlesController extends Controller
 
         if(ArticleManager::addArticle($article)){
             $id = $article->getId();
-            header('Location: index.php?c=articles&p=all_articles' . $id);
+            header('Location: index.php?c=articles&p=all_articles&o=' . $id);
         }
-    }
-
-    /**
-     * @return array
-     */
-    private function addStep ()
-    {
-        $steps = [];
-        foreach ($_POST['stepTitle'] as $key => $item){
-            $title = $this->cleanItem($item);
-
-            $step = new Step();
-            // get step image
-            if(isset($_FILES['stepImage']) && $_FILES['stepImage']['error'][$key] === 0){
-                $allowed = ['image/jpeg', 'image/jpg', 'image/png'];  // allowed mime type
-                $maxSize = 4 * 1024 * 1024; // = 4 Mo
-                if((int)$_FILES['stepImage']['size'][$key] <= $maxSize && in_array($_FILES['stepImage']['type'][$key], $allowed)){
-                    $tmp_name = $_FILES['stepImage']['tmp_name'][$key];    // image temporary name
-                    $ext = pathinfo($_FILES['stepImage']['name'][$key], PATHINFO_EXTENSION);   // file extension
-                    $name = $this->createRandomName() . "." . $ext;
-                    $step->setImgName($name);
-                    move_uploaded_file($tmp_name, 'uploads/' . $name);
-                }
-                else{
-                    $_SESSION['error'] = "L'image " . $this->cleanEntries($_FILES['name'][$key]) . " est trop grande";
-                    header("Location: index.php?c=articles&p=art_form");
-                }
-            }
-            else{
-                $_SESSION['error'] = "erreur lors du chargement de l'image " . $this->cleanEntries($_FILES['name'][$key]);
-                header("Location: index.php?c=articles&p=art_form");
-            }
-
-            $description = $this->cleanItem($_POST['stepDescription'][$key]);
-            $tool = $this->cleanItem($_POST['stepTool'][$key]);
-            $matter = $this->cleanItem($_POST['stepMatter'][$key]);
-
-            $step
-                ->setTitle($title)
-                ->setDescription($description)
-                ->setTool($tool)
-                ->setMatter($matter)
-            ;
-
-            $steps[] = $step;
-        }
-
-
-
-        return $steps;
-    }
-
-    /**
-     * @return string
-     */
-    private function createRandomName (): string {
-        try {
-            $bytes = random_bytes(10);
-        } catch (Exception $e) {
-            $bytes = openssl_random_pseudo_bytes(10);
-        }
-        return bin2hex($bytes);
     }
 
 }

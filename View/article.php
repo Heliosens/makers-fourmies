@@ -10,7 +10,7 @@
                 <h2><?=$data->getTitle()?></h2>
             </header>
 <!--            description-->
-            <div class="text-center mt-3 w-75">
+            <div class="text-center mt-3 w-75 mx-auto">
                 <p><?=$data->getDescription()?></p>
             </div>
 <!--            steps-->
@@ -49,11 +49,11 @@
                             }
                             ?>
                         </li>
-                        <li class="list-group-item d-flex flex-column">
+                        <li class="list-group-item d-flex flex-column">    <!-- tool  -->
                             <span  class="fw-bold">Outils :</span>
                             <span>voir étapes</span>
                         </li>
-                        <li class="list-group-item d-flex flex-column">
+                        <li class="list-group-item d-flex flex-column">    <!-- matter  -->
                             <span class="fw-bold">Matière :</span>
                             <span>voir étapes</span>
                         </li>

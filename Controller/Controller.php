@@ -85,4 +85,15 @@ class Controller
         return isset($_SESSION['user']);
     }
 
+    /**
+     * @return string
+     */
+    public function createRandomName (): string {
+        try {
+            $bytes = random_bytes(10);
+        } catch (Exception $e) {
+            $bytes = openssl_random_pseudo_bytes(10);
+        }
+        return bin2hex($bytes);
+    }
 }
