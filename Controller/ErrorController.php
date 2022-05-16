@@ -1,15 +1,19 @@
 <?php
 
 
-class ErrorController
+class ErrorController extends Controller
 {
     /**
-     * error page
+     * error
      */
-    public function page (){
-        $tech = TechnicManager::getAllKeyName('technique');
-        require __DIR__ . '/../View/partials/header.php';
-        require __DIR__ . '/../View/page404.php';
-        require __DIR__ . '/../View/partials/footer.php';
+    public function page(){
+        $this->render('page404');
+    }
+
+    /**
+     * missing validation by mail
+     */
+    public function token(){
+        $this->render('token');
     }
 }

@@ -132,7 +132,7 @@ class UserController extends Controller
                 $user = UserManager::getUserByMail($email);             // get mail owner
 
                 // check empty token
-
+                $this->checkToken($user);
 
                 if($user === null){
                     $_SESSION['error'] = "Email ou mot de passe incorrect";
@@ -219,7 +219,7 @@ class UserController extends Controller
      */
     private function checkToken ($user){
         if(!empty(UserManager::getToken($user))){
-            header('Location: index.php?c=error');
+            header('Location: index.php?c=error&p=token');
         };
     }
 }
