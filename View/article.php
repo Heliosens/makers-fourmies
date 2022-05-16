@@ -20,7 +20,7 @@
                     foreach ($data->getStep() as $item){
                         echo '
                         <div class="d-flex flex-column align-items-center pb-3">
-                        <div class="picture" alt="'. $item->getTitle() .'" style="background-image: url(/uploads/'.
+                        <div class="picture" title="'. $item->getTitle() .'" style="background-image: url(/uploads/'.
                             $item->getImgName() .');" ></div>
                               <span>' . $item->getDescription() . '</span>
                               </div>
@@ -51,11 +51,19 @@
                         </li>
                         <li class="list-group-item d-flex flex-column">    <!-- tool  -->
                             <span  class="fw-bold">Outils :</span>
-                            <span>voir étapes</span>
+                            <?php
+                            foreach ($data->getStep() as $item) {
+                                echo '<span>' . $item->getTool() .'</span>';
+                            }
+                            ?>
                         </li>
                         <li class="list-group-item d-flex flex-column">    <!-- matter  -->
                             <span class="fw-bold">Matière :</span>
-                            <span>voir étapes</span>
+                            <?php
+                            foreach ($data->getStep() as $item){
+                                echo '<span>' . $item->getMatter() .'</span>';
+                            }
+                            ?>
                         </li>
                     </ul>
                 </aside>

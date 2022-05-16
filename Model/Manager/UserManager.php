@@ -9,21 +9,18 @@ class UserManager extends Manager
      */
     public static function getUserById ($id) : User
     {
-        $user = new User();
         $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "user WHERE id_user = $id");
         if($query){
             $data = $query->fetch();
         }
         $role = RoleManager::getRoleById($data['role_fk']);
         $avat = AvatarManager::getAvatById($data['avat_fk']);
-        $user = (new User())
+        return (new User())
             ->setId($data['id_user'])
             ->setPseudo($data['pseudo'])
             ->setEmail($data['mail'])
             ->setRole($role)
-            ->setAvatar($avat)
-        ;
-        return $user;
+            ->setAvatar($avat);
     }
 
     /**
@@ -141,6 +138,18 @@ class UserManager extends Manager
     public static function adminNbr (){
         $query = DB::getConn()->query("
             SELECT count(*) as nbr FROM " . Config::PRE . "user WHERE role_fk = 1");
+        return $query->fetch();
+    }
+
+    /**
+     * @param $user
+     * @return mixed
+     */
+    public static function getToken($user){
+        $id = $user->getId();
+        $query = DB::getConn()->query("
+            SELECT token FROM " . Config::PRE . "user WHERE id_user = $id
+        ");
         return $query->fetch();
     }
 

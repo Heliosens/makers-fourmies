@@ -12,5 +12,4 @@ class ErrorController
         require __DIR__ . '/../View/page404.php';
         require __DIR__ . '/../View/partials/footer.php';
     }
-
 }

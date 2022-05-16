@@ -130,6 +130,10 @@ class UserController extends Controller
             }
             elseif (UserManager::mailEverExist($email)){        // check if mail not exist
                 $user = UserManager::getUserByMail($email);             // get mail owner
+
+                // check empty token
+
+
                 if($user === null){
                     $_SESSION['error'] = "Email ou mot de passe incorrect";
                 }
@@ -207,5 +211,15 @@ class UserController extends Controller
             $_SESSION['error'] = "Attention vous ne pouvez pas supprimer le dernier administrateur du site !";
             header('Location: index.php');
         }
+    }
+
+    /**
+     * test if user token is not empty
+     * @param $user
+     */
+    private function checkToken ($user){
+        if(!empty(UserManager::getToken($user))){
+            header('Location: index.php?c=error');
+        };
     }
 }

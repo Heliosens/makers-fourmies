@@ -14,7 +14,7 @@ class StateManager
         if($query){
             $result = $query->fetch();
             $state
-                ->setId($result['id'])
+                ->setId($result['id_state'])
                 ->setState($result['state']);
         }
         return $state;
