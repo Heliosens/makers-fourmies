@@ -62,6 +62,7 @@ class Controller
      * @return bool
      */
     public function testAccess(array $authorized){
+        $this->connectedKeepGoing(true);
         return in_array($_SESSION['user']['role'], $authorized);
     }
 
@@ -75,6 +76,7 @@ class Controller
         // if session and bool = 1 or if !session and bool = 0
         if(!$this->userIsConnected() && $bool || $this->userIsConnected() && !$bool){
             header('Location: index.php');
+            die;
         }
     }
 
@@ -86,13 +88,14 @@ class Controller
     }
 
     /**
+     * @param $size
      * @return string
      */
-    public function createRandomName (): string {
+    public function createRandomName ($size): string {
         try {
-            $bytes = random_bytes(10);
+            $bytes = random_bytes($size);
         } catch (Exception $e) {
-            $bytes = openssl_random_pseudo_bytes(10);
+            $bytes = openssl_random_pseudo_bytes($size);
         }
         return bin2hex($bytes);
     }

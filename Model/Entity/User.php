@@ -9,6 +9,8 @@ class User
     private string $password;
     private Avatar $avatar;
     private Role $role;
+    private ?string $token = null;
+    private ?string $redo_pass = null;
 
     /**
      * @return int|null
@@ -115,6 +117,42 @@ class User
     public function setRole(Role $role): self
     {
         $this->role = $role;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getToken(): ?string
+    {
+        return $this->token;
+    }
+
+    /**
+     * @param string|null $token
+     * @return User
+     */
+    public function setToken(?string $token): self
+    {
+        $this->token = $token;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getRedoPass(): ?string
+    {
+        return $this->redo_pass;
+    }
+
+    /**
+     * @param string|null $redo_pass
+     * @return User
+     */
+    public function setRedoPass(?string $redo_pass): self
+    {
+        $this->redo_pass = $redo_pass;
         return $this;
     }
 }

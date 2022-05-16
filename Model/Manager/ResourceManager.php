@@ -27,25 +27,16 @@ class ResourceManager extends Manager
     }
 
     /**
-     * @param int $id
      * @return array
      */
-    public static function resourceByArt (int $id) : array
-    {
-        $resource = [];
-        $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "resource WHERE id_res IN 
-            (SELECT res_fk FROM " . Config::PRE . "use_resource WHERE art_fk = $id)");
+    public static function getKeyNameCatLink(){
+        $names = [];
+        $query = DB::getConn()->query("SELECT * FROM mkf_category_link");
         if($query){
             foreach ($query->fetchAll() as $item){
-                $resource[] = (new Resource())
-                    ->setIdRes($item['id_res'])
-                    ->setTitle($item['title'])
-                    ->setDescription($item['description'])
-                    ->setUrl($item['url'])
-                    ->setCategory(CategoryLinkManager::catLinkById($item['cat_link_fk']))
-                ;
+                $names[$item['id_cat_link']] = $item['category_link'];
             }
         }
-        return $resource;
+        return $names;
     }
 }

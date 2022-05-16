@@ -31,6 +31,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="index.php?c=resources">Ressources</a>
                     </li>
+                    <?php
+                    $info = null;
+                    if(isset($_SESSION['user'])){
+                        $info = $_SESSION['user'];?>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="index.php?c=articles" id="navbarDropdownMenuLink"
                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -49,18 +53,17 @@
                             <li><hr class="dropdown-divider"></li>
 <!--        technique list    -->
                             <?php
-                            $info = isset($_SESSION['user']) ? $_SESSION['user'] : null;
-
                             foreach ($tech as $key => $item) {
                                 echo '
                             <li>
                                 <a class="dropdown-item" href="index?c=articles&p=one_technic&o=' . $key . ' ">' .
                                     $item . '</a>
                             </li>';
-                            }
-                            ?>
+                            }?>
                         </ul>
-                    </li>
+                    </li><?php
+                    }
+                    ?>
                     <li class="nav-item">
                         <a class="nav-link" href="index.php?c=contact">Contact</a>
                     </li>

@@ -1,19 +1,13 @@
 <?php
-//    /* @var User $user */
     $users = $data['user'];
     $articles = $data['article'];
-
-    echo '<pre>';
-    var_dump($data);
-    echo '</pre>';
-
-    if($_SESSION['user']['role'] === 'admin'){
-        ?>
+    $rubrics = $data['rubrics'];
+?>
 <main>
     <section>
         <div class="mx-auto py-2 px-5">
-            <h2 class="text-center">Espace administrateur</h2>
-            <div class="accordion" id="accordionExample">
+            <h2 class="text-center m-5">Espace administrateur</h2>
+            <div class="accordion" id="accordionAdmin">
                 <div class="accordion-item mb-3">
 <!--                    users                   -->
                     <h3 class="accordion-header">
@@ -23,7 +17,7 @@
                         </button>
                     </h3>
                     <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
-                         data-bs-parent="#accordionExample">
+                         data-bs-parent="#accordionAdmin">
                         <div class="accordion-body">
                             <article>
                                 <?php
@@ -50,25 +44,23 @@
                         </button>
                     </h3>
                     <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingOne"
-                         data-bs-parent="#accordionExample">
-<!--                        publish       -->
+                         data-bs-parent="#accordionAdmin">
+<!--                        private       -->
                         <h3>Privé</h3>
-                        <article class="row row-cols-2 px-5">
+                        <article>
                             <?php
                             foreach ($articles['pr'] as $article){
-                                echo '<div class="row col-8">
+                                echo '<div class="row row-cols-3 px-5">
                                     <a class="text-decoration-none text-dark" href="">' . $article['title'] .'</a>
-                                </div>
-                                <div class="col-2">
                                     <span>' . $article['author'] .'</span>
-                                </div>
-                                <div class="col-2">
-                                    <a  class="text-decoration-none text-dark" href="">
-                                        <i class="fa-solid fa-pencil p-1" title="modifier"></i>
-                                    </a>
-                                    <a  class="text-decoration-none text-dark" href="">
-                                        <i class="fa-solid fa-trash-can p-1" title="supprimer l\'article"></i>
-                                    </a>
+                                    <div>
+                                        <a  class="text-decoration-none text-dark" href="">
+                                            <i class="fa-solid fa-pencil p-1" title="modifier"></i>
+                                        </a>
+                                        <a  class="text-decoration-none text-dark" href="">
+                                            <i class="fa-solid fa-trash-can p-1" title="supprimer l\'article"></i>
+                                        </a>
+                                    </div>
                                 </div>
                                 ';
                             }
@@ -76,13 +68,12 @@
                         </article>
 <!--                        stand by        -->
                         <h3>En attente de validation</h3>
-                        <article class="row row-cols-2 px-5">
+                        <article>
                             <?php
                             foreach ($articles['sb'] as $article){
-                                echo '<div class="row col-8">
+                                echo '<div class="row row-cols-3 px-5">
                                 <a class="text-decoration-none text-dark" href="">' . $article .'</a>
-                                </div>
-                                
+                            </div>
                             <div class="col-4">
                                 <a  class="text-decoration-none text-dark" href="">
                                     <i class="fa-solid fa-pencil p-1" title="modifier"></i>
@@ -97,12 +88,12 @@
                         </article>
 <!--                        private            -->
                         <h3>Publié</h3>
-                        <article class="row row-cols-2 px-5">
+                        <article>
                             <?php
                             foreach ($articles['pu'] as $article){
-                                echo '<div class="row col-8">
+                                echo '<div class="row row-cols-3 px-5">
                                 <a class="text-decoration-none text-dark" href="">' . $article .'</a>
-                                </div>
+                            </div>
                             <div class="col-4">
                                 <a  class="text-decoration-none text-dark" href="">
                                     <i class="fa-solid fa-pencil p-1" title="modifier"></i>
@@ -126,14 +117,17 @@
                         </button>
                     </h3>
                     <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingOne"
-                         data-bs-parent="#accordionExample">
+                         data-bs-parent="#accordionAdmin">
 <!--                        type    -->
+                        <?php
+
+                        ?>
                         <h3>Types</h3>
-                        <article class="row px-5">
+                        <article>
                             <div>
                                 <?php
-                                foreach ($data['type'] as $item){
-                                    echo '<div>
+                                foreach ($rubrics['type'] as $item){
+                                    echo '<div class="row row-cols-3 px-5">
                                     <span>' . $item . '</span>
                                     <a class="text-decoration-none text-dark" href="">
                                         <i class="fa-solid fa-pencil p-1" title="modifier"></i>
@@ -148,11 +142,30 @@
                         </article>
 <!--                        category    -->
                         <h3>Categories</h3>
-                        <article class="row px-5">
+                        <article>
                             <div>
                                 <?php
-                                foreach ($data['cat'] as $item){
-                                    echo '<div>
+                                foreach ($rubrics['category'] as $item){
+                                    echo '<div class="row row-cols-3 px-5">
+                                        <span>' . $item . '</span>
+                                        <a class="text-decoration-none text-dark" href="">
+                                            <i class="fa-solid fa-pencil p-1" title="modifier"></i>
+                                        </a>
+                                        <a class="text-decoration-none text-dark" href="">
+                                            <i class="fa-solid fa-trash-can p-1" title="supprimer l\'article"></i>
+                                        </a>
+                                    </div>';
+                                }
+                                ?>
+                            </div>
+                        </article>
+<!--                        technical    -->
+                        <h3>Techniques</h3>
+                        <article>
+                            <div>
+                                <?php
+                                foreach ($rubrics['technique'] as $item){
+                                    echo '<div class="row row-cols-3 px-5">
                                     <span>' . $item . '</span>
                                     <a class="text-decoration-none text-dark" href="">
                                         <i class="fa-solid fa-pencil p-1" title="modifier"></i>
@@ -165,13 +178,13 @@
                                 ?>
                             </div>
                         </article>
-<!--                        technical    -->
-                        <h3>Techniques</h3>
-                        <article class="row px-5">
-                            <div>
+<!--                        resources-->
+                        <h3>Ressources</h3>
+                        <article>
+                            <div class="row row-cols-3 px-5">
                                 <?php
-                                foreach ($data['technic'] as $item){
-                                    echo '<div>
+                                foreach ($rubrics['resource'] as $item){
+                                    echo '<div class="mb-2">
                                     <span>' . $item . '</span>
                                     <a class="text-decoration-none text-dark" href="">
                                         <i class="fa-solid fa-pencil p-1" title="modifier"></i>
@@ -195,60 +208,33 @@
                         </button>
                     </h3>
                     <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingOne"
-                         data-bs-parent="#accordionExample">
-<!--                        software       -->
-                        <h3>Logiciel</h3>
-                        <article class="row row-cols-2 px-5">
-                            <div class="row col-8">
-                                <a class="text-decoration-none text-dark" href="">ressource 1</a>
-                            </div>
-                            <div class="col-4">
-                                <a  class="text-decoration-none text-dark" href="">
-                                    <i class="fa-solid fa-pencil p-1" title="modifier"></i>
-                                </a>
-                                <a  class="text-decoration-none text-dark" href="">
-                                    <i class="fa-solid fa-trash-can p-1" title="supprimer l'article"></i>
-                                </a>
-                            </div>
-                        </article>
-<!--                        app        -->
-                        <h3>Application</h3>
-                        <article class="row row-cols-2 px-5">
-                            <div class="row col-8">
-                                <a class="text-decoration-none text-dark" href="">ressource 1</a>
-                            </div>
-                            <div class="col-4">
-                                <a  class="text-decoration-none text-dark" href="">
-                                    <i class="fa-solid fa-pencil p-1" title="modifier"></i>
-                                </a>
-                                <a  class="text-decoration-none text-dark" href="">
-                                    <i class="fa-solid fa-trash-can p-1" title="supprimer l'article"></i>
-                                </a>
-                            </div>
-                        </article>
-<!--                        diy            -->
-                        <h3>Tuto</h3>
-                        <article class="row row-cols-2 px-5">
-                            <div class="row col-8">
-                                <a class="text-decoration-none text-dark" href="">ressource 1</a>
-                            </div>
-                            <div class="col-4">
-                                <a  class="text-decoration-none text-dark" href="">
-                                    <i class="fa-solid fa-pencil p-1" title="modifier"></i>
-                                </a>
-                                <a  class="text-decoration-none text-dark" href="">
-                                    <i class="fa-solid fa-trash-can p-1" title="supprimer l'article"></i>
-                                </a>
-                            </div>
-                        </article>
+                         data-bs-parent="#accordionAdmin">
+                        <?php
+                        foreach ($data['cat-link'] as $key => $item){
+                            $name = CategoryLinkManager::catLinkById($key);
+                            echo '<h3>' . $name->getCategoryLink() . '</h3>
+                            <article>
+                                <div class="row row-cols-3 px-5">';
+                                foreach ($item as $value){
+                                echo '<div>
+                                    <span>' . $value['title'] . '</span>
+                                    </div>
+                                    <div>
+                                        <a  class="text-decoration-none text-dark" href="#">
+                                            <i class="fa-solid fa-pencil p-1" title="modifier"></i>
+                                        </a>
+                                        <a  class="text-decoration-none text-dark" href="#">
+                                            <i class="fa-solid fa-trash-can p-1" title="supprimer l\'article"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </article>';
+                            }
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 </main>
-<?php
-}
-else{
-    header('Location : index.php');
-}

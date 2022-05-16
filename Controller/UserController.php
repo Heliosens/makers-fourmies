@@ -66,18 +66,19 @@ class UserController extends Controller
                     $error = "Cet email est déja enregistré !";
                 }
 
+                // create token
+                $token = $this->createRandomName(12);
+
                 // check if there's no error
                 if(empty($error)){
-                    // no error message
                     $user = new User();
                     $user->setPseudo($pseudo)
                         ->setEmail($email)
                         ->setPassword(password_hash($password, PASSWORD_DEFAULT))
                         ->setRole(RoleManager::roleByName('user'))
                         ->setAvatar(AvatarManager::defaultAvatar())
+                        ->setToken($token)
                         ;
-
-                    // create token
 
                     if(UserManager::addUser($user)){
                         $_SESSION['error'] = null;
@@ -219,7 +220,35 @@ class UserController extends Controller
      */
     private function checkToken ($user){
         if(!empty(UserManager::getToken($user))){
-            header('Location: index.php?c=error&p=token');
+            $this->render('token');
+            die;
         };
+    }
+
+    /**
+     * send token to user by mail
+     */
+    public function send_mail($to, $token ){
+            $from = 'makers.fourmies@gmail.com';
+            $subject = 'Validation de compte';
+            $txt = '
+                <html>
+                    <body>
+                        <div>
+                            <p>
+                                Bonjour ... ,
+                                Merci de confirmer la création de votre compte en cliquant sur le lien ci-desous,
+                            </p>
+                            <a href="">Je confirme mon compte</a>
+                        </div>
+                    </body>
+                </html>
+            ';
+            $txt = wordwrap($txt, 70, "/r/n");
+            $headers = array(
+                'X-Mailer' => 'PHP/' . phpversion());
+
+            echo mail($to, $subject, $txt, $headers, $from);
+
     }
 }

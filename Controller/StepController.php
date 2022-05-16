@@ -21,7 +21,7 @@ class StepController extends Controller
                     && in_array($_FILES['stepImage']['type'][$key], $allowed)){
                     $tmp_name = $_FILES['stepImage']['tmp_name'][$key];    // image temporary name
                     $ext = pathinfo($_FILES['stepImage']['name'][$key], PATHINFO_EXTENSION);   // file extension
-                    $name = $this->createRandomName() . "." . $ext;
+                    $name = $this->createRandomName(10) . "." . $ext;
                     $step->setImgName($name);
                     move_uploaded_file($tmp_name, 'uploads/' . $name);
                 }

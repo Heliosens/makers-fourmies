@@ -42,11 +42,13 @@ class UserManager extends Manager
     public static function addUser(User &$user) : bool
     {
         $stm = DB::getConn()->prepare("
-        INSERT INTO " . Config::PRE . "user (pseudo, mail, password, avat_fk, role_fk) VALUES (:pseudo, :email, :password, 1, 3)");
+        INSERT INTO " . Config::PRE . "user (pseudo, mail, password, avat_fk, role_fk, token) 
+        VALUES (:pseudo, :email, :password, 1, 3, :token)");
 
         $stm->bindValue(':pseudo', $user->getPseudo());
         $stm->bindValue(':email', $user->getEmail());
         $stm->bindValue(':password', $user->getPassword());
+        $stm->bindValue(':token', $user->getToken());
 
         $result = $stm->execute();
         $user->setId(DB::getConn()->lastInsertId());
@@ -150,7 +152,7 @@ class UserManager extends Manager
         $query = DB::getConn()->query("
             SELECT token FROM " . Config::PRE . "user WHERE id_user = $id
         ");
-        return $query->fetch();
+        return $query->fetch()['token'];
     }
 
 }

@@ -7,6 +7,7 @@ class ProfileController extends Controller
      * display user profile data
      */
     public function page(){
+        $this->connectedKeepGoing(true);
         $id = $_SESSION['user']['id'];
         $data = [
             'user' => UserManager::getUserById($id),
@@ -30,6 +31,13 @@ class ProfileController extends Controller
                     'sb' => ArticleManager::artByState('2'),
                     'pu' => ArticleManager::artByState('3'),
                 ],
+                'rubrics' => [
+                    'type' => Manager::getAllKeyName('type'),
+                    'category' => Manager::getAllKeyName('category'),
+                    'technique' => Manager::getAllKeyName('technique'),
+                    'resource' => ResourceManager::getKeyNameCatLink()
+                    ],
+                'cat-link' => ResourceManager::allCatLink()
             ];
             $this->render('admin', $data);
         }
