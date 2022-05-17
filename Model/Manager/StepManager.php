@@ -1,7 +1,7 @@
 <?php
 
 
-class StepManager extends Manager
+class StepManager
 {
     /**
      * @param int $id

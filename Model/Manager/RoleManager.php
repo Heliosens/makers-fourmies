@@ -1,7 +1,7 @@
 <?php
 
 
-class RoleManager extends Manager
+class RoleManager
 {
     /**
      * @param $option

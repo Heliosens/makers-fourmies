@@ -1,7 +1,7 @@
 <?php
 
 
-class ResourceManager extends Manager
+class ResourceManager
 {
 
     /**
