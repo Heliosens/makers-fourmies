@@ -25,6 +25,7 @@ require __DIR__ . '/Routing/Router.php';
 
 // controller class
 require __DIR__ . '/Controller/Controller.php';
+require __DIR__ . '/Controller/ValidationController.php';
 require __DIR__ . '/Controller/HomeController.php';
 require __DIR__ . '/Controller/MakerController.php';
 require __DIR__ . '/Controller/ResourcesController.php';

@@ -71,6 +71,7 @@ class UserController extends Controller
 
                 // check if there's no error
                 if(empty($error)){
+                    // create user
                     $user = new User();
                     $user->setPseudo($pseudo)
                         ->setEmail($email)
@@ -80,17 +81,19 @@ class UserController extends Controller
                         ->setToken($token)
                         ;
 
+                    // send validation mail
+                    $val = new ValidationController();
+                    $val->send_validation_mail($user);
+
+                    // if user added display message
                     if(UserManager::addUser($user)){
-                        $_SESSION['error'] = null;
-                        $_SESSION['user'] = [
-                            'id' => $user->getId(),
-                            'pseudo' => $user->getPseudo(),
-                            'role' => $user->getRole()->getRoleName()
-                        ];
+                        $_SESSION['error'] = 'Vous avez du recevoir un mail de validation, merci de cliquer sur le lien de
+                     confirmation contenu dans ce message pour finaliser votre inscription';
                     }
-                    else {
-                        $_SESSION['error'] = "Une erreur s'est produite";
+                    else{
+                        $_SESSION['error'] = 'Erreur lors de l\'inscription';
                     }
+                    $this->render('home');
                 }
                 else {
                     $_SESSION['error'] = $error;
@@ -225,30 +228,4 @@ class UserController extends Controller
         };
     }
 
-    /**
-     * send token to user by mail
-     */
-    public function send_mail($to, $token ){
-            $from = 'makers.fourmies@gmail.com';
-            $subject = 'Validation de compte';
-            $txt = '
-                <html>
-                    <body>
-                        <div>
-                            <p>
-                                Bonjour ... ,
-                                Merci de confirmer la création de votre compte en cliquant sur le lien ci-desous,
-                            </p>
-                            <a href="">Je confirme mon compte</a>
-                        </div>
-                    </body>
-                </html>
-            ';
-            $txt = wordwrap($txt, 70, "/r/n");
-            $headers = array(
-                'X-Mailer' => 'PHP/' . phpversion());
-
-            echo mail($to, $subject, $txt, $headers, $from);
-
-    }
 }

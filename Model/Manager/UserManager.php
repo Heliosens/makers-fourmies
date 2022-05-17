@@ -1,26 +1,30 @@
 <?php
 
 
-class UserManager extends Manager
+class UserManager
 {
     /**
      * @param $id
-     * @return User
+     * @return user|false
      */
-    public static function getUserById ($id) : User
+    public static function getUserById ($id)
     {
         $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "user WHERE id_user = $id");
         if($query){
             $data = $query->fetch();
+
+            $role = RoleManager::getRoleById($data['role_fk']);
+            $avat = AvatarManager::getAvatById($data['avat_fk']);
+            return (new User())
+                ->setId($data['id_user'])
+                ->setPseudo($data['pseudo'])
+                ->setEmail($data['mail'])
+                ->setRole($role)
+                ->setAvatar($avat)
+                ->setToken($data['token'])
+                ->setRedoPass($data['redo_pass']);
         }
-        $role = RoleManager::getRoleById($data['role_fk']);
-        $avat = AvatarManager::getAvatById($data['avat_fk']);
-        return (new User())
-            ->setId($data['id_user'])
-            ->setPseudo($data['pseudo'])
-            ->setEmail($data['mail'])
-            ->setRole($role)
-            ->setAvatar($avat);
+        return false;
     }
 
     /**
@@ -144,15 +148,24 @@ class UserManager extends Manager
     }
 
     /**
-     * @param $user
+     * @param $id
      * @return mixed
      */
-    public static function getToken($user){
-        $id = $user->getId();
+    public static function getTokenByUserId($id){
         $query = DB::getConn()->query("
             SELECT token FROM " . Config::PRE . "user WHERE id_user = $id
         ");
         return $query->fetch()['token'];
+    }
+
+    /**
+     * delete user token
+     * @param $id
+     * @return bool
+     */
+    public static function updateToken($id){
+        $stm = DB::getConn()->prepare("UPDATE " . Config::PRE . "user SET token = null WHERE id_user = $id");
+        return $stm->execute();
     }
 
 }
