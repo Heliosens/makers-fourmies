@@ -27,7 +27,7 @@ class Router
      */
     public function toCtrl ($c, $p, $o){
         $ctrl = $this->getCtrlName($c);
-        $o = is_numeric($o) ? intval($o) : null;
+        $o = is_numeric($o) ? intval($o) : $o;
 
         if(class_exists($ctrl)){
             $controller = new $ctrl;
