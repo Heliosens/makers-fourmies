@@ -165,6 +165,7 @@ class UserController extends Controller
         // check error
         if(isset($_SESSION['error'])){
             $this->render('connection');
+
         }
         $this->render('home');
     }

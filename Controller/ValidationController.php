@@ -5,10 +5,10 @@ class ValidationController extends Controller
 {
     /**
      * send token to user by mail
-     * @param $to
+     * @param $user
      */
-    public function send_validation_mail($to){
-        $user = UserManager::getUserByMail($to);
+    public function send_validation_mail($user){
+        $to = $user->getEmail();
         $from = 'makers.fourmies@gmail.com';
         $subject = 'Validation de compte';
         // create token
