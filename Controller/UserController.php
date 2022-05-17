@@ -222,7 +222,7 @@ class UserController extends Controller
      * @param $user
      */
     private function checkToken ($user){
-        if(!empty(UserManager::getToken($user))){
+        if(!empty($user->getToken())){
             $this->render('token');
             die;
         };

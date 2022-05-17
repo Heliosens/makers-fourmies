@@ -148,17 +148,6 @@ class UserManager
     }
 
     /**
-     * @param $id
-     * @return mixed
-     */
-    public static function getTokenByUserId($id){
-        $query = DB::getConn()->query("
-            SELECT token FROM " . Config::PRE . "user WHERE id_user = $id
-        ");
-        return $query->fetch()['token'];
-    }
-
-    /**
      * delete user token
      * @param $id
      * @return bool
