@@ -5,7 +5,7 @@ class ArticlesController extends Controller
 {
 
     public function all_articles(){
-        $data = ['art' => ArticleManager::allArticles()];
+        $data = ['art' => ArticleManager::allPuArticles()];
         $this->render('all_articles', $data);
     }
 

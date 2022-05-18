@@ -7,29 +7,7 @@
     <section>
         <div class="mx-auto py-1 row justify-content-center">
             <h2 class="text-center">Mon Profil</h2>
-            <!-- Modal -->
-            <div class="modal fade" id="avatarModal" tabindex="-1" aria-labelledby="avatarModalLabel"
-                 aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="avatarModalLabel">Changer votre avatar</h5>
-                        </div>
-                        <div class="modal-body gap-4 d-flex flex-wrap justify-content-between">
-                            <?php
-                            foreach ($avatar as $item){
-                                echo '<a href="index.php?c=avatar&p=change&o=' . $item->getId() . '">
-                                    <img class="logo" src="/img/avatar/' . $item->getAvatar() . '" alt="avatar">
-                                </a>';
-                            }
-                            ?>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Retour</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!--            user data-->
             <header class="row row-cols-1 row-cols-sm-2 g-4">
                 <div>
                     <div class="d-flex justify-content-center align-items-end">
@@ -57,21 +35,23 @@
                     </div>
                 </div>
             </header>
-            <div class="row row-cols-1 row-cols-sm-2 g-4">
-                <div class="col">
+<!--            user articles-->
+            <div class="row row-cols-1 gap-3">
+                <div class="row col-7">
                     <div class="d-flex justify-content-around">
                         <h3 class="text-center">Mes articles :</h3>
                         <a href="index.php?c=articles&p=art_form">Créer un article</a>
                     </div>
                     <?php
                     foreach ($art as $key => $item){
-                            echo '<div class="row row-cols-2 bg-light mx-3">
-                            <div class="row col-8">
-                                <a class="text-decoration-none text-dark col-9" href="index?c=articles&p=one_article&o='
+                            echo '
+                        <div class="row row-cols-2 mx-3">
+                            <div class="row col-10 bg-light">
+                                <a class="text-decoration-none text-dark col-7" href="index?c=articles&p=one_article&o='
                                 . $key . '">' . $item['title'] . '</a>
-                                <span class="col-3">' . Config::stateName($item['state']) . '</span>
+                                <span class="col-5">' . Config::stateName($item['state']) . '</span>
                                 </div>
-                            <div class="col-4">
+                            <div class="col-2 bg-light">
                                 <a  class="text-decoration-none text-dark" href="">
                                     <i class="fa-solid fa-pencil p-1" title="modifier"></i>
                                 </a>
@@ -83,25 +63,48 @@
                     }
                     ?>
                 </div>
-                <div class="col">
+                <div class="row col-5">
                     <div class="d-flex justify-content-around">
                         <h3 class="text-center">Mes favoris :</h3>
                     </div>
-<!--                    --><?php
-//                    if(isset($art)){
-//                        foreach ($art as $key => $item){
-//                            echo '<div class="row row-cols-2 bg-light">
-//                        <div class="col-8">
-//                            <a class="text-decoration-none text-dark" href="index?c=articles&p=one_article&o=' . $key
-//                                . '">' . $item['title'] . '</a>
-//                            </div>
-//                            <a href="#" class="col-4 text-dark">
-//                                <i class="fa-solid fa-heart-crack" title="Retirer des favoris"></i>
-//                            </a>
-//                    </div>';
-//                        }
-//                    }
-//                    ?>
+                    <?php
+                    if(isset($art)){
+                        foreach ($art as $key => $item){
+                            echo '<div class="row row-cols-2 bg-light">
+                        <div class="col-8">
+                            <a class="text-decoration-none text-dark" href="index?c=articles&p=one_article&o=' . $key
+                                . '">' . $item['title'] . '</a>
+                            </div>
+                            <a href="#" class="col-4 text-dark">
+                                <i class="fa-solid fa-heart-crack" title="Retirer des favoris"></i>
+                            </a>
+                    </div>';
+                        }
+                    }
+                    ?>
+                </div>
+            </div>
+<!--            Modal -->
+            <div class="modal fade" id="avatarModal" tabindex="-1" aria-labelledby="avatarModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="avatarModalLabel">Changer votre avatar</h5>
+                        </div>
+                        <div class="modal-body gap-4 d-flex flex-wrap justify-content-between">
+                            <?php
+                            foreach ($avatar as $item){
+                                echo '<a href="index.php?c=avatar&p=change&o=' . $item->getId() . '">
+                                    <img class="logo" src="/img/avatar/' . $item->getAvatar() . '" alt="avatar">
+                                </a>';
+                            }
+                            ?>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Retour</button>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="d-flex flex-column align-items-center pt-5 gap-3">

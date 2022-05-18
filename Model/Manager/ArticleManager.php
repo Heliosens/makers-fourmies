@@ -11,7 +11,7 @@ class ArticleManager
     public static function artByTechnic (int $id) : array
     {
         $articles = [];
-        $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "article WHERE id_art IN 
+        $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "article WHERE state = 3 AND id_art IN 
             (SELECT art_fk FROM " . Config::PRE . "art_tech WHERE tech_fk = '$id')");
         if($query){
             foreach ($query->fetchAll() as $item){
@@ -51,6 +51,21 @@ class ArticleManager
     }
 
     /**
+     * @return array
+     */
+    public static function allPuArticles() : array
+    {
+        $articles = [];
+        $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "article WHERE state = 3");
+        if($query){
+            foreach ($query->fetchAll() as $item){
+                $articles[] = self::setArticle($item);
+            }
+        }
+        return $articles;
+    }
+
+    /**
      * @param $state
      * @return array
      */
@@ -76,7 +91,8 @@ class ArticleManager
     public static function artByAuthor (int $id) : array
     {
         $articles = [];
-        $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "article WHERE author = $id");
+        $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "article WHERE author = $id 
+        ORDER BY state DESC");
         if ($query){
             foreach ($query->fetchAll() as $item){
                 $articles[$item['id_art']] = [
@@ -183,4 +199,5 @@ class ArticleManager
         ;
         return $article;
     }
+
 }
