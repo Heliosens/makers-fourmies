@@ -51,12 +51,47 @@ class ArticleManager
     }
 
     /**
+     * data for user
      * @return array
      */
-    public static function allPuArticles() : array
+    public static function forUserArticles() : array
     {
         $articles = [];
-        $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "article WHERE state = 3");
+        $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "article
+         WHERE state = 3");
+        if($query){
+            foreach ($query->fetchAll() as $item){
+                $articles[] = self::setArticle($item);
+            }
+        }
+        return $articles;
+    }
+
+    /**
+     * data for modo
+     * @return array
+     */
+    public static function forModoArticles() : array
+    {
+        $articles = [];
+        $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "article
+         WHERE NOT state = 1");
+        if($query){
+            foreach ($query->fetchAll() as $item){
+                $articles[] = self::setArticle($item);
+            }
+        }
+        return $articles;
+    }
+
+    /**
+     * data for modo
+     * @return array
+     */
+    public static function forAdminArticles() : array
+    {
+        $articles = [];
+        $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "article");
         if($query){
             foreach ($query->fetchAll() as $item){
                 $articles[] = self::setArticle($item);

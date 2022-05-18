@@ -5,22 +5,13 @@ class ArticlesController extends Controller
 {
 
     public function all_articles(){
-        $data = ['art' => ArticleManager::allPuArticles()];
-        $this->render('all_articles', $data);
-    }
-
-    /**
-     * admin, modo, user -> publish articles        : publish
-     * admin, modo -> publish, stand by articles    : !private
-     * admin -> publish, stand by, private articles : all
-     */
-    public function articlesAccess ($param){
-        // publish
-
-        // !private
-
-        // all
-
+        $role = 'for' . ucfirst($_SESSION['user']['role']) .'Articles';
+        if(method_exists('ArticleManager', $role)){
+            $this->render('all_articles', ['art' => ArticleManager::$role()]);
+        }
+        else {
+            $this->render('page404');
+        }
     }
 
     /**
@@ -30,14 +21,14 @@ class ArticlesController extends Controller
         $this->render('techniques');
     }
 
-
     /**
+     * display technique name and published articles use this technique
      * @param $option
      */
     public function one_technic($option){
         $data = [
-            'projects' => ArticleManager::artByTechnic($option),
-            'title' => TechnicManager::techName($option)
+            'title' => TechnicManager::techName($option),
+            'projects' => ArticleManager::artByTechnic($option)
             ];
         $this->render('project_by_tech', $data);
     }

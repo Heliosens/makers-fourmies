@@ -46,7 +46,8 @@ class Router
      * create error controller & display page 404
      */
     public static function error (){
-        header('Location: index.php?c=error&p=page');
+        $ctrl = new ErrorController();
+        $ctrl->render('page404');
     }
 
 }
