@@ -50,6 +50,29 @@ class Config
                 return null;
         }
     }
+
+    /**
+     * @param $param
+     * @return string|null
+     */
+    public static function rubricsName($param){
+        switch ($param){
+            case 1 :
+                return 'Types';
+                break;
+            case 2 :
+                return 'Catégories';
+                break;
+            case 3 :
+                return 'Techniques';
+                break;
+            case 4 :
+                return 'Ressources';
+                break;
+            default :
+                return null;
+        }
+    }
 }
 
 

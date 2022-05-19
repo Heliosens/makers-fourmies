@@ -32,10 +32,10 @@ class ProfileController extends Controller
                     '3' => ArticleManager::artByState('3'),
                 ],
                 'rubrics' => [
-                    'type' => Manager::getAllKeyName('type'),
-                    'category' => Manager::getAllKeyName('category'),
-                    'technique' => Manager::getAllKeyName('technique'),
-                    'resource' => ResourceManager::getKeyNameCatLink()
+                    '1' => Manager::getAllKeyName('type'),
+                    '2' => Manager::getAllKeyName('category'),
+                    '3' => Manager::getAllKeyName('technique'),
+                    '4' => ResourceManager::getKeyNameCatLink()
                     ],
                 'cat-link' => ResourceManager::allCatLink()
             ];

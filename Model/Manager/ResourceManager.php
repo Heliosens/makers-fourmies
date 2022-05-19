@@ -16,6 +16,7 @@ class ResourceManager
                 foreach ($queryLink as $link){
                     $cat[$item['id_cat_link']][] =
                             [
+                                'id' => $link['id_res'],
                                 'title' => $link['title'],
                                 'description' => $link['description'],
                                 'url' => $link['url']
