@@ -76,6 +76,7 @@ class UserManager
                 ->setPassword($item['password'])
                 ->setAvatar(AvatarManager::getAvatById($item['avat_fk']))
                 ->setRole(RoleManager::getRoleById($item['role_fk']))
+                ->setToken($item['token'])
                 ;
         }
         return $user;

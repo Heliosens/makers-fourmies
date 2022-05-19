@@ -45,11 +45,11 @@ class ValidationController extends Controller
         $value = explode("_", $option);
         $user = UserManager::getUserById($value[0]);
         // is id match with link token & user added
-        $token = $user->getToken();
-        if(null === $token){
+
+        if(self::checkToken($user)){
             $_SESSION['error'] = "Il semble que votre compte a déjà été validé";
         }
-        elseif ($token === $value[1]) {
+        elseif ($user->getToken() === $value[1]) {
             // delete user token
             if(UserManager::updateToken($value[0])){
                 $_SESSION['error'] = "Votre compte a été créé avec succès, vous étes connecté";
@@ -67,5 +67,14 @@ class ValidationController extends Controller
         $_SESSION['error'] = "Lien invalide";
         }
         $this->render('home');
+    }
+
+    /**
+     * return true if token is empty
+     * @param $user
+     * @return bool
+     */
+    public static function checkToken($user){
+        return (!empty($user->getToken()));
     }
 }

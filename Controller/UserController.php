@@ -136,9 +136,10 @@ class UserController extends Controller
                 $user = UserManager::getUserByMail($email);             // get mail owner
 
                 // check empty token
-                $this->checkToken($user);
-
-                if($user === null){
+                if(!ValidationController::checkToken()){
+                    $_SESSION['error'] = 'Votre compte n\'a pas été validé, veuillez consulter vos mails';
+                }
+                elseif ($user === null){
                     $_SESSION['error'] = "Email ou mot de passe incorrect";
                 }
                 elseif(password_verify($password, $user->getPassword())){   // check password
@@ -157,7 +158,6 @@ class UserController extends Controller
             else{
                 $_SESSION['error'] = 'Cet email a déjà été enregistré';
             }
-
         }
         else {
             $_SESSION['error'] = 'Veuillez remplir tous les champs';
@@ -165,7 +165,6 @@ class UserController extends Controller
         // check error
         if(isset($_SESSION['error'])){
             $this->render('connection');
-
         }
         $this->render('home');
     }
@@ -217,16 +216,4 @@ class UserController extends Controller
             header('Location: index.php');
         }
     }
-
-    /**
-     * test if user token is not empty
-     * @param $user
-     */
-    private function checkToken ($user){
-        if(!empty($user->getToken())){
-            $this->render('token');
-            die;
-        };
-    }
-
 }
