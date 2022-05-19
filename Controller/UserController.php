@@ -135,12 +135,10 @@ class UserController extends Controller
             elseif (UserManager::mailEverExist($email)){        // check if mail not exist
                 $user = UserManager::getUserByMail($email);             // get mail owner
 
-                // check empty token
-                if(!ValidationController::checkToken()){
-                    $_SESSION['error'] = 'Votre compte n\'a pas été validé, veuillez consulter vos mails';
-                }
-                elseif ($user === null){
+                if ($user === null){
                     $_SESSION['error'] = "Email ou mot de passe incorrect";
+                }elseif (!ValidationController::checkToken($user)){
+                    $_SESSION['error'] = 'Votre compte n\'a pas été validé, veuillez consulter vos mails';
                 }
                 elseif(password_verify($password, $user->getPassword())){   // check password
                     $user->setPassword('');
@@ -156,7 +154,7 @@ class UserController extends Controller
                 }
             }
             else{
-                $_SESSION['error'] = 'Cet email a déjà été enregistré';
+                $_SESSION['error'] = 'Email ou mot de passe incorrect';
             }
         }
         else {
