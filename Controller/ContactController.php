@@ -16,15 +16,20 @@ class ContactController extends Controller
     public function send_mail(){
 
         if(isset($_POST['sendBtn'], $_POST['user-mail'], $_POST['subject'], $_POST['user-message'])){
-            $from = $this->cleanEntries($_POST['user-mail']);
-            $subject = $this->cleanEntries($_POST['subject']);
-            $txt = $this->cleanEntries($_POST['user-message']);
+            $from = $this->cleanEntries('user-mail');
+            $subject = $this->cleanEntries('subject');
+            $txt = $this->cleanEntries('user-message');
             $txt = wordwrap($txt, 70, "/r/n");
-            $headers = array(
-                'X-Mailer' => 'PHP/' . phpversion()
-            );
-
+            $headers = [
+                'reply-To' => $from,
+                'X-Mailer' => 'PHP/' . phpversion(),
+                'Mime-version' => '1.0',
+                'content-Type' => 'text/html; charset=utf-8',
+                'From' => $from
+            ];
             mail('makers.fourmies@gmail.com', $subject, $txt, $headers, $from);
         }
+        $this->render('contact');
+        $_SESSION['error'] = "Message envoyé";
     }
 }
