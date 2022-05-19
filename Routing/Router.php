@@ -15,9 +15,14 @@ class Router
      * @param $param
      * @return string
      */
-    public static function cleanIntParam ($param){
-        return trim(strip_tags($param));
+    public static function cleanOption ($param){
+        $id = intval(trim(strip_tags($param)));
+        if(filter_var($id, FILTER_VALIDATE_INT)) {
+            return $id;
+        }
+        return self::cleanParam($param);
     }
+
     /**
      * @param $ctrl
      * @return string
@@ -38,7 +43,10 @@ class Router
         if(class_exists($ctrl)){
             $controller = new $ctrl;
             if(method_exists($controller, $p)){
-                $controller->$p($o);
+                if(null !== $o){
+                    $controller->$p($o);
+                }
+                $controller->$p();
             }
             else{
                 $this->error();
