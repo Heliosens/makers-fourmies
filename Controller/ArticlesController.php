@@ -25,7 +25,8 @@ class ArticlesController extends Controller
      * display technique name and published articles use this technique
      * @param $option
      */
-    public function one_technic($option){
+    public function one_technic(){
+        $option = $_GET['o'];
         $data = [
             'title' => TechnicManager::techName($option),
             'projects' => ArticleManager::artByTechnic($option)
@@ -36,7 +37,8 @@ class ArticlesController extends Controller
     /**
      * @param $option
      */
-    public function one_article ($option){
+    public function one_article (){
+        $option = $_GET['o'];
         $this->connectedKeepGoing(true);
         if(null !== $option && $option !== 0){
             // get selected projects
