@@ -39,22 +39,8 @@ class Router
      */
     public function toCtrl ($c, $p, $o){
         $ctrl = $this->getCtrlName($c);
-
-        if(class_exists($ctrl)){
-            $controller = new $ctrl;
-            if(method_exists($controller, $p)){
-                if(null !== $o){
-                    $controller->$p($o);
-                }
-                $controller->$p();
-            }
-            else{
-                $this->error();
-            }
-        }
-        else{
-            $this->error();
-        }
+        $controller = new $ctrl;
+        $controller->$p($o);
     }
 
     /**
