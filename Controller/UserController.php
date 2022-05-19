@@ -87,7 +87,7 @@ class UserController extends Controller
 
                     // if user added display message
                     if(UserManager::addUser($user)){
-                        $_SESSION['error'] = 'Vous avez du recevoir un mail de validation, merci de cliquer sur le lien de
+                        $_SESSION['error'] = 'Vous allez recevoir un mail de validation, merci de cliquer sur le lien de
                      confirmation contenu dans ce message pour finaliser votre inscription';
                     }
                     else{

@@ -23,7 +23,8 @@ class ContactController extends Controller
             $headers = array(
                 'X-Mailer' => 'PHP/' . phpversion()
             );
-            echo mail('makers.fourmies@gmail.com', $subject, $txt, $headers, $from);
+
+            mail('makers.fourmies@gmail.com', $subject, $txt, $headers, $from);
         }
     }
 }

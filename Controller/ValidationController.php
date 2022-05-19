@@ -29,7 +29,7 @@ class ValidationController extends Controller
         ';
         $txt = wordwrap($txt, 70, "/r/n");
         $headers = array('X-Mailer' => 'PHP/' . phpversion());
-        echo mail($to, $subject, $txt, $headers, $from);
+        mail($to, $subject, $txt, $headers, $from);
     }
 
     /**
