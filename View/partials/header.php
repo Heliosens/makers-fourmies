@@ -16,7 +16,7 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index.php">MAKERS FOURMIES</a>
+            <a class="navbar-brand" href="/index.php">MAKERS FOURMIES</a>
 <!--        button appear on responsive    -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                     aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,28 +26,28 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="index.php?c=maker">Maker</a>
+                        <a class="nav-link" aria-current="page" href="/index.php?c=maker">Maker</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php?c=resources">Ressources</a>
+                        <a class="nav-link" href="/index.php?c=resources">Ressources</a>
                     </li>
                     <?php
                     $info = null;
                     if(isset($_SESSION['user'])){
                         $info = $_SESSION['user'];?>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="index.php?c=articles" id="navbarDropdownMenuLink"
+                        <a class="nav-link dropdown-toggle" href="/index.php?c=articles" id="navbarDropdownMenuLink"
                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Projets
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <li>
-                                <a class="dropdown-item" href="index.php?c=articles&p=all_articles">Tous les
+                                <a class="dropdown-item" href="/index.php?c=articles&p=all_articles">Tous les
                                     articles</a>
                             </li>
                             <li><hr class="dropdown-divider"></li>
                             <li>
-                                <a class="dropdown-item" href="index.php?c=articles&p=all_technic">Toutes les
+                                <a class="dropdown-item" href="/index.php?c=articles&p=all_technic">Toutes les
                                     techniques</a>
                             </li>
                             <li><hr class="dropdown-divider"></li>
@@ -56,7 +56,7 @@
                             foreach ($tech as $key => $item) {
                                 echo '
                             <li>
-                                <a class="dropdown-item" href="index?c=articles&p=one_technic&o=' . $key . ' ">' .
+                                <a class="dropdown-item" href="/index?c=articles&p=one_technic&o=' . $key . ' ">' .
                                     $item . '</a>
                             </li>';
                             }?>
@@ -65,18 +65,18 @@
                     }
                     ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php?c=contact">Contact</a>
+                        <a class="nav-link" href="/index.php?c=contact">Contact</a>
                     </li>
                 </ul>
                 <div class="d-flex flex-grow-1 justify-content-end align-items-center gap-4">
                     <?php
                     if(!isset($_SESSION['user'])){
                         echo '
-                    <a class="nav-link text-secondary me-3" href="index.php?c=user&p=connection_form"
+                    <a class="nav-link text-secondary me-3" href="/index.php?c=user&p=connection_form"
                     title="Connexion">
                         <i class="fa-solid fa-user"></i>
                     </a>
-                    <a class="nav-link text-secondary" href="index.php?c=user&p=register_form" 
+                    <a class="nav-link text-secondary" href="/index.php?c=user&p=register_form" 
                         title="Inscription">
                         <i class="fa-solid fa-arrow-right-to-bracket"></i>
                     </a>';
@@ -85,13 +85,13 @@
                         $avatar = UserManager::getAvatar($info['id']);
                         echo '
                     <div>
-                        <a class="btn btn-primary btn-sm" href="index.php?c=articles&p=art_form">Créer un article</a>
+                        <a class="btn btn-primary btn-sm" href="/index.php?c=articles&p=art_form">Créer un article</a>
                     </div>
-                    <a href="index.php?c=profile" title="profile">
+                    <a href="/index.php?c=profile" title="profile">
                         <img src="/img/avatar/'. $avatar->getAvatar() .'">
                     </a>
                     <span>'. $_SESSION['user']['pseudo'] .'</span>
-                    <a class="nav-link text-secondary" href="index.php?c=user&p=disconnect" title="Déconnexion">
+                    <a class="nav-link text-secondary" href="/index.php?c=user&p=disconnect" title="Déconnexion">
                         <i class="fa-solid fa-arrow-right-from-bracket"></i>
                     </a>';
                     }

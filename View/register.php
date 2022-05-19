@@ -2,7 +2,7 @@
     <section class="pt-5">
         <div class="mx-auto pb-3 row col-10 col-sm-7 col-md-4">
             <h2 class="pt-3 text-center">Inscription</h2>
-            <form action="index.php?c=user&p=new_user" method="post">
+            <form action="/index.php?c=user&p=new_user" method="post">
                 <div>
                     <div class="form-floating mb-3">
                         <input type="text" name="pseudo" class="form-control" id="floatingInput">

@@ -25,7 +25,7 @@
                                     echo '<div class="row row-cols-3 px-5">
                                     <a class="text-decoration-none text-dark" href="">' . $user->getPseudo() . '</a>
                                     <span class="text-decoration-none text-dark">' . Config::roleName($user->getRole()->getRoleName()) . '</span>
-                                    <a href="index.php?c=user&p=del_user&o=' . $user->getId() . '" class="text-dark">
+                                    <a href="/index.php?c=user&p=del_user&o=' . $user->getId() . '" class="text-dark">
                                         <i class="fa-solid fa-trash-can p-1" title="supprimer l\'utilisateur"></i>
                                     </a>
                                 </div>';

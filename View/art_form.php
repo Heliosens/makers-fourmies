@@ -10,7 +10,7 @@
                     </p>
                 </div>
 <!--                form to create article  -->
-                <form action="index.php?c=articles&p=add_art" method="POST" enctype="multipart/form-data">
+                <form action="/index.php?c=articles&p=add_art" method="POST" enctype="multipart/form-data">
                     <div class="row row-cols-lg-3 row-cols-sm-2 row-cols-1">
 <!--                type    -->
                         <div>

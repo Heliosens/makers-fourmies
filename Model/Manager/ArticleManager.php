@@ -173,7 +173,7 @@ class ArticleManager
         }
         else {
             $_SESSION['error'] = "Erreur de catégorie";
-            header('Location: index.php?c=articles&p=art_form');
+            header('Location: /index.php?c=articles&p=art_form');
         }
 
         if($result && $article->getTechnic()){
@@ -210,7 +210,7 @@ class ArticleManager
         }
         else{
             $_SESSION['error'] = "Erreur à l'enregistrement des étapes";
-            header('Location: index.php?c=articles&p=art_form');
+            header('Location: /index.php?c=articles&p=art_form');
         }
         return $result;
     }

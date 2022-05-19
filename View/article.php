@@ -43,7 +43,7 @@
                             <span  class="fw-bold">Technique :</span>
                             <?php
                             foreach ($data->getTechnic() as $item){
-                                echo '<a class="text-dark" href="index?c=articles&p=one_technic&o=' .
+                                echo '<a class="text-dark" href="/index?c=articles&p=one_technic&o=' .
                                     $item->getIdTech() . '">' . $item->getTechnique() . '</a>';
                             }
                             ?>

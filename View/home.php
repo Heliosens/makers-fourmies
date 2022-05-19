@@ -6,7 +6,7 @@
         <div class="row pt-3 gy-3 row-cols-lg-4 row-cols-md-2 row-cols-1">
             <div class="col">
                 <div class="card shadow ">
-                    <a href="index.php?c=maker" class="text-decoration-none card-header">
+                    <a href="/index.php?c=maker" class="text-decoration-none card-header">
                         <h5  class="text-dark" >Maker</h5>
                     </a>
                     <div class="card-body">
@@ -17,7 +17,7 @@
             </div>
             <div class="col">
                 <div class="card shadow">
-                    <a href="index.php?c=resources" class="text-decoration-none card-header">
+                    <a href="/index.php?c=resources" class="text-decoration-none card-header">
                         <h5 class="text-dark">Ressources</h5>
                     </a>
                     <div class="card-body">
@@ -28,7 +28,7 @@
             </div>
             <div class="col">
                 <div class="card shadow">
-                    <a href="index.php?c=projects&p=all_technic" class="text-decoration-none card-header">
+                    <a href="/index.php?c=projects&p=all_technic" class="text-decoration-none card-header">
                         <h5 class="text-dark">Projets</h5>
                     </a>
                     <div class="card-body">
@@ -40,7 +40,7 @@
             </div>
             <div class="col">
                 <div class="card shadow">
-                    <a href="index.php?c=contact" class="text-decoration-none card-header">
+                    <a href="/index.php?c=contact" class="text-decoration-none card-header">
                         <h5 class="text-dark">Contact</h5>
                     </a>
                     <div class="card-body">

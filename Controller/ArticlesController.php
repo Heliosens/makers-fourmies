@@ -70,7 +70,7 @@ class ArticlesController extends Controller
     public function add_art (){
         if(!$this->fieldsState('artTitle', 'artDescription')){
             $_SESSION['error'] = "Les champs obligatoires doivent être remplis !";
-            header('Location: index.php?c=articles&p=art_form');
+            header('Location: /index.php?c=articles&p=art_form');
         }
 
 //         get article data
@@ -100,7 +100,7 @@ class ArticlesController extends Controller
 
         if(ArticleManager::addArticle($article)){
             $id = $article->getId();
-            header('Location: index.php?c=articles&p=all_articles&o=' . $id);
+            header('Location: /index.php?c=articles&p=all_articles&o=' . $id);
         }
     }
 

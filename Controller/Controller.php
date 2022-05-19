@@ -76,7 +76,7 @@ class Controller
     public function connectedKeepGoing($bool){
         // if session and bool = 1 or if !session and bool = 0
         if(!$this->userIsConnected() && $bool || $this->userIsConnected() && !$bool){
-            header('Location: index.php');
+            header('Location: /index.php');
             die;
         }
     }

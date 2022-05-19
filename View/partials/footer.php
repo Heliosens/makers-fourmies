@@ -1,7 +1,7 @@
 <footer>
     <div class="bg-light text-end">
-        <a class="text-dark" href="index.php">Home</a>
-        <a class="text-dark" href="index.php?c=contact">Contact</a>
+        <a class="text-dark" href="/index.php">Home</a>
+        <a class="text-dark" href="/index.php?c=contact">Contact</a>
     </div>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"

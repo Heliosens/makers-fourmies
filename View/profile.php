@@ -40,14 +40,14 @@
                 <div class="row col-7">
                     <div class="d-flex justify-content-around">
                         <h3 class="text-center">Mes articles :</h3>
-                        <a href="index.php?c=articles&p=art_form">Créer un article</a>
+                        <a href="/index.php?c=articles&p=art_form">Créer un article</a>
                     </div>
                     <?php
                     foreach ($art as $key => $item){
                             echo '
                         <div class="row row-cols-2 mx-3">
                             <div class="row col-10 bg-light">
-                                <a class="text-decoration-none text-dark col-7" href="index?c=articles&p=one_article&o='
+                                <a class="text-decoration-none text-dark col-7" href="/index?c=articles&p=one_article&o='
                                 . $key . '">' . $item['title'] . '</a>
                                 <span class="col-5">' . Config::stateName($item['state']) . '</span>
                                 </div>
@@ -72,7 +72,7 @@
                         foreach ($art as $key => $item){
                             echo '<div class="row row-cols-2 bg-light">
                         <div class="col-8">
-                            <a class="text-decoration-none text-dark" href="index?c=articles&p=one_article&o=' . $key
+                            <a class="text-decoration-none text-dark" href="/index?c=articles&p=one_article&o=' . $key
                                 . '">' . $item['title'] . '</a>
                             </div>
                             <a href="#" class="col-4 text-dark">
@@ -95,7 +95,7 @@
                         <div class="modal-body gap-4 d-flex flex-wrap justify-content-between">
                             <?php
                             foreach ($avatar as $item){
-                                echo '<a href="index.php?c=avatar&p=change&o=' . $item->getId() . '">
+                                echo '<a href="/index.php?c=avatar&p=change&o=' . $item->getId() . '">
                                     <img class="logo" src="/img/avatar/' . $item->getAvatar() . '" alt="avatar">
                                 </a>';
                             }
@@ -112,7 +112,7 @@
                 if($user->getRole()->getRoleName() === 'admin'){
                     echo '
                 <div>
-                    <a class="btn btn-sm btn-danger" href="index.php?c=profile&p=admin">Espace administrateur</a>
+                    <a class="btn btn-sm btn-danger" href="/index.php?c=profile&p=admin">Espace administrateur</a>
                 </div>';
                 }
                 ?>
@@ -138,7 +138,7 @@
                             </p>
                             <div class="modal-footer justify-content-between">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Retour</button>
-                                <a href="index.php?c=user&p=del_own_count" type="button" class="btn btn-danger">
+                                <a href="/index.php?c=user&p=del_own_count" type="button" class="btn btn-danger">
                                     Confirmer la suppression de mon compte
                                 </a>
                             </div>

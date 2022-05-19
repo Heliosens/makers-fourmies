@@ -5,7 +5,7 @@
             foreach ($data['art'] as $item){?>
                 <div class="bg-light w-75">
                     <a class="text-decoration-none text-center"
-                       href="index?c=articles&p=one_article&o=<?=$item->getId()?>">
+                       href="/index?c=articles&p=one_article&o=<?=$item->getId()?>">
                         <p class="text-dark m-0">
                             <?=$item->getTitle()?>
                         </p>

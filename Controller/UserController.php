@@ -172,7 +172,7 @@ class UserController extends Controller
             setcookie(session_id(), "", time() - 3600);
             session_destroy();
         }
-        header('Location: index.php');
+        header('Location: /index.php');
     }
 
     /**
@@ -189,7 +189,7 @@ class UserController extends Controller
             else{
                 $_SESSION['error'] = "Attention vous ne pouvez pas supprimer le dernier administrateur du site !";
             };
-            header('Location: index.php?c=profile&p=admin');
+            header('Location: /index.php?c=profile&p=admin');
         }
     }
 
@@ -205,7 +205,7 @@ class UserController extends Controller
         }
         else{
             $_SESSION['error'] = "Attention vous ne pouvez pas supprimer le dernier administrateur du site !";
-            header('Location: index.php');
+            header('Location: /index.php');
         }
     }
 }

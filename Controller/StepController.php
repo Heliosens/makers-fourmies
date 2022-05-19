@@ -27,12 +27,12 @@ class StepController extends Controller
                 }
                 else{
                     $_SESSION['error'] = "L'image " . $this->cleanEntries($_FILES['name'][$key]) . " est trop grande";
-                    header("Location: index.php?c=articles&p=art_form");
+                    header("Location: /index.php?c=articles&p=art_form");
                 }
             }
             else{
                 $_SESSION['error'] = "erreur lors du chargement de l'image ";
-                header("Location: index.php?c=articles&p=art_form");
+                header("Location: /index.php?c=articles&p=art_form");
             }
 
             $description = $this->cleanItem($_POST['stepDescription'][$key]);
