@@ -44,10 +44,11 @@ class StepManager
 
     /**
      * @param $stepId
+     * @return mixed
      */
     public static function findUploadedImg($stepId){
         $query = DB::getConn()->query("SELECT img_name FROM " . Config::PRE . "step WHERE id_step = $stepId");
-        $query->fetch()['img_name'];
+        return $query->fetch()['img_name'];
     }
 
 }

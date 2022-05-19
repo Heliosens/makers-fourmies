@@ -216,7 +216,7 @@ class UserController extends Controller
     public function deleteUserUploads($id) {
         $img = StepManager::userUploadedImg($id);
         foreach ($img as $item){
-            unlink("uploads/' . $item . '");
+            unlink("/uploads/' . $item . '");
         }
     }
 }

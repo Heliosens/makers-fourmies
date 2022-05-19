@@ -26,10 +26,10 @@ class ProfileController extends Controller
         if(isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin'){
             $data = [
                 'user' => UserManager::allUser(),
-                'article' => [
-                    'pr' => ArticleManager::artByState('1'),
-                    'sb' => ArticleManager::artByState('2'),
-                    'pu' => ArticleManager::artByState('3'),
+                'articles' => [
+                    '1' => ArticleManager::artByState('1'),
+                    '2' => ArticleManager::artByState('2'),
+                    '3' => ArticleManager::artByState('3'),
                 ],
                 'rubrics' => [
                     'type' => Manager::getAllKeyName('type'),

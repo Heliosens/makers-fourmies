@@ -56,4 +56,14 @@ class StepController extends Controller
 
         return $steps;
     }
+
+    /**
+     * @param $id
+     */
+    public function deleteStepUploads($id) {
+        $img = StepManager::findUploadedImg($id);
+        foreach ($img as $item){
+            unlink("/uploads/' . $item . '");
+        }
+    }
 }

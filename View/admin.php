@@ -1,6 +1,6 @@
 <?php
     $users = $data['user'];
-    $articles = $data['article'];
+    $articles = $data['articles'];
     $rubrics = $data['rubrics'];
 ?>
 <main>
@@ -49,15 +49,15 @@
                         <h3>Privé</h3>
                         <article>
                             <?php
-                            foreach ($articles['pr'] as $article){
+                            foreach ($articles[1] as $key => $article){
                                 echo '<div class="row row-cols-3 px-5">
                                     <a class="text-decoration-none text-dark" href="">' . $article['title'] .'</a>
                                     <span>' . $article['author'] .'</span>
                                     <div>
-                                        <a  class="text-decoration-none text-dark" href="">
+                                        <a  class="text-decoration-none text-dark" href="/index.php?c=articles&p=update_article&o=' . $key . '">
                                             <i class="fa-solid fa-pencil p-1" title="modifier"></i>
                                         </a>
-                                        <a  class="text-decoration-none text-dark" href="">
+                                        <a  class="text-decoration-none text-dark" href="/index.php?c=articles&p=del_article&o=' . $key . '">
                                             <i class="fa-solid fa-trash-can p-1" title="supprimer l\'article"></i>
                                         </a>
                                     </div>
@@ -70,18 +70,19 @@
                         <h3>En attente de validation</h3>
                         <article>
                             <?php
-                            foreach ($articles['sb'] as $article){
+                            foreach ($articles[2] as $key => $article){
                                 echo '<div class="row row-cols-3 px-5">
-                                <a class="text-decoration-none text-dark" href="">' . $article .'</a>
-                            </div>
-                            <div class="col-4">
-                                <a  class="text-decoration-none text-dark" href="">
-                                    <i class="fa-solid fa-pencil p-1" title="modifier"></i>
-                                </a>
-                                <a  class="text-decoration-none text-dark" href="">
-                                    <i class="fa-solid fa-trash-can p-1" title="supprimer l\'article"></i>
-                                </a>
-                            </div>
+                                    <a class="text-decoration-none text-dark" href="">' . $article['title'] .'</a>
+                                    <span>' . $article['author'] .'</span>
+                                    <div>
+                                        <a  class="text-decoration-none text-dark" href="/index.php?c=articles&p=update_article&o=' . $key . '">
+                                            <i class="fa-solid fa-pencil p-1" title="modifier"></i>
+                                        </a>
+                                        <a  class="text-decoration-none text-dark" href="/index.php?c=articles&p=del_article&o=' . $key . '">
+                                            <i class="fa-solid fa-trash-can p-1" title="supprimer l\'article"></i>
+                                        </a>
+                                    </div>
+                                </div>
                                 ';
                             }
                             ?>
@@ -90,18 +91,19 @@
                         <h3>Publié</h3>
                         <article>
                             <?php
-                            foreach ($articles['pu'] as $article){
+                            foreach ($articles[3] as $key => $article){
                                 echo '<div class="row row-cols-3 px-5">
-                                <a class="text-decoration-none text-dark" href="">' . $article .'</a>
-                            </div>
-                            <div class="col-4">
-                                <a  class="text-decoration-none text-dark" href="">
-                                    <i class="fa-solid fa-pencil p-1" title="modifier"></i>
-                                </a>
-                                <a  class="text-decoration-none text-dark" href="">
-                                    <i class="fa-solid fa-trash-can p-1" title="supprimer l\'article"></i>
-                                </a>
-                            </div>
+                                    <a class="text-decoration-none text-dark" href="">' . $article['title'] .'</a>
+                                    <span>' . $article['author'] .'</span>
+                                    <div>
+                                        <a  class="text-decoration-none text-dark" href="/index.php?c=articles&p=update_article&o=' . $key . '">
+                                            <i class="fa-solid fa-pencil p-1" title="modifier"></i>
+                                        </a>
+                                        <a  class="text-decoration-none text-dark" href="/index.php?c=articles&p=del_article&o=' . $key . '">
+                                            <i class="fa-solid fa-trash-can p-1" title="supprimer l\'article"></i>
+                                        </a>
+                                    </div>
+                                </div>
                                 ';
                             }
                             ?>
