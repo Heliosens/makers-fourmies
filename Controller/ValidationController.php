@@ -75,6 +75,6 @@ class ValidationController extends Controller
      * @return bool
      */
     public static function checkToken($user){
-        return (!empty($user->getToken()));
+        return (empty($user->getToken()));
     }
 }

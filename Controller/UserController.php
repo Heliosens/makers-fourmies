@@ -118,7 +118,6 @@ class UserController extends Controller
 
         //  check if button is pressed
         if(isset($_POST['sendBtn'])){
-
             // clean email
             $email = $this->cleanEntries('email');
             $email = filter_var($email, FILTER_SANITIZE_EMAIL);
@@ -126,40 +125,35 @@ class UserController extends Controller
 
             // check mail validity
             if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-                $_SESSION['error'] = "Email (ou mot de passe incorrect)";
+                $_SESSION['error'] = "1-Email ou mot de passe incorrect";
             }
             elseif (!preg_match('/^(?=.*[!+@#$%^&*-\])(?=.*[0-9])(?=.*[A-Z]).{8,20}$/', $password)){
                 // password don't match with attempted characters
-                $_SESSION['error'] = "Email ou mot de passe incorrect";
+                $_SESSION['error'] = "2-Email ou mot de passe incorrect";
             }
-            elseif (UserManager::mailEverExist($email)){        // check if mail not exist
-                $user = UserManager::getUserByMail($email);             // get mail owner
-
-                if ($user === null){
-                    $_SESSION['error'] = "Email ou mot de passe incorrect";
-                }elseif (!ValidationController::checkToken($user)){
-                    $_SESSION['error'] = 'Votre compte n\'a pas été validé, veuillez consulter vos mails';
-                }
-                elseif(password_verify($password, $user->getPassword())){   // check password
-                    $user->setPassword('');
-                    $_SESSION['user'] = [
-                        'id' => $user->getId(),
-                        'pseudo' => $user->getPseudo(),
-                        'role' => $user->getRole()->getRoleName()
-                    ];
-                }
-                else{
-                    $_SESSION['error'] = "Email ou mot de passe incorrect";
-                    $this->render('connection');
-                }
+            elseif (!UserManager::mailEverExist($email)) {        // check if mail not exist
+                $_SESSION['error'] = "3-Email ou mot de passe incorrect";
+            }
+            elseif(!$user = UserManager::getUserByMail($email)){     // get mail owner
+                    $_SESSION['error'] = "4-Email ou mot de passe incorrect";
+            }
+            elseif (!ValidationController::checkToken($user)){
+                $_SESSION['error'] = 'Votre compte n\'a pas été validé, veuillez consulter vos mails';
+            }
+            elseif(password_verify($password, $user->getPassword())){   // check password
+                $user->setPassword('');
+                $_SESSION['user'] = [
+                    'id' => $user->getId(),
+                    'pseudo' => $user->getPseudo(),
+                    'role' => $user->getRole()->getRoleName()
+                ];
             }
             else{
-                $_SESSION['error'] = 'Email ou mot de passe incorrect';
+                $_SESSION['error'] = "Email ou mot de passe incorrect";
+                $this->render('connection');
             }
         }
-        else {
-            $_SESSION['error'] = 'Veuillez remplir tous les champs';
-        }
+
         // check error
         if(isset($_SESSION['error'])){
             $this->render('connection');
