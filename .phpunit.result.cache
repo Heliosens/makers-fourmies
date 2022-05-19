@@ -1,0 +1,1 @@
+{"version":1,"defects":{"ControllerTest::testCleanEntries":4,"ControllerTest::testCleanItem":3},"times":{"ControllerTest::testCleanEntries":0.006,"ControllerTest::testCleanItem":0.009}}

@@ -100,4 +100,16 @@ class Controller
         }
         return bin2hex($bytes);
     }
+
+    /**
+     * @param $currentImg
+     * @return bool
+     */
+    public function testMimeType ($currentImg){
+        $allowed = ['image/jpeg', 'image/jpg', 'image/png'];  // allowed mime type
+        $res = finfo_open(FILEINFO_MIME_TYPE);
+        $actualType = finfo_file($res, $currentImg);
+        return in_array($actualType, $allowed);
+    }
+
 }

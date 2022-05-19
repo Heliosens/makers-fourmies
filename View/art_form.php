@@ -44,8 +44,9 @@
                             <?php
                             foreach ($data['technique'] as $key => $item){
                                 echo '<div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="tech[]" value="' . $key . '">
-                                <label class="form-check-label">' . $item . '</label>
+                                <input class="form-check-input" type="checkbox" name="tech[]" value="' . $key . '"
+                                id="techCheck' . $key . '">
+                                <label class="form-check-label" for="techCheck' . $key . '">' . $item . '</label>
                             </div>';
                             }
                             ?>

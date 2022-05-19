@@ -15,18 +15,23 @@ class StepController extends Controller
             $step = new Step();
             // get step image
             if(isset($_FILES['stepImage']) && $_FILES['stepImage']['error'][$key] === 0){
-                $allowed = ['image/jpeg', 'image/jpg', 'image/png'];  // allowed mime type
                 $maxSize = 4 * 1024 * 1024; // = 4 Mo
-                if((int)$_FILES['stepImage']['size'][$key] <= $maxSize
-                    && in_array($_FILES['stepImage']['type'][$key], $allowed)){
-                    $tmp_name = $_FILES['stepImage']['tmp_name'][$key];    // image temporary name
-                    $ext = pathinfo($_FILES['stepImage']['name'][$key], PATHINFO_EXTENSION);   // file extension
-                    $name = $this->createRandomName(10) . "." . $ext;
-                    $step->setImgName($name);
-                    move_uploaded_file($tmp_name, 'uploads/' . $name);
+                $currentFile = $_FILES['stepImage']['tmp_name'][$key];
+                if((int)$_FILES['stepImage']['size'][$key] <= $maxSize){
+                    if($this->testMimeType($currentFile)){
+                        $tmp_name = $currentFile;    // image temporary name
+                        $ext = pathinfo($_FILES['stepImage']['name'][$key], PATHINFO_EXTENSION);   // file extension
+                        $name = $this->createRandomName(10) . "." . $ext;
+                        $step->setImgName($name);
+                        move_uploaded_file($tmp_name, 'uploads/' . $name);
+                    }
+                    else{
+                        $_SESSION['error'] = "Le type de l'image " . $this->cleanEntries($currentFile) . " n'est pas accepté";
+                        header("Location: /index.php?c=articles&p=art_form");
+                    }
                 }
                 else{
-                    $_SESSION['error'] = "L'image " . $this->cleanEntries($_FILES['name'][$key]) . " est trop grande";
+                    $_SESSION['error'] = "L'image " . $this->cleanEntries($currentFile) . " est trop grande";
                     header("Location: /index.php?c=articles&p=art_form");
                 }
             }

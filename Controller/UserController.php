@@ -177,13 +177,14 @@ class UserController extends Controller
 
     /**
      * only admin delete user count and only if user is not the last admin
-     * @param int $id
+     * @param int $id = user to delete id
      */
     public function del_user (int $id){
         if($_SESSION['user']['role'] === 'admin'){
 //          get del user role
             $role = UserManager::getRoleByUser($id)->getRoleName();
             if($this->testAdmin() || $role !== 'admin'){
+                $this->deleteUserUploads($id);
                 UserManager::delById($id);
             }
             else{
@@ -206,6 +207,16 @@ class UserController extends Controller
         else{
             $_SESSION['error'] = "Attention vous ne pouvez pas supprimer le dernier administrateur du site !";
             header('Location: /index.php');
+        }
+    }
+
+    /**
+     * @param $id
+     */
+    public function deleteUserUploads($id) {
+        $img = StepManager::userUploadedImg($id);
+        foreach ($img as $item){
+            unlink("uploads/' . $item . '");
         }
     }
 }
