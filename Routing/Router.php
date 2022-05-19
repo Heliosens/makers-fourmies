@@ -12,6 +12,13 @@ class Router
     }
 
     /**
+     * @param $param
+     * @return string
+     */
+    public static function cleanIntParam ($param){
+        return trim(strip_tags($param));
+    }
+    /**
      * @param $ctrl
      * @return string
      */
