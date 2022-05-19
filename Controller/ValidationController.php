@@ -9,7 +9,6 @@ class ValidationController extends Controller
      */
     public function send_validation_mail($user){
         $to = $user->getEmail();
-        $from = 'makers.fourmies@gmail.com';
         $subject = 'Validation de compte';
         // create token
         $token = $this->createRandomName(12);
@@ -28,8 +27,14 @@ class ValidationController extends Controller
             </html>
         ';
         $txt = wordwrap($txt, 70, "/r/n");
-        $headers = array('X-Mailer' => 'PHP/' . phpversion());
-        mail($to, $subject, $txt, $headers, $from);
+        $headers = [
+            'reply-To' => 'makers.fourmies@gmail.com',
+            'X-Mailer' => 'PHP/' . phpversion(),
+            'Mime-version' => '1.0',
+            'content-Type' => 'text/html; charset=utf-8',
+            'From' => 'makers.fourmies@gmail.com'
+        ];
+        mail($to, $subject, $txt, $headers);
     }
 
     /**
