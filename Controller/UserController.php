@@ -18,7 +18,7 @@ class UserController extends Controller
     public function connection_form (){
         // verify if there's not already a connected user
         $this->connectedKeepGoing(false);
-        !isset($_SESSION['user']) ? $this->render('connection') : $this->render('home');
+        $this->render('connection');
     }
 
     /**
