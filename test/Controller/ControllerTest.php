@@ -16,7 +16,7 @@ class ControllerTest extends \PHPUnit\Framework\TestCase
 
     public function testCleanItem () : void
     {
-        $result = $this->test->cleanItem('<strong>mot</strong>');
+        $result = $this->test->cleanItem('  <strong>  mot  </strong>  ');
         $this->assertEquals('mot', $result);
     }
 }

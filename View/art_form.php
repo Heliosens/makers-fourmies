@@ -2,17 +2,9 @@
     <section>
         <div class="mx-auto p-3">
             <div class="mb-3 w-75 mx-auto">
-                <div class="text-center">
-                    <span class="fs-5 fw-bold">Créer un article </span>
-                    <span>Vous pourrez ainsi partager votre expérience.</span>
-                    <p class="fst-italic">
-                        Votre projet apparaitra sur notre site sous réserve de validation par un administrateur.
-                    </p>
-                </div>
-<!--                form to create article  -->
                 <form action="/index.php?c=articles&p=add_art" method="POST" enctype="multipart/form-data">
                     <div class="row row-cols-lg-3 row-cols-sm-2 row-cols-1">
-<!--                type    -->
+                        <!--                type    -->
                         <div>
                             <span class="fw-bold">Type de projet</span>
                             <?php
@@ -25,7 +17,7 @@
                             }
                             ?>
                         </div>
-<!--                category    -->
+                        <!--                category    -->
                         <div>
                             <span class="fw-bold">Catégorie *</span>
                             <?php
@@ -38,7 +30,7 @@
                             }
                             ?>
                         </div>
-<!--                technique   -->
+                        <!--                technique   -->
                         <div>
                             <span class="fw-bold">Technique *</span>
                             <?php
@@ -56,7 +48,7 @@
                     <hr>
                     <p class="fst-italic text-end w-100 mt-2">** Champs obligatoires</p>
                     <div class="text-center">
-<!--                title   -->
+                        <!--                title   -->
                         <div>
                             <span class="fw-bold">Titre de l'article **</span>
                             <span class="fst-italic">(100 caractères max.)</span>
@@ -64,97 +56,28 @@
                                 <input maxlength="100" type="text" name="artTitle" class="form-control" id="arTitle">
                             </div>
                         </div>
-<!--                description -->
+                        <!--                description -->
                         <div>
                             <label for="artDescription">Décrivez le but du projet, le temps necessaire, le niveau de
                                 difficulté...</label>
                             <span class="fst-italic">(255 caractères max.) **</span>
                             <textarea maxlength="255" name="artDescription" class="form-control mb-3 mx-auto w-75"
-                                      id="artDescription"
-                                      rows="3"></textarea>
+                                      id="artDescription" rows="3"></textarea>
                         </div>
-
-                        <p class="fs-5 fw-bold">Ajoutez les étapes :</p>
-<!--                STEP        -->
-                        <div class="step mb-5">
-<!--                title-->
-                            <label class="fw-bold">Titre de l'étape</label>
-                            <span>(50 caractères max.) **</span>
-                            <div class="mb-3 mx-auto fw-bold w-75">
-                                <input maxlength="50" type="text" name="stepTitle[]" class="form-control">
-                            </div>
-<!--                description-->
-                            <span>Décrivez l'étape</span>
-                            <span class="fst-italic">(255 caractères max.)</span>
-                            <textarea maxlength="255" name="stepDescription[]" class="form-control mb-3 mx-auto w-75"
-                                      rows="3"></textarea>
-<!--                tool & matter-->
-                            <div class="row row-cols-2 w-75 mx-auto">
-                                <div>
-                                    <label>Outil</label>
-                                    <span>(20 caractères max.)</span>
-                                    <div class="mb-3">
-                                        <input maxlength="20" type="text" name="stepTool[]" class="form-control">
-                                    </div>
-                                </div>
-                                <div>
-                                    <label>Matière</label>
-                                    <span>(20 caractères max.)</span>
-                                    <div class="mb-3 fw-bold">
-                                        <input maxlength="20" type="text" name="stepMatter[]" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-<!--                illustration-->
-                            <div>
-                                <label>Choisissez une image</label>
-                                <input type="file" name="stepImage[]" accept=".jpeg, .jpg, .png">
-                            </div>
-                        </div>
-
-<!--                        TEST second step-->
-                        <div class="step mb-3">
-                            <!--                title-->
-                            <label class="fw-bold">Titre de l'étape</label>
-                            <span>(50 caractères max.) **</span>
-                            <div class="mb-3 mx-auto fw-bold w-75">
-                                <input maxlength="50" type="text" name="stepTitle[]" class="form-control">
-                            </div>
-                            <!--                description-->
-                            <span>Décrivez l'étape</span>
-                            <span class="fst-italic">(255 caractères max.)</span>
-                            <textarea maxlength="255" name="stepDescription[]" class="form-control mb-3 mx-auto w-75"
-                                      rows="3"></textarea>
-                            <!--                tool & matter-->
-                            <div class="row row-cols-2 w-75 mx-auto">
-                                <div>
-                                    <label>Outil</label>
-                                    <span>(20 caractères max.)</span>
-                                    <div class="mb-3">
-                                        <input maxlength="20" type="text" name="stepTool[]" class="form-control">
-                                    </div>
-                                </div>
-                                <div>
-                                    <label>Matière</label>
-                                    <span>(20 caractères max.)</span>
-                                    <div class="mb-3 fw-bold">
-                                        <input maxlength="20" type="text" name="stepMatter[]" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <!--                illustration-->
-                            <div>
-                                <label>Choisissez une image</label>
-                                <input type="file" name="stepImage[]" accept=".jpeg, .jpg, .png">
-                            </div>
-                        </div>
-
                     </div>
-
-<!--                add step-->
-                        <span class="fst-italic">Cliquez ici ajouter une étape supplémentaire</span>
+                    <div id="steps"></div><!--        add step        -->
+                    <div class="text-center">
                         <a id="addStep" href="#" class="btn btn-primary m-3 btn-sm">Ajouter une étape</a>
                     </div>
+            </div>
+            <!--                form to create article  -->
+                <div class="text-center">
+                    <span class="fs-5 fw-bold">Créer un article </span>
+                    <span>Vous pourrez ainsi partager votre expérience.</span>
+                    <p class="fst-italic">
+                        Votre projet apparaitra sur notre site sous réserve de validation par un administrateur.
+                    </p>
+                </div>
 <!--                submit button  -->
                     <div class="text-center">
                         <input class="btn btn-success" type="submit" name="submitBtn" value="Valider"

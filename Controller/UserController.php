@@ -75,7 +75,7 @@ class UserController extends Controller
                     $user = new User();
                     $user->setPseudo($pseudo)
                         ->setEmail($email)
-                        ->setPassword(password_hash($password, PASSWORD_DEFAULT))
+                        ->setPassword(password_hash($password, PASSWORD_BCRYPT))
                         ->setRole(RoleManager::roleByName('user'))
                         ->setAvatar(AvatarManager::defaultAvatar())
                         ->setToken($token)
