@@ -5,10 +5,10 @@ require __DIR__ . '/Config.php';
 require __DIR__ . '/Model/DB.php';
 
 // Entity class
+require __DIR__ . '/Model/Entity/Technique.php';
 require __DIR__ . '/Model/Entity/User.php';
 require __DIR__ . '/Model/Entity/Avatar.php';
 require __DIR__ . '/Model/Entity/Role.php';
-require __DIR__ . '/Model/Entity/Technique.php';
 require __DIR__ . '/Model/Entity/Article.php';
 require __DIR__ . '/Model/Entity/Step.php';
 require __DIR__ . '/Model/Entity/Category.php';

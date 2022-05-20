@@ -2,7 +2,7 @@
     <header class="text-center mt-3">
         <h2><?=$value->getTitle()?></h2>
     </header>
-    <!--            description-->
+<!--            description-->
     <div class="text-center mt-3 w-75 mx-auto">
         <p><?=$value->getDescription()?></p>
     </div>
@@ -23,7 +23,7 @@
 <!--    technical sheet-->
         <aside class="ps-3 w-25">
             <ul class="list-group">
-                <li class="list-group-item">    <!-- type  -->
+                <li class="list-group-item">                    <!-- type  -->
                     <span class="fw-bold"><?=$value->getType()->getTypeName()?></span>
                 </li>
                 <li class="list-group-item d-flex flex-column">    <!-- category  -->

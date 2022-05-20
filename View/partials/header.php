@@ -18,7 +18,8 @@
         <div class="container-fluid">
             <a class="navbar-brand" href="/index.php">MAKERS FOURMIES</a>
 <!--        button appear on responsive    -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavDropdown"
                     aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>

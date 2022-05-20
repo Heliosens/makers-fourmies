@@ -1,6 +1,6 @@
 <?php
     $user = $data['user'];
-    $art = $data['art']['write'];
+    $art = $data['art'];
     $avatar = $data['avatar'];
 ?>
 <main>

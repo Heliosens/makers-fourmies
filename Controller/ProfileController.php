@@ -12,9 +12,7 @@ class ProfileController extends Controller
         $data = [
             'user' => UserManager::getUserById($id),
             'avatar' => AvatarManager::getAllAvatar(),
-            'art' => [
-                'write' => ArticleManager::artByAuthor($id),
-                ]
+            'art' => ArticleManager::artByAuthor($id),
         ];
         $this->render('profile', $data);
     }
