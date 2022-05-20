@@ -39,8 +39,8 @@ require __DIR__ . '/Controller/StepController.php';
 
 // Manager class
 require __DIR__ . '/Model/Manager/Manager.php';
-require __DIR__ . '/Model/Manager/StepManager.php';
 require __DIR__ . '/Model/Manager/TechnicManager.php';
+require __DIR__ . '/Model/Manager/StepManager.php';
 require __DIR__ . '/Model/Manager/CategoryManager.php';
 require __DIR__ . '/Model/Manager/CategoryLinkManager.php';
 require __DIR__ . '/Model/Manager/ArticleManager.php';
@@ -50,5 +50,3 @@ require __DIR__ . '/Model/Manager/UserManager.php';
 require __DIR__ . '/Model/Manager/AvatarManager.php';
 require __DIR__ . '/Model/Manager/ResourceManager.php';
 require __DIR__ . '/Model/Manager/StateManager.php';
-
-

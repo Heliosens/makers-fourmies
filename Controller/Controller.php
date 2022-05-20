@@ -75,17 +75,10 @@ class Controller
      */
     public function connectedKeepGoing($bool){
         // if session and bool = 1 or if !session and bool = 0
-        if(!$this->userIsConnected() && $bool || $this->userIsConnected() && !$bool){
-            header('Location: /index.php');
+        if(!isset($_SESSION['user']) && $bool || isset($_SESSION['user']) && !$bool){
+            $this->render('home');
             die;
         }
-    }
-
-    /**
-     * @return bool
-     */
-    private function userIsConnected (){
-        return isset($_SESSION['user']);
     }
 
     /**
