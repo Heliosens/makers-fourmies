@@ -57,7 +57,7 @@
                             foreach ($tech as $key => $item) {
                                 echo '
                             <li>
-                                <a class="dropdown-item" href="/index?c=articles&p=one_technic&o=' . $key . ' ">' .
+                                <a class="dropdown-item" href="/index.php?c=articles&p=one_technic&o=' . $key . ' ">' .
                                     $item . '</a>
                             </li>';
                             }?>
