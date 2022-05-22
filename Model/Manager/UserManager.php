@@ -34,8 +34,24 @@ class UserManager
      */
     public static function mailEverExist (string $email) : bool
     {
-        $result = DB::getConn()->query("SELECT count(*) as nbr FROM " . Config::PRE . "user WHERE mail = '$email'");
-        return $result->fetch()['nbr'] > 0;
+        $stmt = DB::getConn()->prepare("SELECT count(*) as nbr FROM " . Config::PRE . "user WHERE mail = :mail");
+        $stmt->bindParam(':mail', $email);
+        $stmt->execute();
+        return $stmt->fetch()['nbr'] > 0;
+    }
+
+
+    /**
+     * check if pseudo ever exist
+     * @param string $pseudo
+     * @return bool
+     */
+    public static function pseudoEverExist (string $pseudo) : bool
+    {
+        $stmt = DB::getConn()->prepare("SELECT count(*) as nbr FROM " . Config::PRE . "user WHERE pseudo = :pseudo");
+        $stmt->bindParam(':pseudo', $pseudo);
+        $stmt->execute();
+        return $stmt->fetch()['nbr'] > 0;
     }
 
     /**

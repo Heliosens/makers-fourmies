@@ -27,19 +27,17 @@ class StepManager
     }
 
     /**
-     * @param $id
+     * @param $userId
      * @return array
      */
     public static function userUploadedImg($userId){
-        $img = [];
-        $query = DB::getConn()->query("SELECT img_name FROM " . Config::PRE . "step WHERE art_fk IN 
-        (SELECT id_art FROM " . Config::PRE . "article WHERE author = $userId)");
-        if($query){
-            foreach ($query->fetchAll() as $item){
-                $img[] = $item;
-            }
-        }
-        return $img;
+        $query = DB::getConn()->query("
+            SELECT img_name FROM " . Config::PRE . "step 
+            WHERE art_fk IN 
+                (SELECT id_art FROM " . Config::PRE . "article WHERE author = $userId)
+        ");
+
+        return $query->fetchAll();
     }
 
     /**

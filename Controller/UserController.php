@@ -29,77 +29,80 @@ class UserController extends Controller
         $error = "";
         // verify if there's not already a connected user & button is press & check fields
         if(!isset($_SESSION['user']) && isset($_POST['sendBtn'])){
-            // check button
-            if(isset($_POST['sendBtn'])){
-                // clean user entries data
-                $pseudo = $this->cleanEntries('pseudo');
-                $email = $this->cleanEntries('email');
-                $password = $_POST['passwrd'];
-                $passwordBis = $_POST['passwrdBis'];
+            // clean user entries data
+            $pseudo = $this->cleanEntries('pseudo');
+            $email = $this->cleanEntries('email');
+            $password = $_POST['passwrd'];
+            $passwordBis = $_POST['passwrdBis'];
 
-                // create array for error message
-                $_SESSION['error'] = $error;
-                // check mail validity
-                $email = filter_var($email, FILTER_SANITIZE_EMAIL);
-                if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-                    $error = "L'adresse email n'est pas valide";
-                }
-
-                // check pseudo length
-                if(strlen($pseudo) < 2 ) {
-                    $error = "Le pseudo n'est pas assez long";
-                }
-
-                // check password attempt character
-                if(!preg_match('/^(?=.*[!+@#$%^&*-\])(?=.*[0-9])(?=.*[A-Z]).{8,20}$/', $password)) {
-                    // Le password ne correspond pas au critère.
-                    $error = "Le password ne correspond pas aux critères";
-                }
-
-                // check the password equality
-                if($password !== $passwordBis){
-                    $error = "Les mots de passe ne sont pas identiques";
-                }
-
-                // check if mail exist
-                if(UserManager::mailEverExist($email)){
-                    $error = "Cet email est déja enregistré !";
-                }
-
-                // create token
-                $token = $this->createRandomName(12);
-
-                // check if there's no error
-                if(empty($error)){
-                    // create user
-                    $user = new User();
-                    $user->setPseudo($pseudo)
-                        ->setEmail($email)
-                        ->setPassword(password_hash($password, PASSWORD_BCRYPT))
-                        ->setRole(RoleManager::roleByName('user'))
-                        ->setAvatar(AvatarManager::defaultAvatar())
-                        ->setToken($token)
-                        ;
-
-                    // send validation mail
-                    $val = new ValidationController();
-                    $val->send_validation_mail($user);
-
-                    // if user added display message
-                    if(UserManager::addUser($user)){
-                        $_SESSION['error'] = 'Vous allez recevoir un mail de validation, merci de cliquer sur le lien de
-                     confirmation contenu dans ce message pour finaliser votre inscription';
-                    }
-                    else{
-                        $_SESSION['error'] = 'Erreur lors de l\'inscription';
-                    }
-                    $this->render('home');
-                }
-                else {
-                    $_SESSION['error'] = $error;
-                    $this->render('register');
-                }
+            // create array for error message
+            $_SESSION['error'] = $error;
+            // check mail validity
+            $email = filter_var($email, FILTER_SANITIZE_EMAIL);
+            if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+                $error = "L'adresse email n'est pas valide";
             }
+
+            // check pseudo length
+            if(strlen($pseudo) < 2 ) {
+                $error = "Le pseudo n'est pas assez long";
+            }
+
+            // check password attempt character
+            if(!preg_match('/^(?=.*[!+@#$%^&*-\])(?=.*[0-9])(?=.*[A-Z]).{8,20}$/', $password)) {
+                // Le password ne correspond pas au critère.
+                $error = "Le password ne correspond pas aux critères";
+            }
+
+            // check the password equality
+            if($password !== $passwordBis){
+                $error = "Les mots de passe ne sont pas identiques";
+            }
+
+            // check if mail exist
+            if(UserManager::mailEverExist($email)){
+                $error = "Cet email est déja enregistré !";
+            }
+
+            // check if pseudo exist
+            if(UserManager::pseudoEverExist($pseudo)){
+                $error = "Ce pseudo est déja enregistré !";
+            }
+
+            // create token
+            $token = $this->createRandomName(12);
+
+            // check if there's no error
+            if(empty($error)){
+                // create user
+                $user = new User();
+                $user->setPseudo($pseudo)
+                    ->setEmail($email)
+                    ->setPassword(password_hash($password, PASSWORD_BCRYPT))
+                    ->setRole(RoleManager::roleByName('user'))
+                    ->setAvatar(AvatarManager::defaultAvatar())
+                    ->setToken($token)
+                ;
+
+                // send validation mail
+                $val = new ValidationController();
+                $val->send_validation_mail($user);
+
+                // if user added display message
+                if(UserManager::addUser($user)){
+                    $_SESSION['error'] = 'Vous allez recevoir un mail de validation, merci de cliquer sur le lien de
+                 confirmation contenu dans ce message pour finaliser votre inscription';
+                }
+                else{
+                    $_SESSION['error'] = 'Erreur lors de l\'inscription';
+                }
+                $this->render('home');
+            }
+            else {
+                $_SESSION['error'] = $error;
+                $this->render('register');
+            }
+
             $this->render('home');
             die();
         }
@@ -181,7 +184,7 @@ class UserController extends Controller
      */
     public function del_user (int $id){
         if($_SESSION['user']['role'] === 'admin'){
-//          get del user role
+            // get del user role
             $role = UserManager::getRoleByUser($id)->getRoleName();
             if($this->testAdmin() || $role !== 'admin'){
                 $this->deleteUserUploads($id);

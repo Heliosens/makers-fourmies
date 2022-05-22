@@ -20,17 +20,18 @@
                     </div>
                 </div>
                 <div>
-                    <div class="bg-light p-3 border">
-                        <div>
-                            <p>Pseudo : <?=$user->getPseudo()?></p>
+                    <div class="bg-light p-3 border w-75 mx-auto">
+                        <div class="d-flex">
+                            <h4 class="m-0">Pseudo : </h4>
+                            <span class="px-2"><?=$user->getPseudo()?></span>
                         </div>
-                        <div>
-                            <p>Email : <?=$user->getEmail()?></p>
+                        <div class="d-flex">
+                            <h4 class="m-0">Email : </h4>
+                            <span class="px-2"><?=$user->getEmail()?></span>
                         </div>
-                        <div>
-                            <p>
-                                Rôle : <?=Config::roleName($user->getRole()->getRoleName())?>
-                            </p>
+                        <div class="d-flex">
+                            <h4 class="m-0">Rôle : </h4>
+                            <span class="px-2"><?=Config::roleName($user->getRole()->getRoleName())?></span>
                         </div>
                     </div>
                 </div>
@@ -63,26 +64,26 @@
                     }
                     ?>
                 </div>
-                <div class="row col-5">
-                    <div class="d-flex justify-content-around">
-                        <h3 class="text-center">Mes favoris :</h3>
-                    </div>
-                    <?php
-                    if(isset($art)){
-                        foreach ($art as $key => $item){
-                            echo '<div class="row row-cols-2 bg-light">
-                        <div class="col-8">
-                            <a class="text-decoration-none text-dark" href="/index?c=articles&p=one_article&o=' . $key
-                                . '">' . $item['title'] . '</a>
-                            </div>
-                            <a href="#" class="col-4 text-dark">
-                                <i class="fa-solid fa-heart-crack" title="Retirer des favoris"></i>
-                            </a>
-                    </div>';
-                        }
-                    }
-                    ?>
-                </div>
+<!--                <div class="row col-5">-->
+<!--                    <div class="d-flex justify-content-around">-->
+<!--                        <h3 class="text-center">Mes favoris :</h3>-->
+<!--                    </div>-->
+<!--                    --><?php
+//                    if(isset($art)){
+//                        foreach ($art as $key => $item){
+//                            echo '<div class="row row-cols-2 bg-light">
+//                        <div class="col-8">
+//                            <a class="text-decoration-none text-dark" href="/index?c=articles&p=one_article&o=' . $key
+//                                . '">' . $item['title'] . '</a>
+//                            </div>
+//                            <a href="#" class="col-4 text-dark">
+//                                <i class="fa-solid fa-heart-crack" title="Retirer des favoris"></i>
+//                            </a>
+//                    </div>';
+//                        }
+//                    }
+//                    ?>
+<!--                </div>-->
             </div>
 <!--            Modal -->
             <div class="modal fade" id="avatarModal" tabindex="-1" aria-labelledby="avatarModalLabel"
