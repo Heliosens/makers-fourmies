@@ -7,8 +7,8 @@
     <section>
         <div class="mx-auto py-1 row justify-content-center">
             <h2 class="text-center">Mon Profil</h2>
-<!--            user data-->
-            <header class="row row-cols-1 row-cols-sm-2 g-4">
+            <!--    user data-->
+            <header class="row row-cols-1 row-cols-sm-2 g-1 mb-4">
                 <div>
                     <div class="d-flex justify-content-center align-items-end">
                         <img class="col-4 col-4 col-sm-5 col-md-4 me-2 bg-light"
@@ -21,38 +21,38 @@
                 </div>
                 <div>
                     <div class="bg-light p-3 border w-75 mx-auto">
-                        <div class="d-flex">
+                        <div class="d-flex py-1">
                             <h4 class="m-0">Pseudo : </h4>
                             <span class="px-2"><?=$user->getPseudo()?></span>
                         </div>
-                        <div class="d-flex">
+                        <div class="d-flex py-1">
                             <h4 class="m-0">Email : </h4>
                             <span class="px-2"><?=$user->getEmail()?></span>
                         </div>
-                        <div class="d-flex">
+                        <div class="d-flex py-1">
                             <h4 class="m-0">Rôle : </h4>
                             <span class="px-2"><?=Config::roleName($user->getRole()->getRoleName())?></span>
                         </div>
                     </div>
                 </div>
             </header>
-<!--            user articles-->
+            <!--    user articles-->
             <div class="row row-cols-1 gap-3">
                 <div class="row col-7">
                     <div class="d-flex justify-content-around">
-                        <h3 class="text-center">Mes articles :</h3>
+                        <h3 class="text-center py-1">Mes articles :</h3>
                         <a href="/index.php?c=articles&p=art_form">Créer un article</a>
                     </div>
                     <?php
                     foreach ($art as $key => $item){
                             echo '
-                        <div class="row row-cols-2 mx-3">
-                            <div class="row col-10 bg-light">
+                        <div class="row row-cols-2 bg-light mx-3 py-1">
+                            <div class="row col-10">
                                 <a class="text-decoration-none text-dark col-7" href="/index?c=articles&p=one_article&o='
                                 . $key . '">' . $item['title'] . '</a>
                                 <span class="col-5">' . Config::stateName($item['state']) . '</span>
                                 </div>
-                            <div class="col-2 bg-light">
+                            <div class="col-2">
                                 <a  class="text-decoration-none text-dark" href="">
                                     <i class="fa-solid fa-pencil p-1" title="modifier"></i>
                                 </a>
@@ -64,28 +64,8 @@
                     }
                     ?>
                 </div>
-<!--                <div class="row col-5">-->
-<!--                    <div class="d-flex justify-content-around">-->
-<!--                        <h3 class="text-center">Mes favoris :</h3>-->
-<!--                    </div>-->
-<!--                    --><?php
-//                    if(isset($art)){
-//                        foreach ($art as $key => $item){
-//                            echo '<div class="row row-cols-2 bg-light">
-//                        <div class="col-8">
-//                            <a class="text-decoration-none text-dark" href="/index?c=articles&p=one_article&o=' . $key
-//                                . '">' . $item['title'] . '</a>
-//                            </div>
-//                            <a href="#" class="col-4 text-dark">
-//                                <i class="fa-solid fa-heart-crack" title="Retirer des favoris"></i>
-//                            </a>
-//                    </div>';
-//                        }
-//                    }
-//                    ?>
-<!--                </div>-->
             </div>
-<!--            Modal -->
+            <!--    Modal   -->
             <div class="modal fade" id="avatarModal" tabindex="-1" aria-labelledby="avatarModalLabel"
                  aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
@@ -117,12 +97,12 @@
                 </div>';
                 }
                 ?>
-<!--            Button trigger modal -->
+                <!--    Button trigger modal -->
                 <div>
                     <a type="button" class="btn btn-outline-danger btn-light btn-sm text-center" data-bs-toggle="modal"
                        data-bs-target="#accountModal">Supprimer mon compte</a>
                 </div>
-<!--            delete account Modal -->
+                <!--    delete account Modal -->
                 <div class="modal fade" id="accountModal" tabindex="-1" aria-labelledby="accountModalLabel"
                      aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
