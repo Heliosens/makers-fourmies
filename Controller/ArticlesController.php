@@ -25,8 +25,7 @@ class ArticlesController extends Controller
      * display technique name and published articles use this technique
      * @param $option
      */
-    public function one_technic(){
-        $option = $_GET['o'];
+    public function one_technic($option){
         $data = [
             'title' => TechnicManager::techName($option),
             'projects' => ArticleManager::artByTechnic($option)
@@ -37,8 +36,7 @@ class ArticlesController extends Controller
     /**
      * @param $option
      */
-    public function one_article (){
-        $option = $_GET['o'];
+    public function one_article ($option){
         $this->connectedKeepGoing(true);
         if(null !== $option && $option !== 0){
             // get selected projects
@@ -102,6 +100,21 @@ class ArticlesController extends Controller
             $id = $article->getId();
             header('Location: /index.php?c=articles&p=all_articles&o=' . $id);
         }
+    }
+
+    /**
+     * display article list by technique
+     */
+    public function art_list(){
+        $articles = ArticleManager::forUserArticles();
+        $data = [];
+        foreach ($articles as $art){
+            $tech = $art->getTechnic();
+            foreach ($tech as $item){
+                $data[$item->getTechnique()][] = $art;
+            }
+        }
+        $this->render('visitor', $data);
     }
 
 }

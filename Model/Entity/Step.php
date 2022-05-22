@@ -4,8 +4,8 @@
 class Step
 {
     private ?int $id_step = null;
-    private ?string $img_name;
-    private string $title;
+    private ?string $img_name = null;
+    private ?string $title = null;
     private ?string $description = null;
     private ?string $tool = null;
     private ?string $matter = null;
@@ -48,18 +48,18 @@ class Step
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getTitle(): string
+    public function getTitle(): ?string
     {
         return $this->title;
     }
 
     /**
-     * @param string $title
+     * @param string|null $title
      * @return Step
      */
-    public function setTitle(string $title): self
+    public function setTitle(?string $title): self
     {
         $this->title = $title;
         return $this;

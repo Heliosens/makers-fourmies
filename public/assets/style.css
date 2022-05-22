@@ -71,14 +71,23 @@ article {
     background-color: #b2d1ff;
 }
 
-.picture {
-    width: 30vw;
-    padding-bottom: 20vw;
+.picture, .illustration {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
 }
 
+.picture {
+    width: 30vw;
+    padding-bottom: 20vw;
+}
+
 .logo {
     width: 5vw;
 }
+
+.illustration {
+    width: 10vw;
+    height: 10vh;
+}
+

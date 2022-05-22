@@ -26,11 +26,20 @@
                     </div>
                 </div>
             </div>
+
             <div class="col">
                 <div class="card shadow">
-                    <a href="/index.php?c=projects&p=all_technic" class="text-decoration-none card-header">
+                    <?php
+                    if(isset($_SESSION['user'])){
+                        echo '<a href="/index.php?c=projects&p=all_technic" class="text-decoration-none card-header">
                         <h5 class="text-dark">Projets</h5>
-                    </a>
+                    </a>';
+                    }else{
+                        echo '<a href="/index.php?c=articles&p=art_list" class="text-decoration-none card-header">
+                        <h5 class="text-dark">Projets</h5>
+                    </a>';
+                    }
+                    ?>
                     <div class="card-body">
                         <h5 class="card-title">Réalisations de makers</h5>
                         <p class="card-text">Retrouvez les projets<br>Fiches technique et images<br>
