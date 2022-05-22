@@ -55,8 +55,6 @@ class Router
         else{
             $this->error();
         }
-        $controller = new $ctrl;
-        $controller->$p($o);
     }
 
     /**
