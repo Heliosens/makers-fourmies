@@ -39,6 +39,7 @@ class Router
      */
     public function toCtrl ($c, $p, $o){
         $ctrl = $this->getCtrlName($c);
+        $p = $this->paramCase($p);
         if(class_exists($ctrl)){
             $controller = new $ctrl;
             if(method_exists($controller, $p)){
@@ -64,6 +65,23 @@ class Router
     public static function error (){
         $ctrl = new ErrorController();
         $ctrl->render('page404');
+    }
+
+    /**
+     * set param in camelCase
+     * @param $param
+     * @return string
+     */
+    private function paramCase ($param){
+        $name = "";
+        if(isset($param)){
+            $value = explode("_", $param);
+
+            foreach ($value as $item){
+                $name .= ucfirst($item);
+            }
+        }
+        return lcfirst($name);
     }
 
 }

@@ -7,7 +7,7 @@ class ValidationController extends Controller
      * send token to user by mail
      * @param $user
      */
-    public function send_validation_mail($user){
+    public function sendValidationMail($user){
         $to = $user->getEmail();
         $subject = 'Validation de compte';
         // create token
@@ -40,7 +40,7 @@ class ValidationController extends Controller
     /**
      * @param $option
      */
-    public function check_account($option){
+    public function checkAccount($option){
         // recup data of url
         $value = explode("_", $option);
         $user = UserManager::getUserById($value[0]);

@@ -8,7 +8,7 @@ class ArticleManager
      * @param $id
      * @return array
      */
-    public static function artByTechnic (int $id) : array
+    public static function artByTechnic(int $id) : array
     {
         $articles = [];
         $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "article WHERE state = 3 AND id_art IN 
@@ -25,7 +25,7 @@ class ArticleManager
      * @param int $id
      * @return Article|null
      */
-    public static function oneArticle (int $id) : ?Article
+    public static function oneArticle(int $id) : ?Article
     {
         $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "article WHERE id_art = $id");
         if($query){
@@ -38,7 +38,7 @@ class ArticleManager
     /**
      * @return array
      */
-    public static function allArticles () : array
+    public static function allArticles() : array
     {
         $articles = [];
         $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "article");
@@ -104,7 +104,7 @@ class ArticleManager
      * @param $state
      * @return array
      */
-    public static function artByState (int $state) : array
+    public static function artByState(int $state) : array
     {
         $articles = [];
         $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "article WHERE state = $state");
@@ -123,7 +123,7 @@ class ArticleManager
      * @param int $id
      * @return array
      */
-    public static function artByAuthor (int $id) : array
+    public static function artByAuthor(int $id) : array
     {
         $articles = [];
         $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "article WHERE author = $id 
@@ -143,7 +143,7 @@ class ArticleManager
      * @param Article $article
      * @return bool
      */
-    public static function addArticle (Article &$article){
+    public static function addArticle(Article &$article){
         $stm = DB::getConn()->prepare("
             INSERT INTO " . Config::PRE . "article (title, description, type_fk, state, author)
             VALUES (:title, :description, :type_fk, :state, :author)
@@ -159,59 +159,49 @@ class ArticleManager
         $result = $stm->execute();
         $article->setId(DB::getConn()->lastInsertId());
 
-        if($result && $article->getCategory()){
+        if($article->getCategory()){
             foreach ($article->getCategory() as $value){
-                $stm = DB::getConn()->prepare("
+                $stmC = DB::getConn()->prepare("
                     INSERT INTO " . Config::PRE . "art_cat (cat_fk, art_fk)
                     VALUES (:cat_fk, :art_fk)
                 ");
-                $stm->bindValue(':cat_fk', $value);
-                $stm->bindValue('art_fk', $article->getId());
-
-                $result = $stm->execute();
+                $stmC->bindValue(':cat_fk', $value);
+                $stmC->bindValue('art_fk', $article->getId());
+                $stmC->execute();
             }
         }
-        else {
-            $_SESSION['error'] = "Erreur de catégorie";
-            header('Location: /index.php?c=articles&p=art_form');
-        }
 
-        if($result && $article->getTechnic()){
+        if($article->getTechnic()){
             foreach ($article->getTechnic() as $value){
-                $stm = DB::getConn()->prepare("
+                $stmT = DB::getConn()->prepare("
                     INSERT INTO " . Config::PRE . "art_tech (tech_fk, art_fk)
                     VALUES (:tech_fk, :art_fk)
                 ");
-                $stm->bindValue(':tech_fk', $value);
-                $stm->bindValue('art_fk', $article->getId());
+                $stmT->bindValue(':tech_fk', $value);
+                $stmT->bindValue('art_fk', $article->getId());
 
-                $stm->execute();
+                $stmT->execute();
             }
         }
 
-        // create steps
-        if($result){
-            foreach ($article->getStep() as $step){
-                $stm = DB::getConn()->prepare("
-                    INSERT INTO " . Config::PRE . "step (img_name, title, description, tool, matter, art_fk)
-                    VALUES (:img_name, :title, :description, :tool, :matter, :art_fk)
-                ");
-                // create step
-                $stm->bindValue(':img_name', $step->getImgName());
-                $stm->bindValue(':title', $step->getTitle());
-                $stm->bindValue(':description', $step->getDescription());
-                $stm->bindValue(':tool', $step->getTool());
-                $stm->bindValue(':matter', $step->getMatter());
-                $stm->bindValue(':art_fk', $article->getId());
+        //  create steps
+        foreach ($article->getStep() as $step){
+            $stmS = DB::getConn()->prepare("
+                INSERT INTO " . Config::PRE . "step (img_name, title, description, tool, matter, art_fk)
+                VALUES (:img_name, :title, :description, :tool, :matter, :art_fk)
+            ");
+            // create step
+            $stmS->bindValue(':img_name', $step->getImgName());
+            $stmS->bindValue(':title', $step->getTitle());
+            $stmS->bindValue(':description', $step->getDescription());
+            $stmS->bindValue(':tool', $step->getTool());
+            $stmS->bindValue(':matter', $step->getMatter());
+            $stmS->bindValue(':art_fk', $article->getId());
 
-                $result = $stm->execute();
-                $step->setIdStep(DB::getConn()->lastInsertId());
-            }
+            $stmS->execute();
+            $step->setIdStep(DB::getConn()->lastInsertId());
         }
-        else{
-            $_SESSION['error'] = "Erreur à l'enregistrement des étapes";
-            header('Location: /index.php?c=articles&p=art_form');
-        }
+
         return $result;
     }
 
@@ -219,7 +209,7 @@ class ArticleManager
      * @param $item
      * @return Article
      */
-    private static function setArticle ($item)
+    private static function setArticle($item)
     {
         $article = new Article();
         $article->setId($item['id_art'])
@@ -233,6 +223,27 @@ class ArticleManager
             ->setTechnic(TechnicManager::techByArt($item['id_art']))
         ;
         return $article;
+    }
+
+    /**
+     * get article author
+     * @param $id
+     * @return mixed
+     */
+    public static function getAuthorId($id){
+        $stm = DB::getConn()->prepare("SELECT author FROM " . Config::PRE . "article WHERE id_art = :id");
+        $stm->bindParam(':id', $id);
+        $stm->execute();
+        return $stm->fetch();
+    }
+
+    /**
+     * @param $id
+     */
+    public static function delArticleById($id){
+        $stm = DB::getConn()->prepare("DELETE FROM " . Config::PRE . "article WHERE id_art = :id");
+        $stm->bindParam(':id', $id);
+        $stm->execute();
     }
 
 }

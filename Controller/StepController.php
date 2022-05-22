@@ -10,8 +10,8 @@ class StepController extends Controller
     {
         $steps = [];
         foreach ($_POST['stepTitle'] as $key => $item){
+            die(var_dump($_POST['stepTitle']));
             $title = $this->cleanItem($item);
-
             $step = new Step();
             // get step image
             if(isset($_FILES['stepImage']) && $_FILES['stepImage']['error'][$key] === 0){
@@ -25,19 +25,7 @@ class StepController extends Controller
                         $step->setImgName($name);
                         move_uploaded_file($tmp_name, 'uploads/' . $name);
                     }
-                    else{
-                        $_SESSION['error'] = "Le type de l'image " . $this->cleanEntries($currentFile) . " n'est pas accepté";
-                        header("Location: /index.php?c=articles&p=art_form");
-                    }
                 }
-                else{
-                    $_SESSION['error'] = "L'image " . $this->cleanEntries($currentFile) . " est trop grande";
-                    header("Location: /index.php?c=articles&p=art_form");
-                }
-            }
-            else{
-                $_SESSION['error'] = "erreur lors du chargement de l'image ";
-                header("Location: /index.php?c=articles&p=art_form");
             }
 
             $description = $this->cleanItem($_POST['stepDescription'][$key]);
@@ -53,11 +41,11 @@ class StepController extends Controller
 
             $steps[] = $step;
         }
-
         return $steps;
     }
 
     /**
+     * delete one step uploads
      * @param $id
      */
     public function deleteStepUploads($id) {
@@ -66,4 +54,17 @@ class StepController extends Controller
             unlink("/uploads/' . $item . '");
         }
     }
+
+    /**
+     * @param $id
+     */
+    public static function deleteUploadsByArt($id) {
+        $img = StepManager::userUploadedImg($id);
+        foreach ($img as $item){
+            if(isset($item)){
+                unlink("/uploads/' . $item . '");
+            }
+        }
+    }
+
 }

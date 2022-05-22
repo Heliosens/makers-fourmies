@@ -52,7 +52,7 @@
                             <article>';
                             foreach ($state as $nbr => $article){
                                 echo '<div class="row row-cols-3 px-5">
-                                    <a class="text-decoration-none text-dark" href="' . $nbr . '">' . $article['title'] .'</a>
+                                    <a class="text-decoration-none text-dark" href="/index.php?c=articles&p=one_article&o=' . $nbr . '">' . $article['title'] .'</a>
                                     <span>' . $article['author'] .'</span>
                                     <div>
                                         <a  class="text-decoration-none text-dark" href="/index.php?c=articles&p=update_article&o=' . $nbr . '">

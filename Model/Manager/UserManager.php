@@ -34,10 +34,10 @@ class UserManager
      */
     public static function mailEverExist (string $email) : bool
     {
-        $stmt = DB::getConn()->prepare("SELECT count(*) as nbr FROM " . Config::PRE . "user WHERE mail = :mail");
-        $stmt->bindParam(':mail', $email);
-        $stmt->execute();
-        return $stmt->fetch()['nbr'] > 0;
+        $stm = DB::getConn()->prepare("SELECT count(*) as nbr FROM " . Config::PRE . "user WHERE mail = :mail");
+        $stm->bindParam(':mail', $email);
+        $stm->execute();
+        return $stm->fetch()['nbr'] > 0;
     }
 
 
@@ -48,10 +48,10 @@ class UserManager
      */
     public static function pseudoEverExist (string $pseudo) : bool
     {
-        $stmt = DB::getConn()->prepare("SELECT count(*) as nbr FROM " . Config::PRE . "user WHERE pseudo = :pseudo");
-        $stmt->bindParam(':pseudo', $pseudo);
-        $stmt->execute();
-        return $stmt->fetch()['nbr'] > 0;
+        $stm = DB::getConn()->prepare("SELECT count(*) as nbr FROM " . Config::PRE . "user WHERE pseudo = :pseudo");
+        $stm->bindParam(':pseudo', $pseudo);
+        $stm->execute();
+        return $stm->fetch()['nbr'] > 0;
     }
 
     /**
@@ -77,15 +77,17 @@ class UserManager
     }
 
     /**
-     * @param $mail
+     * @param $email
      * @return User
      */
-    public static function getUserByMail($mail) : User
+    public static function getUserByMail($email) : User
     {
         $user = new User();
-        $query = DB::getConn()->query("SELECT * FROM " . Config::PRE . "user WHERE mail = '$mail'");
-        if($query){
-            $item = $query->fetch();
+        $stm = DB::getConn()->prepare("SELECT * FROM " . Config::PRE . "user WHERE mail = :mail");
+        $stm->bindParam(':mail', $email);
+
+        if($stm->execute()){
+            $item = $stm->fetch();
             $user->setId($item['id_user'])
                 ->setPseudo($item['pseudo'])
                 ->setEmail($item['mail'])

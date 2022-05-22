@@ -6,7 +6,7 @@ class UserController extends Controller
     /**
      * display register form
      */
-    public function register_form (){
+    public function registerForm (){
         // verify if there's not already a connected user
         $this->connectedKeepGoing(false);
         $this->render('register');
@@ -15,7 +15,7 @@ class UserController extends Controller
     /**
      * display connection form
      */
-    public function connection_form (){
+    public function connectionForm (){
         // verify if there's not already a connected user
         $this->connectedKeepGoing(false);
         $this->render('connection');
@@ -24,7 +24,7 @@ class UserController extends Controller
     /**
      * register and connect new user
      */
-    public function new_user (){
+    public function newUser (){
         $this->connectedKeepGoing(false);
         $error = "";
         // verify if there's not already a connected user & button is press & check fields
@@ -182,7 +182,7 @@ class UserController extends Controller
      * only admin delete user count and only if user is not the last admin
      * @param int $id = user to delete id
      */
-    public function del_user (int $id){
+    public function delUser (int $id){
         if($_SESSION['user']['role'] === 'admin'){
             // get del user role
             $role = UserManager::getRoleByUser($id)->getRoleName();
@@ -200,7 +200,7 @@ class UserController extends Controller
     /**
      * delete count by owner
      */
-    public function del_own_count (){
+    public function delOwnCount (){
 //      get del user role
         $role = $_SESSION['user']['role'];
         if($this->testAdmin() || $role !== 'admin'){
@@ -213,13 +213,4 @@ class UserController extends Controller
         }
     }
 
-    /**
-     * @param $id
-     */
-    public function deleteUserUploads($id) {
-        $img = StepManager::userUploadedImg($id);
-        foreach ($img as $item){
-            unlink("/uploads/' . $item . '");
-        }
-    }
 }

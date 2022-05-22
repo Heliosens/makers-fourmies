@@ -53,10 +53,10 @@
                                 <span class="col-5">' . Config::stateName($item['state']) . '</span>
                                 </div>
                             <div class="col-2">
-                                <a  class="text-decoration-none text-dark" href="">
+                                <a  class="text-decoration-none text-dark" href="/index.php?c=articles&p=update_article&o=' . $key . '">
                                     <i class="fa-solid fa-pencil p-1" title="modifier"></i>
                                 </a>
-                                <a  class="text-decoration-none text-dark" href="">
+                                <a  class="text-decoration-none text-dark" href="/index.php?c=articles&p=del_article&o=' . $key . '">
                                     <i class="fa-solid fa-trash-can p-1" title="supprimer l\'article"></i>
                                 </a>
                             </div>

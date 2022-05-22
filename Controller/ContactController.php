@@ -13,7 +13,7 @@ class ContactController extends Controller
     /**
      * send mail from user to mkf
      */
-    public function send_mail(){
+    public function sendMail(){
 
         if(isset($_POST['sendBtn'], $_POST['user-mail'], $_POST['subject'], $_POST['user-message'])){
             $from = $this->cleanEntries('user-mail');
