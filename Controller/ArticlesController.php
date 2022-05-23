@@ -138,4 +138,22 @@ class ArticlesController extends Controller
         }
         $this->render('visitor', $data);
     }
+
+    /**
+     * @param $id
+     */
+    public function updateArticle($id){
+        $data = [
+            'type' => TypeManager::getAllKeyName('type'),
+            'category' => CategoryManager::getAllKeyName('category'),
+            'technique' => TechnicManager::getAllKeyName('technique'),
+            'article' => ArticleManager::oneArticle($id)
+        ];
+        $this->render('update_project', $data);
+    }
+
+    public function updateProject($id){
+
+    }
+
 }

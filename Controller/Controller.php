@@ -21,7 +21,7 @@ class Controller
      * @return string
      */
     public function cleanEntries ($param){
-        return trim(strip_tags($_POST[$param]));
+        return trim(strip_tags(htmlentities($_POST[$param])));
     }
 
     /**
@@ -30,7 +30,7 @@ class Controller
      * @return string
      */
     public function cleanItem ($item){
-        return trim(strip_tags($item));
+        return trim(strip_tags(htmlentities($item)));
     }
 
     /**

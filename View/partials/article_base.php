@@ -1,10 +1,10 @@
 <!--    title   -->
     <header class="text-center mt-3">
-        <h2><?=$value->getTitle()?></h2>
+        <h2><?=html_entity_decode($value->getTitle())?></h2>
     </header>
     <!-- description-->
     <div class="text-center mt-3 w-75 mx-auto">
-        <p><?=$value->getDescription()?></p>
+        <p><?=html_entity_decode($value->getDescription())?></p>
     </div>
 <!--    steps-->
     <div class="d-flex flex-wrap justify-content-evenly mt-3">
