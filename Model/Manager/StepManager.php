@@ -24,7 +24,6 @@ class StepManager
         $step->setIdStep(DB::getConn()->lastInsertId());
     }
 
-
     /**
      * @param int $id
      * @return array

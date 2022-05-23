@@ -184,6 +184,12 @@ class ArticleManager
             }
         }
         //  create steps
+        if($article->getStep()){
+            foreach ($article->getStep() as $item){
+                StepManager::addStep($item, $article->getId());
+            }
+        }
+
         return $result;
     }
 

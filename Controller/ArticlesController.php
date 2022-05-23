@@ -79,12 +79,17 @@ class ArticlesController extends Controller
             $cat = $this->fieldsState('cat') ? $_POST['cat'] : null;
             $tech = $this->fieldsState('tech') ? $_POST['tech'] : null;
 
+            // steps
+            $step = new StepController();
+            $steps = $step->createSteps();
+
             $article = new Article();
             $article
                 ->setTitle($title)
                 ->setDescription($description)
                 ->setType($type)
                 ->setState($state)
+                ->setStep($steps)
                 ->setAuthor($author)
                 ->setCategory($cat)
                 ->setTechnic($tech)
@@ -92,8 +97,6 @@ class ArticlesController extends Controller
 
             if(ArticleManager::addArticle($article)){
                 $id = $article->getId();
-                //  get step
-
                 // display new project
                 header("Location: /index.php?c=articles&p=one_article&o=$id");
                 exit();
