@@ -12,18 +12,10 @@ class ValidationController extends Controller
         $subject = 'Validation de compte';
         // create token
         $token = $this->createRandomName(12);
-        $txt = '
-        <html>
-            <body>
-                <div align="center">
-                    Bonjour ' . $user->getPseudo() . ' ,<br>
-                    Merci de confirmer la création de votre compte en cliquant sur le lien ci-desous :
-                    <a href="http://localhost:8000/index.php?c=validation&p=check_account&o=' .
-                    $user->getId() . '_' . $token . '">Je confirme mon compte</a>
-                </div>
-            </body>
-        </html>';
-        $txt = wordwrap($txt, 70, "/r/n");
+        $txt = "
+        Bonjour, Merci de confirmer la création de votre compte en cliquant sur le lien :
+        <a href=\"http://makers-fourmies.heliosens.fr/index.php?c=validation&p=check_account&o=" .
+        $user->getId() . "_" . $token . "\">Je confirme mon compte\</a>";
         $headers = [
             'reply-To' => 'makers.fourmies@gmail.com',
             'X-Mailer' => 'PHP/' . phpversion(),
