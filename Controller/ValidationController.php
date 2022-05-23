@@ -13,19 +13,16 @@ class ValidationController extends Controller
         // create token
         $token = $this->createRandomName(12);
         $txt = '
-            <html lang="fr">
-                <body>
-                    <div>
-                        <p>
-                            Bonjour ' . $user->getPseudo() . ' ,
-                            Merci de confirmer la création de votre compte en cliquant sur le lien ci-desous,
-                        </p>
-                        <a href="http://localhost:8000/index.php?c=validation&p=check_account&o=' .
-                            $user->getId() . '_' . $token . '">Je confirme mon compte</a>
-                    </div>
-                </body>
-            </html>
-        ';
+        <html>
+            <body>
+                <div align="center">
+                    Bonjour ' . $user->getPseudo() . ' ,<br>
+                    Merci de confirmer la création de votre compte en cliquant sur le lien ci-desous :
+                    <a href="http://localhost:8000/index.php?c=validation&p=check_account&o=' .
+                    $user->getId() . '_' . $token . '">Je confirme mon compte</a>
+                </div>
+            </body>
+        </html>';
         $txt = wordwrap($txt, 70, "/r/n");
         $headers = [
             'reply-To' => 'makers.fourmies@gmail.com',
@@ -52,7 +49,7 @@ class ValidationController extends Controller
         elseif ($user->getToken() === $value[1]) {
             // delete user token
             if(UserManager::updateToken($value[0])){
-                $_SESSION['error'] = "Votre compte a été créé avec succès, vous étes connecté";
+                $_SESSION['success'] = "Votre compte a été créé avec succès, vous étes connecté";
                 $_SESSION['user'] = [
                     'id' => $user->getId(),
                     'pseudo' => $user->getPseudo(),

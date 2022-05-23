@@ -86,12 +86,13 @@ class UserController extends Controller
 
                 // send validation mail
                 $val = new ValidationController();
-                $val->send_validation_mail($user);
+                $val->sendValidationMail($user);
 
                 // if user added display message
                 if(UserManager::addUser($user)){
-                    $_SESSION['error'] = 'Vous allez recevoir un mail de validation, merci de cliquer sur le lien de
+                    $_SESSION['success'] = 'Vous allez recevoir un mail de validation, merci de cliquer sur le lien de
                  confirmation contenu dans ce message pour finaliser votre inscription';
+                    $this->render('home');
                 }
                 else{
                     $_SESSION['error'] = 'Erreur lors de l\'inscription';
@@ -104,7 +105,6 @@ class UserController extends Controller
             }
 
             $this->render('home');
-            die();
         }
         else {
             $_SESSION['error'] = 'Veuillez remplir tous les champs';

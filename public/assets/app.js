@@ -11,7 +11,6 @@ if(toastLiveExample){
     toast.show()
 }
 
-
 // verif register form
 const registerBtn = document.getElementById('registerBtn');
 // get register input
@@ -19,8 +18,6 @@ const inputPseudo = document.getElementById('inputPseudo');
 const inputEmail = document.getElementById('inputEmail');
 const inputPassword = document.getElementById('inputPassword');
 const inputPassword2 = document.getElementById('inputPassword2');
-
-
 
 if(registerBtn){
     registerBtn.addEventListener('click', function (e){
@@ -33,9 +30,9 @@ if(registerBtn){
         if(inputPassword.value !== inputPassword2.value) {
             errorFrame("Les mots de passe ne correspondent pas",e);
         }
-
+        console.log(inputPassword.value)
         // Checking password format (length, 1 upper, one lower, one digit, one special char).
-        if(!inputPassword.value.match(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$/)) {
+        if(!inputPassword.value.match(/^(?=.*[!+@#$%^&*-\])(?=.*[0-9])(?=.*[A-Z]).{8,20}$/)) {
             errorFrame("Le format du mot de passe n'est pas bon (majuscule, minuscule, nombre et caractère spécial",e);
         }
 
@@ -51,6 +48,7 @@ function checklenght (...input){
             return false;
         }
     })
+    return true;
 }
 
 function errorFrame (text, e){
