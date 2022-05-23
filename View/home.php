@@ -31,7 +31,7 @@
                 <div class="card shadow">
                     <?php
                     if(isset($_SESSION['user'])){
-                        echo '<a href="/index.php?c=projects&p=all_technic" class="text-decoration-none card-header">
+                        echo '<a href="/index.php?c=articles&p=all_technic" class="text-decoration-none card-header">
                         <h5 class="text-dark">Projets</h5>
                     </a>';
                     }else{

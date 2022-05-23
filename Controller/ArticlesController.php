@@ -8,9 +8,9 @@ class ArticlesController extends Controller
      * all articles function of user role
      */
     public function allArticles(){
-        $role = 'for' . ucfirst($_SESSION['user']['role']) .'Articles';
-        if(method_exists('ArticleManager', $role)){
-            $this->render('all_articles', ['art' => ArticleManager::$role()]);
+        $list = 'for' . ucfirst($_SESSION['user']['role']) .'Articles';
+        if(method_exists('ArticleManager', $list)){
+            $this->render('all_articles', ['art' => ArticleManager::$list()]);
         }
         else {
             $this->render('page404');
@@ -42,7 +42,7 @@ class ArticlesController extends Controller
     public function oneArticle ($option){
         $this->connectedKeepGoing(true);
         if(null !== $option && $option !== 0){
-            // get selected projects
+            // get selected project
             $data = [
                 'article' => ArticleManager::oneArticle($option)
             ];
@@ -69,11 +69,7 @@ class ArticlesController extends Controller
      *
      */
     public function addArt (){
-        if(isset($_POST['submitBtn'])){
-            if(!$this->fieldsState('artTitle', 'artDescription')){
-                $_SESSION['error'] = "Les champs obligatoires doivent être remplis !";
-                header('Location: /index.php?c=articles&p=art_form');
-            }
+        if(isset($_POST['submitBtn']) && $this->fieldsState('artTitle', 'artDescription')){
             //  get article data
             $title = $this->cleanEntries('artTitle');
             $description = $this->cleanEntries('artDescription');
@@ -83,17 +79,12 @@ class ArticlesController extends Controller
             $cat = $this->fieldsState('cat') ? $_POST['cat'] : null;
             $tech = $this->fieldsState('tech') ? $_POST['tech'] : null;
 
-            //  get step
-            $stepController = new StepController();
-            $steps = $stepController->addStep();
-
             $article = new Article();
             $article
                 ->setTitle($title)
                 ->setDescription($description)
                 ->setType($type)
                 ->setState($state)
-                ->setStep($steps)
                 ->setAuthor($author)
                 ->setCategory($cat)
                 ->setTechnic($tech)
@@ -101,8 +92,16 @@ class ArticlesController extends Controller
 
             if(ArticleManager::addArticle($article)){
                 $id = $article->getId();
+                //  get step
 
+                // display new project
+                header("Location: /index.php?c=articles&p=one_article&o=$id");
             }
+
+        }
+        else{
+            $_SESSION['error'] = "Les champs obligatoires doivent être remplis !";
+            header("Location: /index.php?c=articles&p=art_form");
         }
     }
 
@@ -115,7 +114,7 @@ class ArticlesController extends Controller
         // author = user ou admin
         if($this->testAccess(['admin', 'modo']) || $_SESSION['user']['id'] == $author){
             // get article steps to delete uploads
-            UserController::deleteUserUploads($author);
+            StepController::deleteUploadsByArt($id);
             // delete article
             ArticleManager::delArticleById($id);
         }
@@ -138,7 +137,5 @@ class ArticlesController extends Controller
             }
         }
         $this->render('visitor', $data);
-
-
     }
 }

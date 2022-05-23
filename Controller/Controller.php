@@ -77,7 +77,6 @@ class Controller
         // if session and bool = 1 or if !session and bool = 0
         if(!isset($_SESSION['user']) && $bool || isset($_SESSION['user']) && !$bool){
             $this->render('home');
-            die;
         }
     }
 
@@ -103,6 +102,18 @@ class Controller
         $res = finfo_open(FILEINFO_MIME_TYPE);
         $actualType = finfo_file($res, $currentImg);
         return in_array($actualType, $allowed);
+    }
+
+    /**
+     * display rubric form
+     */
+    public function rubricForm(){
+        $this->render('rubric_form');
+    }
+
+
+    public function addRubric($rubric){
+
     }
 
 }

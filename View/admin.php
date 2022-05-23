@@ -10,7 +10,7 @@
             <h2 class="text-center m-5">Espace administrateur</h2>
             <div class="accordion" id="accordionAdmin">
                 <div class="accordion-item mb-3">
-<!--                    users                   -->
+                    <!--    users   -->
                     <h3 class="accordion-header">
                         <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -37,7 +37,7 @@
                     </div>
                 </div>
                 <div class="accordion-item mb-3">
-<!--                    articles                -->
+                    <!--    articles    -->
                     <h3 class="accordion-header">
                         <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseOne">
@@ -70,7 +70,7 @@
                     </div>
                 </div>
                 <div class="accordion-item mb-3">
-<!--                    rubrics                 -->
+                    <!--    rubrics -->
                     <h3 class="accordion-header">
                         <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseOne">
@@ -79,6 +79,9 @@
                     </h3>
                     <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingOne"
                          data-bs-parent="#accordionAdmin">
+                        <div>
+                            <a href="/index.php?p=rubric_form">Ajouter une rubrique</a>
+                        </div>
                         <?php
                         foreach ($rubrics as $key => $rubric) {
                             echo '<h3>' . Config::rubricsName($key) . '</h3>
@@ -100,7 +103,7 @@
                     </div>
                 </div>
                 <div class="accordion-item mb-3">
-<!--                    resources                -->
+                    <!--    resources   -->
                     <h3 class="accordion-header">
                         <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseOne">

@@ -183,25 +183,7 @@ class ArticleManager
                 $stmT->execute();
             }
         }
-
         //  create steps
-        foreach ($article->getStep() as $step){
-            $stmS = DB::getConn()->prepare("
-                INSERT INTO " . Config::PRE . "step (img_name, title, description, tool, matter, art_fk)
-                VALUES (:img_name, :title, :description, :tool, :matter, :art_fk)
-            ");
-            // create step
-            $stmS->bindValue(':img_name', $step->getImgName());
-            $stmS->bindValue(':title', $step->getTitle());
-            $stmS->bindValue(':description', $step->getDescription());
-            $stmS->bindValue(':tool', $step->getTool());
-            $stmS->bindValue(':matter', $step->getMatter());
-            $stmS->bindValue(':art_fk', $article->getId());
-
-            $stmS->execute();
-            $step->setIdStep(DB::getConn()->lastInsertId());
-        }
-
         return $result;
     }
 
@@ -245,5 +227,4 @@ class ArticleManager
         $stm->bindParam(':id', $id);
         $stm->execute();
     }
-
 }

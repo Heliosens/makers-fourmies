@@ -4,6 +4,28 @@
 class StepManager
 {
     /**
+     * @param $step
+     * @param $art_fk
+     */
+    public static function addStep($step, $art_fk){
+        $stmS = DB::getConn()->prepare("
+            INSERT INTO " . Config::PRE . "step (img_name, title, description, tool, matter, art_fk)
+            VALUES (:img_name, :title, :description, :tool, :matter, :art_fk)
+        ");
+        // create step
+        $stmS->bindValue(':img_name', $step->getImgName());
+        $stmS->bindValue(':title', $step->getTitle());
+        $stmS->bindValue(':description', $step->getDescription());
+        $stmS->bindValue(':tool', $step->getTool());
+        $stmS->bindValue(':matter', $step->getMatter());
+        $stmS->bindValue(':art_fk', $art_fk);
+
+        $stmS->execute();
+        $step->setIdStep(DB::getConn()->lastInsertId());
+    }
+
+
+    /**
      * @param int $id
      * @return array
      */
@@ -36,7 +58,13 @@ class StepManager
             WHERE art_fk IN 
                 (SELECT id_art FROM " . Config::PRE . "article WHERE author = $userId)
         ");
+        return $query->fetchAll();
+    }
 
+    public static function artUploadedImg($artId){
+        $query = DB::getConn()->query("
+            SELECT img_name FROM " . Config::PRE . "step WHERE art_fk = $artId
+        ");
         return $query->fetchAll();
     }
 

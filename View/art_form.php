@@ -79,7 +79,7 @@
                             <div class="oneStep border mb-5">
                                 <!--    title   -->
                                 <label class="fw-bold">Titre de l'étape 1</label>
-                                <span>(50 caractères max.)</span>
+                                <span>(50 caractères max.) **</span>
                                 <div class="mb-3 mx-auto fw-bold w-75">
                                     <input maxlength="50" type="text" name="stepTitle[]" class="form-control">
                                 </div>
