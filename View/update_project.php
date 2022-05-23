@@ -141,9 +141,7 @@
                         <input class="btn btn-success" type="submit" name="submitBtn" value="Valider"
                                title="Créer l'article">
                         <p class="fst-italic">
-                            En cliquant sur valider votre article sera créer en mode privé, vous pourrez le consulter
-                            dans votre espace profil, le modifier, le supprimer ou le soumettre afin qu'un
-                            administrateur puisse accepter sa publication.
+                            Après validation votre article passera en mode privé
                         </p>
                     </div>
                 </form>
