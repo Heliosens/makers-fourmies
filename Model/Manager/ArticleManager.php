@@ -187,6 +187,60 @@ class ArticleManager
         return $result;
     }
 
+
+    /**
+     * @param Article $article
+     * @return bool
+     */
+    public static function updateArticle(Article &$article){
+        $stm = DB::getConn()->prepare("
+            UPDATE " . Config::PRE . "article 
+            SET title=:title, description=:description, type_fk=:type_fk, state=:state, author=:author
+            WHERE id_art=:id
+        ");
+
+        // create article
+        $stm->bindValue(':title', $article->getTitle());
+        $stm->bindValue(':description', $article->getDescription());
+        $stm->bindValue(':type_fk', $article->getType()->getIdType());
+        $stm->bindValue(':state', $article->getState()->getId());
+        $stm->bindValue(':author', $article->getAuthor()->getId());
+        $stm->bindValue(':id', $article->getId());
+
+        $result = $stm->execute();
+
+        if($article->getCategory()){
+            CategoryManager::deleteChoice('art_cat',$article->getId());
+            foreach ($article->getCategory() as $value){
+                $stmC = DB::getConn()->prepare("
+                    INSERT INTO " . Config::PRE . "art_cat (cat_fk, art_fk)
+                    VALUES (:cat_fk, :art_fk)
+                ");
+                $stmC->bindValue(':cat_fk', $value);
+                $stmC->bindValue('art_fk', $article->getId());
+                $stmC->execute();
+            }
+        }
+
+        if($article->getTechnic()){
+            TechnicManager::deleteChoice('art_tech',$article->getId());
+            foreach ($article->getTechnic() as $value){
+                if(!TechnicManager::technicExists($value, $article->getId())) {
+                    $stmT = DB::getConn()->prepare("
+                        INSERT INTO " . Config::PRE . "art_tech (tech_fk, art_fk)
+                        VALUES (:tech_fk, :art_fk)
+                    ");
+                    $stmT->bindValue(':tech_fk', $value);
+                    $stmT->bindValue('art_fk', $article->getId());
+
+                    $stmT->execute();
+                }
+            }
+        }
+        //  create steps
+        return $result;
+    }
+
     /**
      * @param $item
      * @return Article

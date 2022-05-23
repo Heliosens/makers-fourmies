@@ -50,4 +50,24 @@ class TechnicManager extends Manager
         }
         return $technics;
     }
+
+
+    /**
+     * Check if a relation exists for technic + article.
+     * @param int $idTechnic
+     * @param int $idArticle
+     * @return bool
+     */
+    public static function technicExists(int $idTechnic, int $idArticle): bool
+    {
+        $stmt = DB::getConn()->prepare("
+            SELECT count(*) FROM " . Config::PRE . "art_tech as c WHERE tech_fk = :tech_fk AND art_fk = :art_fk
+        ");
+
+        $stmt->bindValue(':tech_fk', $idTechnic);
+        $stmt->bindValue(':art_fk', $idArticle);
+
+        $stmt->execute();
+        return $stmt->fetch()['c'] > 0;
+    }
 }

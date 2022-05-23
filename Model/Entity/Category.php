@@ -20,7 +20,7 @@ class Category
      */
     public function setId(?int $id): self
     {
-        $this->id_cat = $id;
+        $this->id = $id;
         return $this;
     }
 

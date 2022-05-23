@@ -9,7 +9,7 @@
                     <span class="fs-5 fw-bold">Modifier un article </span>
                 </div>
                 <!--    form to create article  -->
-                <form action="/index.php?c=articles&p=update_project" method="POST" enctype="multipart/form-data">
+                <form action="/index.php?c=articles&p=update_project&o=<?=$article->getId()?>" method="POST" enctype="multipart/form-data">
                     <div class="row row-cols-lg-3 row-cols-sm-2 row-cols-1">
                         <!--    type    -->
                         <div>
@@ -17,9 +17,10 @@
                             <p>valeur actuelle : <?=$article->getType()->getTypeName()?></p>
                             <?php
                             foreach ($data['type'] as $key => $item){
+                                $selected = $key === $article->getType()->getIdType() ? 'checked' : '';
                                 echo '<div class="form-check">
                                 <input class="form-check-input" type="radio" name="type" value="' . $key . '" id="radio'
-                                    . $key . '">
+                                    . $key . '" '.$selected.'>
                                 <label class="form-check-label" for="radio' . $key . '">' . $item . '</label>
                             </div>';
                             }
@@ -38,9 +39,12 @@
                             </div>
                             <?php
                             foreach ($data['category'] as $key => $item){
+                                $articleCats = array_map(fn($cat) => $cat->getId(), $article->getCategory());
+                                $selected = in_array($key, array_values($articleCats)) ? 'checked' : '';
+
                                 echo '<div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="cat[]" value="' . $key . '"
-                                 id="catCheck' . $key . '">
+                                 id="catCheck' . $key . '" '.$selected.'>
                                 <label class="form-check-label" for="catCheck' . $key . '">' . $item . '</label>
                             </div>';
                             }
@@ -59,9 +63,12 @@
                             </div>
                             <?php
                             foreach ($data['technique'] as $key => $item){
+                                $articleTechnics = array_map(fn($technic) => $technic->getIdTech(), $article->getTechnic());
+                                $selected = in_array($key, array_values($articleTechnics)) ? 'checked' : '';
+
                                 echo '<div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="tech[]" value="' . $key . '"
-                                id="techCheck' . $key . '">
+                                id="techCheck' . $key . '" '.$selected.'>
                                 <label class="form-check-label" for="techCheck' . $key . '">' . $item . '</label>
                             </div>';
                             }
@@ -132,7 +139,7 @@
                                 </div>
                             </div>
                         </div>
-                            <?php
+                        <?php
                         }
                         ?>
                     </div>

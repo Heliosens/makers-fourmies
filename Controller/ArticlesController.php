@@ -96,12 +96,14 @@ class ArticlesController extends Controller
 
                 // display new project
                 header("Location: /index.php?c=articles&p=one_article&o=$id");
+                exit();
             }
 
         }
         else{
             $_SESSION['error'] = "Les champs obligatoires doivent être remplis !";
             header("Location: /index.php?c=articles&p=art_form");
+            exit();
         }
     }
 
@@ -152,8 +154,46 @@ class ArticlesController extends Controller
         $this->render('update_project', $data);
     }
 
+    /**
+     * Update an article.
+     * @param $id
+     */
     public function updateProject($id){
+        if(isset($_POST['submitBtn']) && $this->fieldsState('artTitle', 'artDescription')){
+            //  get article data
+            $title = $this->cleanEntries('artTitle');
+            $description = $this->cleanEntries('artDescription');
+            $author = UserManager::getUserById($_SESSION['user']['id']);
+            $type = $this->fieldsState('type') ? TypeManager::getTypeById($_POST['type']) : null;
+            $state = StateManager::stateByName('pr');
+            $cat = $this->fieldsState('cat') ? $_POST['cat'] : null;
+            $tech = $this->fieldsState('tech') ? $_POST['tech'] : null;
 
+            $article = new Article();
+            $article
+                ->setId(intval($id))
+                ->setTitle($title)
+                ->setDescription($description)
+                ->setType($type)
+                ->setState($state)
+                ->setAuthor($author)
+                ->setCategory($cat)
+                ->setTechnic($tech)
+            ;
+
+            if(ArticleManager::updateArticle($article)){
+                header("Location: /index.php?c=articles&p=one_article&o=$id");
+                exit;
+            }
+        }
+        else{
+            $_SESSION['error'] = "Les champs obligatoires doivent être remplis !";
+            header("Location: /index.php?c=articles&p=update_article");
+            exit;
+        }
     }
 
+    public function changeStatut($id){
+
+    }
 }

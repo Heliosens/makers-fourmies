@@ -38,4 +38,24 @@ class CategoryManager extends Manager
         return $categories;
     }
 
+
+    /**
+     * Check if a relation exists for category + article.
+     * @param int $idCategory
+     * @param int $idArticle
+     * @return bool
+     */
+    public static function categoryExists(int $idCategory, int $idArticle): bool
+    {
+        $stm = DB::getConn()->prepare("
+            SELECT count(*) as c FROM " . Config::PRE . "art_cat WHERE cat_fk = :cat_fk AND art_fk = :art_fk
+        ");
+
+        $stm->bindValue(':cat_fk', $idCategory);
+        $stm->bindValue(':art_fk', $idArticle);
+
+        $stm->execute();
+        return $stm->fetch()['c'] > 0;
+    }
+
 }

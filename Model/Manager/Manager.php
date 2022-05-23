@@ -47,4 +47,19 @@ class Manager
         $stm->execute();
     }
 
+    /**
+     * delete current choice of category
+     * @param $id
+     */
+    public static function deleteChoice($table, $id)
+    {
+        $stm = DB::getConn()->prepare("
+            DELETE FROM " . Config::PRE . "$table WHERE art_fk = :art_fk
+        ");
+
+        $stm->bindValue('art_fk', $id);
+
+        $stm->execute();
+    }
+
 }
