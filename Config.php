@@ -19,13 +19,10 @@ class Config
         switch ($param){
             case 'admin' :
                 return'Administrateur';
-                break;
             case 'modo' :
                 return 'Modérateur';
-                break;
             case 'user' :
                 return 'Utilisateur';
-                break;
             default :
                 return 'Unknown';
         }
@@ -39,13 +36,10 @@ class Config
         switch ($param){
             case 1 :
                 return 'Privé';
-                break;
             case 2 :
                 return 'En attente de validation';
-                break;
             case 3 :
                 return 'Publié';
-                break;
             default :
                 return null;
         }
@@ -57,18 +51,14 @@ class Config
      */
     public static function rubricsName($param){
         switch ($param){
-            case 1 :
+            case 'type' :
                 return 'Types';
-                break;
-            case 2 :
+            case 'category' :
                 return 'Catégories';
-                break;
-            case 3 :
+            case 'technique' :
                 return 'Techniques';
-                break;
-            case 4 :
+            case 'resource' :
                 return 'Ressources';
-                break;
             default :
                 return null;
         }

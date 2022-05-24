@@ -13,9 +13,9 @@
             foreach ($value->getStep() as $item){
                 echo '
                 <div class="d-flex flex-column align-items-center pb-3">
-                <div class="picture" title="'. $item->getTitle() .'" style="background-image: url(/uploads/'.
+                <div class="picture" title="'. html_entity_decode($item->getTitle()) .'" style="background-image: url(/uploads/'.
                     $item->getImgName() .');" ></div>
-                      <span>' . $item->getDescription() . '</span>
+                      <span>' . html_entity_decode($item->getDescription()) . '</span>
                 </div>';
             }
             ?>
@@ -61,4 +61,21 @@
             </ul>
         </aside>
     </div>
-    <p class="border-bottom border-secondary">Article par : <?=$value->getAuthor()->getPseudo()?></p>
+    <div class="d-flex justify-content-between border-bottom border-secondary">
+        <p class="">Article par : <?=$value->getAuthor()->getPseudo()?></p>
+        <?php
+        if(Controller::testAccess(['admin', 'modo'])){?>
+            <div>
+                <a href="/index.php?c=articles&p=status_change&o=<?=$value->getId()?>" title="changement de statut">
+                    <i class="fa-solid fa-toggle-on"></i>
+                </a>
+                <span><?=Config::stateName($value->getState()->getId())?></span>
+                <a  class="text-decoration-none text-dark"
+                    href="/index.php?c=articles&p=del_article&o=<?=$value->getId()?>">
+                    <i class="fa-solid fa-trash-can p-1" title="supprimer l\'article"></i>
+                </a>
+            </div>
+        <?php
+        }
+        ?>
+    </div>

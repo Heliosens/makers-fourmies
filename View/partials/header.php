@@ -79,7 +79,7 @@
                     </a>
                     <a class="nav-link text-secondary" href="/index.php?c=user&p=register_form" 
                         title="Inscription">
-                        <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                        <i class="fa-solid fa-right-to-bracket"></i>
                     </a>';
                     }
                     else{

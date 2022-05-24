@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 <div>
-                    <input type="submit" name="sendBtn" class="btn btn-primary" value="Valider">
+                    <input type="submit" id="connectionBtn" name="sendBtn" class="btn btn-primary" value="Valider">
                 </div>
             </form>
         </div>

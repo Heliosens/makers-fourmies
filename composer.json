@@ -1,6 +1,7 @@
 {
     "require": {
         "phpunit/phpunit": "^9.5",
-      "ext-fileinfo": "*"
+      "ext-fileinfo": "*",
+      "ext-openssl": "*"
     }
 }

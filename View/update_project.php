@@ -9,12 +9,12 @@
                     <span class="fs-5 fw-bold">Modifier un article </span>
                 </div>
                 <!--    form to create article  -->
-                <form action="/index.php?c=articles&p=update_project&o=<?=$article->getId()?>" method="POST" enctype="multipart/form-data">
+                <form action="/index.php?c=articles&p=update_project&o=<?=$article->getId()?>" method="POST"
+                      enctype="multipart/form-data">
                     <div class="row row-cols-lg-3 row-cols-sm-2 row-cols-1">
                         <!--    type    -->
                         <div>
                             <span class="fw-bold">Type de projet</span>
-                            <p>valeur actuelle : <?=$article->getType()->getTypeName()?></p>
                             <?php
                             foreach ($data['type'] as $key => $item){
                                 $selected = $key === $article->getType()->getIdType() ? 'checked' : '';
@@ -31,17 +31,14 @@
                             <div class="row">
                                 <span class="fw-bold">Catégorie *</span>
                                 <span>valeur actuelle :</span>
-                                    <?php
-                                    foreach ($article->getCategory() as $value){?>
-                                        <span><?=$value->getName()?></span>
-                                        <?php
-                                    }?>
                             </div>
                             <?php
+                            $currentCat = [];
+                            foreach ($article->getCategory() as $choice){
+                                $currentCat[] = $choice->getId();
+                            }
                             foreach ($data['category'] as $key => $item){
-                                $articleCats = array_map(fn($cat) => $cat->getId(), $article->getCategory());
-                                $selected = in_array($key, array_values($articleCats)) ? 'checked' : '';
-
+                                $selected = in_array($key, $currentCat) ? 'checked' : '';
                                 echo '<div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="cat[]" value="' . $key . '"
                                  id="catCheck' . $key . '" '.$selected.'>
@@ -54,17 +51,14 @@
                         <div>
                             <div class="row">
                                 <span class="fw-bold">Technique *</span>
-                                <span>valeur actuelle :</span>
-                                <?php
-                                foreach ($article->getTechnic() as $value){?>
-                                    <span><?=$value->getTechnique()?></span>
-                                    <?php
-                                }?>
                             </div>
                             <?php
+                            $currentTech = [];
+                            foreach ($article->getTechnic() as $choice){
+                                $currentTech[] = $choice->getIdTech();
+                            }
                             foreach ($data['technique'] as $key => $item){
-                                $articleTechnics = array_map(fn($technic) => $technic->getIdTech(), $article->getTechnic());
-                                $selected = in_array($key, array_values($articleTechnics)) ? 'checked' : '';
+                                $selected = in_array($key, $currentTech) ? 'checked' : '';
 
                                 echo '<div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="tech[]" value="' . $key . '"
@@ -103,7 +97,7 @@
                         <div id="steps">
                             <div class="oneStep border mb-5">
                                 <!--    title   -->
-                                <label class="fw-bold">Titre de l'étape 1</label>
+                                <label class="fw-bold">Titre de l'étape</label>
                                 <span>(50 caractères max.) **</span>
                                 <div class="mb-3 mx-auto fw-bold w-75">
                                     <input maxlength="50" type="text" name="stepTitle[]" class="form-control"
@@ -112,8 +106,8 @@
                                 <!--    description-->
                                 <span>Décrivez l'étape</span>
                                 <span class="fst-italic">(255 caractères max.)</span>
-                                <textarea maxlength="255" name="stepDescription[]" class="form-control mb-3 mx-auto w-75"
-                                          rows="3"><?=$item->getDescription()?></textarea>
+                                <textarea maxlength="255" class="form-control mb-3 mx-auto w-75" rows="3"
+                                          name="stepDescription[]"><?=$item->getDescription()?></textarea>
                                 <!--    tool & matter   -->
                                 <div class="row row-cols-2 w-75 mx-auto">
                                     <div>
@@ -128,13 +122,17 @@
                                         <label>Matière</label>
                                         <span>(20 caractères max.)</span>
                                         <div class="mb-3 fw-bold">
-                                            <input maxlength="20" type="text" name="stepMatter[]" class="form-control" value="<?=$item->getMatter()?>">
+                                            <input maxlength="20" type="text" name="stepMatter[]" class="form-control"
+                                                   value="<?=$item->getMatter()?>">
                                         </div>
                                     </div>
                                 </div>
                                 <!--    illustration    -->
+                                <div class="picture mx-auto"
+                                     style="background-image: url(/uploads/<?=$item->getImgName()?>);">
+                                </div>
                                 <div>
-                                    <label>Choisissez une image</label>
+                                    <label>Choisissez une autre image</label>
                                     <input type="file" name="stepImage[]" accept=".jpeg, .jpg, .png">
                                 </div>
                             </div>

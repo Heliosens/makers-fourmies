@@ -31,14 +31,13 @@ class ValidationController extends Controller
      */
     public function checkAccount($option){
         // recup data of url
-        $value = explode("_", $option);
+        $value = $this->getOption($option);
         $user = UserManager::getUserById($value[0]);
-        // is id match with link token & user added
-
+        // is the token already deleted
         if(self::checkToken($user)){
             $_SESSION['error'] = "Il semble que votre compte a déjà été validé";
         }
-        elseif ($user->getToken() === $value[1]) {
+        elseif ($user->getToken() === $value[1]) {  // is the id match with link token & user added
             // delete user token
             if(UserManager::updateToken($value[0])){
                 $_SESSION['success'] = "Votre compte a été créé avec succès, vous étes connecté";
@@ -53,7 +52,7 @@ class ValidationController extends Controller
             }
         }
         else {
-        $_SESSION['error'] = "Lien invalide";
+            $_SESSION['error'] = "Lien invalide";
         }
         $this->render('home');
     }

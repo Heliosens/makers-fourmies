@@ -24,8 +24,12 @@
                                 <?php
                                 foreach ($users as $key => $user){
                                     echo '<div class="row row-cols-3 px-5">
-                                    <a class="text-decoration-none text-dark" href="' . $key . '">' . $user->getPseudo() . '</a>
-                                    <span class="text-decoration-none text-dark">' . Config::roleName($user->getRole()->getRoleName()) . '</span>
+                                    <a class="text-decoration-none text-dark" href="">' .
+                                        $user->getPseudo() . '
+                                    </a>
+                                    <span class="text-decoration-none text-dark">' .
+                                        Config::roleName($user->getRole()->getRoleName()) . '
+                                    </span>
                                     <a href="/index.php?c=user&p=del_user&o=' . $user->getId() . '" class="text-dark">
                                         <i class="fa-solid fa-trash-can p-1" title="supprimer l\'utilisateur"></i>
                                     </a>
@@ -52,14 +56,22 @@
                             <article>';
                             foreach ($state as $nbr => $article){
                                 echo '<div class="row row-cols-3 px-5">
-                                    <a class="text-decoration-none text-dark" href="/index.php?c=articles&p=one_article&o=' . $nbr . '">' . $article['title'] .'</a>
+                                    <a class="text-decoration-none text-dark" 
+                                    href="/index.php?c=articles&p=one_article&o=' . $nbr . '">' . $article['title'] .'
+                                    </a>
                                     <span>' . $article['author'] .'</span>
-                                    <div>
-                                        <a  class="text-decoration-none text-dark" href="/index.php?c=articles&p=update_article&o=' . $nbr . '">
+                                    <div class="d-flex justify-content-between">
+                                        <a  class="text-decoration-none text-dark" 
+                                        href="/index.php?c=articles&p=update_article&o=' . $nbr . '">
                                             <i class="fa-solid fa-pencil p-1" title="modifier"></i>
                                         </a>
-                                        <a  class="text-decoration-none text-dark" href="/index.php?c=articles&p=del_article&o=' . $nbr . '">
+                                        <a  class="text-decoration-none text-dark" 
+                                        href="/index.php?c=articles&p=del_article&o=' . $nbr . '">
                                             <i class="fa-solid fa-trash-can p-1" title="supprimer l\'article"></i>
+                                        </a>
+                                        <a href="/index.php?c=articles&p=status_change&o=' . $nbr . '" 
+                                        title="changement de status">
+                                            <i class="fa-solid fa-toggle-on"></i>
                                         </a>
                                     </div>
                                 </div>';
@@ -80,20 +92,21 @@
                     <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingOne"
                          data-bs-parent="#accordionAdmin">
                         <div>
-                            <a href="/index.php?p=rubric_form">Ajouter une rubrique</a>
+                            <a href="/index.php?c=articles&p=rubric_form">Ajouter une rubrique</a>
                         </div>
                         <?php
-                        foreach ($rubrics as $key => $rubric) {
-                            echo '<h3>' . Config::rubricsName($key) . '</h3>
+                        foreach ($rubrics as $table => $rubric) {
+                            echo '<h3>' . Config::rubricsName($table) . '</h3>
                             <article>';
                             foreach ($rubric as $nbr => $item) {
                                 echo '<div class="row row-cols-3 px-5">
                                 <span>' . $item . '</span>
-                                <a class="text-decoration-none text-dark" href="' . $nbr . '">
+                                <a class="text-decoration-none text-dark" href="">
                                     <i class="fa-solid fa-pencil p-1" title="modifier"></i>
                                 </a>
-                                <a class="text-decoration-none text-dark" href="' . $nbr . '">
-                                    <i class="fa-solid fa-trash-can p-1" title="supprimer l\'article"></i>
+                                <a href="/index.php?c=articles&p=del_rubric&o=' . $table . '_' . $nbr .'" 
+                                    class="text-decoration-none text-dark">
+                                    <i class="fa-solid fa-trash-can p-1" title="supprimer"></i>
                                 </a>
                             </div>';
                             }
@@ -123,11 +136,11 @@
                                     <span>' . $value['title'] . '</span>
                                     </div>
                                     <div>
-                                        <a  class="text-decoration-none text-dark" href="' . $value['id'] . '">
+                                        <a  class="text-decoration-none text-dark" href="">
                                             <i class="fa-solid fa-pencil p-1" title="modifier"></i>
                                         </a>
-                                        <a  class="text-decoration-none text-dark" href="' . $value['id'] . '">
-                                            <i class="fa-solid fa-trash-can p-1" title="supprimer l\'article"></i>
+                                        <a  class="text-decoration-none text-dark" href="">
+                                            <i class="fa-solid fa-trash-can p-1" title="supprimer"></i>
                                         </a>
                                     </div>
                                 </div>

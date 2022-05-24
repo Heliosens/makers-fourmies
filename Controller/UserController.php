@@ -201,7 +201,7 @@ class UserController extends Controller
      * delete count by owner
      */
     public function delOwnCount (){
-//      get del user role
+        //  get del user role
         $role = $_SESSION['user']['role'];
         if($this->testAdmin() || $role !== 'admin'){
             UserManager::delById($_SESSION['user']['id']);

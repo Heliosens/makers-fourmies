@@ -58,12 +58,12 @@ class Controller
     }
 
     /**
-     * test if current user is authorized function of provided array
+     * test if current user role is in provided array
      * @param array $authorized
      * @return bool
      */
-    public function testAccess(array $authorized){
-        $this->connectedKeepGoing(true);
+    public static function testAccess(array $authorized){
+        self::connectedKeepGoing(true);
         return in_array($_SESSION['user']['role'], $authorized);
     }
 
@@ -73,10 +73,11 @@ class Controller
      * bool
      * @param $bool
      */
-    public function connectedKeepGoing($bool){
+    public static function connectedKeepGoing($bool){
         // if session and bool = 1 or if !session and bool = 0
         if(!isset($_SESSION['user']) && $bool || isset($_SESSION['user']) && !$bool){
-            $this->render('home');
+            header('Locator: index.php');
+            exit;
         }
     }
 
@@ -103,15 +104,12 @@ class Controller
     }
 
     /**
-     * display rubric form
+     * get url option and return array
+     * @param $option
+     * @return false|string[]
      */
-    public function rubricForm(){
-        $this->render('rubric_form');
-    }
-
-
-    public function addRubric($rubric){
-
+    public function getOption($option){
+        return explode("_", $option);
     }
 
 }

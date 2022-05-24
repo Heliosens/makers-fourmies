@@ -41,7 +41,7 @@ class Manager
      * @param $table
      * @param $id
      */
-    public function deleteName ($table, $id){
+    public static function deleteName ($table, $id){
         $stm = DB::getConn()->prepare("DELETE FROM " . Config::PRE . $table . " WHERE id = :id");
         $stm->bindValue(":id", $id);
         $stm->execute();
@@ -49,6 +49,7 @@ class Manager
 
     /**
      * delete current choice of category
+     * @param $table
      * @param $id
      */
     public static function deleteChoice($table, $id)

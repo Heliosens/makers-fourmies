@@ -280,6 +280,7 @@ class ArticleManager
     }
 
     /**
+     * delete article
      * @param $id
      */
     public static function delArticleById($id){
@@ -287,4 +288,34 @@ class ArticleManager
         $stm->bindParam(':id', $id);
         $stm->execute();
     }
+
+    /**
+     * get article status
+     * @param $id
+     * @return mixed
+     */
+    public static function getArtStatus($id){
+        $stm = DB::getConn()->prepare("SELECT state FROM " . Config::PRE . "article WHERE id_art = :id");
+        $stm->bindParam(':id', $id);
+        $stm->execute();
+        return $stm->fetch();
+    }
+
+    /**
+     * give status in parameter
+     * @param $id
+     * @param $state
+     * @return bool
+     */
+    public static function statusSwitch($id, $state){
+        $stm = DB::getConn()->prepare("
+        UPDATE " . Config::PRE . "article SET state= :state WHERE id_art = :id
+        ");
+
+        $stm->bindValue(':id', $id);
+        $stm->bindValue(':state', $state);
+
+        return $stm->execute();
+    }
+
 }

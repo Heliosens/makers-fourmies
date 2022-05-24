@@ -30,14 +30,33 @@ if(registerBtn){
         if(inputPassword.value !== inputPassword2.value) {
             errorFrame("Les mots de passe ne correspondent pas",e);
         }
-        console.log(inputPassword.value)
+
         // Checking password format (length, 1 upper, one lower, one digit, one special char).
         if(!inputPassword.value.match(/^(?=.*[!+@#$%^&*-\])(?=.*[0-9])(?=.*[A-Z]).{8,20}$/)) {
-            errorFrame("Le format du mot de passe n'est pas bon (majuscule, minuscule, nombre et caractère spécial",e);
+            errorFrame("Le format du mot de passe n'est pas bon",e);
         }
 
-        let error = document.getElementById('errorFrame');
-        setTimeout(()=> error.remove(), 3000);
+    })
+}
+
+// verif connection
+const connectionBtn = document.getElementById('connectionBtn');
+// get connection input
+const floatingInput = document.getElementById('floatingInput');
+const floatingPassword = document.getElementById('floatingPassword');
+
+if(connectionBtn){
+    connectionBtn.addEventListener('click', function (e){
+        // Checking fields length.
+        if(!checklenght(floatingInput, floatingPassword)){
+            errorFrame("Merci de remplir TOUS les champs",e);
+        }
+
+        // Checking password format (length, 1 upper, one lower, one digit, one special char).
+        if(!floatingPassword.value.match(/^(?=.*[!+@#$%^&*-\])(?=.*[0-9])(?=.*[A-Z]).{8,20}$/)) {
+            errorFrame("Le format du mot de passe n'est pas bon",e);
+        }
+
     })
 }
 
@@ -51,6 +70,7 @@ function checklenght (...input){
     return true;
 }
 
+// error message
 function errorFrame (text, e){
     let div = document.createElement('div');
     div.id = "errorFrame";
@@ -63,5 +83,8 @@ function errorFrame (text, e){
     div.innerHTML = text;
     main.prepend(div);
     e.preventDefault();
+
+    let error = document.getElementById('errorFrame');
+    setTimeout(()=> error.remove(), 3000);
 }
 

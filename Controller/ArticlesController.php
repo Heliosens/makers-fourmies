@@ -117,14 +117,16 @@ class ArticlesController extends Controller
         // get article owner
         $author = ArticleManager::getAuthorId($id)['author'];
         // author = user ou admin
-        if($this->testAccess(['admin', 'modo']) || $_SESSION['user']['id'] == $author){
+        if(self::testAccess(['admin', 'modo']) || $_SESSION['user']['id'] == $author){
             // get article steps to delete uploads
             StepController::deleteUploadsByArt($id);
             // delete article
             ArticleManager::delArticleById($id);
+            $referer = $_SERVER['HTTP_REFERER'];
+            header("Location: $referer");
         }
         else{
-            $_SESSION['Vous n\'avez pas l\'autorisation de supprimer cet article'];
+            $_SESSION['error'] = 'Vous n\'avez pas l\'autorisation de supprimer cet article';
             $this->render('home');
         }
     }
@@ -196,7 +198,45 @@ class ArticlesController extends Controller
         }
     }
 
-    public function changeStatut($id){
-
+    /**
+     * @param $id
+     */
+    public function statusChange($id){
+        self::testAccess(['admin', 'modo']);
+        $currentStatus = ArticleManager::getArtStatus($id);
+        switch($currentStatus['state']){
+            case '1':
+                ArticleManager::statusSwitch($id, '2');
+                break;
+            case '2' :
+                ArticleManager::statusSwitch($id, '3');
+                break;
+            case '3':
+                ArticleManager::statusSwitch($id, '1');
+                break;
+        }
+        $referer = $_SERVER['HTTP_REFERER'];
+        header("Location: $referer");
+        exit;
     }
+
+    /**
+     * display rubric form
+     */
+    public function rubricForm(){
+        $this->render('rubric_form');
+    }
+
+    /**
+     * @param $option
+     */
+    public function delRubric($option){
+        $value = $this->getOption($option);
+        if(self::testAccess(['admin'])){
+            Manager::deleteName($value[0], $value[1]);
+        }
+        header('Location: /index.php?c=profile&p=admin');
+        exit;
+    }
+
 }

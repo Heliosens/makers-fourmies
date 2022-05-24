@@ -24,6 +24,7 @@ class Router
     }
 
     /**
+     * controller name
      * @param $ctrl
      * @return string
      */
