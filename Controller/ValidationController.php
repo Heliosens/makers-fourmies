@@ -9,13 +9,14 @@ class ValidationController extends Controller
      */
     public function sendValidationMail($user){
         $to = $user->getEmail();
+        $id = $user->getId();
         $subject = 'Validation de compte';
         // create token
-        $token = $this->createRandomName(12);
+        $token = $user->getToken();
         $txt = "
         Bonjour, Merci de confirmer la création de votre compte en cliquant sur le lien :
         <a href=\"http://makers-fourmies.heliosens.fr/index.php?c=validation&p=check_account&o=" .
-        $user->getId() . "_" . $token . "\">Je confirme mon compte\</a>";
+        $id . "_" . $token . "\">Je confirme mon compte</a>";
         $headers = [
             'reply-To' => 'makers.fourmies@gmail.com',
             'X-Mailer' => 'PHP/' . phpversion(),

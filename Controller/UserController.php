@@ -84,12 +84,11 @@ class UserController extends Controller
                     ->setToken($token)
                 ;
 
-                // send validation mail
-                $val = new ValidationController();
-                $val->sendValidationMail($user);
-
                 // if user added display message
                 if(UserManager::addUser($user)){
+                    // send validation mail
+                    $val = new ValidationController();
+                    $val->sendValidationMail($user);
                     $_SESSION['success'] = 'Vous allez recevoir un mail de validation, merci de cliquer sur le lien de
                  confirmation contenu dans ce message pour finaliser votre inscription';
                     $this->render('home');
@@ -187,7 +186,7 @@ class UserController extends Controller
             // get del user role
             $role = UserManager::getRoleByUser($id)->getRoleName();
             if($this->testAdmin() || $role !== 'admin'){
-                $this->deleteUserUploads($id);
+//                $this->deleteUserUploads($id);
                 UserManager::delById($id);
             }
             else{

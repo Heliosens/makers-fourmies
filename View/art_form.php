@@ -61,7 +61,8 @@
                             <span class="fw-bold">Titre de l'article **</span>
                             <span class="fst-italic">(100 caractères max.)</span>
                             <div class="mb-3 mx-auto fw-bold w-75">
-                                <input maxlength="100" type="text" name="artTitle" class="form-control" id="arTitle">
+                                <input maxlength="100" type="text" name="artTitle" class="form-control" id="arTitle"
+                                       required>
                             </div>
                         </div>
                         <!--    description -->
@@ -70,8 +71,7 @@
                                 difficulté...</label>
                             <span class="fst-italic">(255 caractères max.) **</span>
                             <textarea maxlength="255" name="artDescription" class="form-control mb-3 mx-auto w-75"
-                                      id="artDescription"
-                                      rows="3"></textarea>
+                                      id="artDescription" rows="3" required></textarea>
                         </div>
                         <p class="fs-5 fw-bold">Etapes :</p>
                         <!--    STEPS    -->
@@ -81,7 +81,7 @@
                                 <label class="fw-bold">Titre de l'étape 1</label>
                                 <span>(50 caractères max.) **</span>
                                 <div class="mb-3 mx-auto fw-bold w-75">
-                                    <input maxlength="50" type="text" name="stepTitle[]" class="form-control">
+                                    <input maxlength="50" type="text" name="stepTitle[]" class="form-control" required>
                                 </div>
                                 <!--    description-->
                                 <span>Décrivez l'étape</span>
@@ -116,7 +116,7 @@
                                 <label class="fw-bold">Titre de l'étape 2</label>
                                 <span>(50 caractères max.) **</span>
                                 <div class="mb-3 mx-auto fw-bold w-75">
-                                    <input maxlength="50" type="text" name="stepTitle[]" class="form-control">
+                                    <input maxlength="50" type="text" name="stepTitle[]" class="form-control" required>
                                 </div>
                                 <!--    description-->
                                 <span>Décrivez l'étape</span>

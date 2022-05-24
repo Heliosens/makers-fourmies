@@ -79,7 +79,7 @@
                             <span class="fst-italic">(100 caractères max.)</span>
                             <div class="mb-3 mx-auto fw-bold w-75">
                                 <input maxlength="100" type="text" name="artTitle" class="form-control" id="arTitle"
-                                       value="<?=$article->getTitle()?>">
+                                       value="<?=$article->getTitle()?>" required>
                             </div>
                         </div>
                         <!--    description -->
@@ -88,7 +88,7 @@
                                 difficulté...</label>
                             <span class="fst-italic">(255 caractères max.) **</span>
                             <textarea maxlength="255" name="artDescription" class="form-control mb-3 mx-auto w-75"
-                                      id="artDescription" rows="3"><?=$article->getDescription()?></textarea>
+                                      id="artDescription" rows="3" required><?=$article->getDescription()?></textarea>
                         </div>
                         <p class="fs-5 fw-bold">Créer une étape :</p>
                         <?php
@@ -100,7 +100,7 @@
                                 <label class="fw-bold">Titre de l'étape</label>
                                 <span>(50 caractères max.) **</span>
                                 <div class="mb-3 mx-auto fw-bold w-75">
-                                    <input maxlength="50" type="text" name="stepTitle[]" class="form-control"
+                                    <input maxlength="50" type="text" name="stepTitle[]" class="form-control" required
                                            value="<?=$item->getTitle()?>">
                                 </div>
                                 <!--    description-->

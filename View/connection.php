@@ -5,13 +5,15 @@
             <form class="align-middle" action="/index.php?c=user&p=connection" method="post">
                 <div>
                     <div class="form-floating mb-3">
-                        <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                        <input type="email" name="email" class="form-control" id="floatingInput"
+                               placeholder="name@example.com" required>
                         <label for="floatingInput">Email</label>
                     </div>
                 </div>
                 <div>
                     <div class="form-floating mb-3">
-                        <input type="password" name="passwrd" class="form-control" id="floatingPassword" placeholder="Password">
+                        <input type="password" name="passwrd" class="form-control" id="floatingPassword"
+                               placeholder="Password" required>
                         <label for="floatingPassword">Mot de passe</label>
                     </div>
                 </div>
