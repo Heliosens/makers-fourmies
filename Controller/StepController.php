@@ -27,14 +27,20 @@ class StepController extends Controller
                         }
                         else{
                             $_SESSION['error'] = "Type d'image non pris en charge";
+                            header('Location: /index.php?c=articles&p=art_form');
+                            exit;
                         }
                     }
                     else{
                         $_SESSION['error'] = "L'image est trop grande";
+                        header('Location: /index.php?c=articles&p=art_form');
+                        exit;
                     }
                 }
                 else{
                     $_SESSION['error'] = "Erreur lors du chargement de l'image";
+                    header('Location: /index.php?c=articles&p=art_form');
+                    exit;
                 }
             }
 
