@@ -114,6 +114,7 @@ class UserManager
                     ->setPseudo($item['pseudo'])
                     ->setEmail($item['mail'])
                     ->setPassword('')
+                    ->setToken($item['token'])
                     ->setAvatar(AvatarManager::getAvatById($item['avat_fk']))
                     ->setRole(RoleManager::getRoleById($item['role_fk']))
                 ;

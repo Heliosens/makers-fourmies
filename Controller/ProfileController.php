@@ -21,7 +21,7 @@ class ProfileController extends Controller
      * admin space if user is admin
      */
     public function admin(){
-        if(isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin'){
+        if(self::testAccess(['admin'])){
             $data = [
                 'user' => UserManager::allUser(),
                 'articles' => [
@@ -40,6 +40,20 @@ class ProfileController extends Controller
             $this->render('admin', $data);
         }
         else $this->render('home');
+    }
+
+    /**
+     * @param $id
+     */
+    public function profile($id){
+        if(self::testAccess(['admin'])){
+            $data = [
+                'user' => UserManager::getUserById($id),
+                'avatar' => AvatarManager::getAllAvatar(),
+                'art' => ArticleManager::artByAuthor($id),
+            ];
+            $this->render('profile', $data);
+        }
     }
 
 }

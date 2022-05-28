@@ -52,10 +52,10 @@ class AvatarManager
      * @param $id
      * @return bool
      */
-    public static function updateUserAvat($id){
-        $stm = DB::getConn()->prepare("UPDATE " . Config::PRE . "user SET avat_fk = :id WHERE id_user = "
-            . $_SESSION['user']['id']);
+    public static function updateUserAvat($id, $user){
+        $stm = DB::getConn()->prepare("UPDATE " . Config::PRE . "user SET avat_fk = :id WHERE id_user = :user");
         $stm->bindValue(':id', $id);
+        $stm->bindValue(':user', $user);
         return $stm->execute();
     }
 }

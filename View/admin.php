@@ -23,16 +23,22 @@
                             <article>
                                 <?php
                                 foreach ($users as $key => $user){
-                                    echo '<div class="row row-cols-3 px-5">
-                                    <a class="text-decoration-none text-dark" href="">' .
-                                        $user->getPseudo() . '
+                                    $token = ($user->getToken() === "" || $user->getToken() === null) ?
+                                        '<i class="fa-solid fa-check"></i>' : "non validé";
+                                    echo '<div class="row row-cols-5 px-5  align-items-center">
+                                    <a class="text-decoration-none text-dark" href="/index.php?c=profile&p=profile&o='
+                                        . $user->getId() . '">' . $user->getPseudo() . '
                                     </a>
+                                    <div>
+                                        <img class="w-25" src="/img/avatar/'. $user->getAvatar()->getAvatar() .'">
+                                    </div>
                                     <span class="text-decoration-none text-dark">' .
                                         Config::roleName($user->getRole()->getRoleName()) . '
                                     </span>
                                     <a href="/index.php?c=user&p=del_user&o=' . $user->getId() . '" class="text-dark">
                                         <i class="fa-solid fa-trash-can p-1" title="supprimer l\'utilisateur"></i>
                                     </a>
+                                    <span>' . $token . '</span>
                                 </div>';
                                 }
                                 ?>

@@ -12,15 +12,6 @@ class Router
     }
 
     /**
-     * @param $param
-     * @return string
-     */
-    public static function cleanOption ($param){
-        $id = intval(trim(strip_tags($param)));
-        return filter_var($id, FILTER_VALIDATE_INT) ? $id : self::cleanParam($param);
-    }
-
-    /**
      * controller name
      * @param $ctrl
      * @return string

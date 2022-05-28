@@ -6,7 +6,10 @@
 <main>
     <section>
         <div class="mx-auto py-1 row justify-content-center">
-            <h2 class="text-center">Mon Profil</h2>
+            <?php
+            echo $_SESSION['user']['id'] === $user->getId() ?
+                '<h2 class="text-center">Mon Profil</h2>' : '<h2 class="text-center">Profil utilisateur</h2>';
+            ?>
             <!--    user data-->
             <header class="row row-cols-1 row-cols-sm-2 g-1 mb-4">
                 <div>
@@ -41,7 +44,10 @@
                 <div class="row col-7">
                     <div class="d-flex justify-content-around">
                         <h3 class="text-center py-1">Mes articles :</h3>
-                        <a href="/index.php?c=articles&p=art_form">Créer un article</a>
+                        <?php
+                        if($_SESSION['user']['id'] === $user->getId())
+                        echo '<a href="/index.php?c=articles&p=art_form">Créer un article</a>'
+                        ?>
                     </div>
                     <?php
                     foreach ($art as $key => $item){
@@ -76,7 +82,7 @@
                         <div class="modal-body gap-4 d-flex flex-wrap justify-content-between">
                             <?php
                             foreach ($avatar as $item){
-                                echo '<a href="/index.php?c=avatar&p=change&o=' . $item->getId() . '">
+                                echo '<a href="/index.php?c=avatar&p=change&o=' . $item->getId() . '_' .  $user->getId() . '">
                                     <img class="logo" src="/img/avatar/' . $item->getAvatar() . '" alt="avatar">
                                 </a>';
                             }
@@ -90,7 +96,7 @@
             </div>
             <div class="d-flex flex-column align-items-center pt-5 gap-3">
                 <?php
-                if($user->getRole()->getRoleName() === 'admin'){
+                if($_SESSION['user']['role'] === 'admin'){
                     echo '
                 <div>
                     <a class="btn btn-sm btn-danger" href="/index.php?c=profile&p=admin">Espace administrateur</a>
@@ -98,6 +104,8 @@
                 }
                 ?>
                 <!--    Button trigger modal -->
+                <?php
+                if($_SESSION['user']['id'] === $user->getId()){?>
                 <div>
                     <a type="button" class="btn btn-outline-danger btn-light btn-sm text-center" data-bs-toggle="modal"
                        data-bs-target="#accountModal">Supprimer mon compte</a>
@@ -126,6 +134,9 @@
                         </div>
                     </div>
                 </div>
+                <?php
+                }
+                ?>
             </div>
         </div>
     </section>
