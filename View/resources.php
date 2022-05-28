@@ -12,7 +12,7 @@
                     <?php
                     foreach ($item as $value){?>
                     <div class="mb-2">
-                        <a class="btn btn-primary" href="#"><?=$value['title']?></a>
+                        <a class="btn btn-primary" href="<?=$value['url']?>"><?=$value['title']?></a>
                         <div><!--    description   -->
                             <p><?=$value['description']?></p>
                         </div>

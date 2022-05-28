@@ -12,7 +12,8 @@
                 </div>
                 <div>
                     <div class="form-floating mb-3">
-                        <input type="password" name="passwrd" class="form-control" id="floatingPassword"
+                        <input type="password" name="passwrd" minlength="8" maxlength="20" class="form-control"
+                               id="floatingPassword"
                                placeholder="Password" required>
                         <label for="floatingPassword">Mot de passe</label>
                     </div>

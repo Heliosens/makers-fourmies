@@ -24,7 +24,7 @@ class Config
             case 'user' :
                 return 'Utilisateur';
             default :
-                return 'Unknown';
+                return false;
         }
     }
 

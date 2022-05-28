@@ -17,10 +17,7 @@ class Router
      */
     public static function cleanOption ($param){
         $id = intval(trim(strip_tags($param)));
-        if(filter_var($id, FILTER_VALIDATE_INT)) {
-            return $id;
-        }
-        return self::cleanParam($param);
+        return filter_var($id, FILTER_VALIDATE_INT) ? $id : self::cleanParam($param);
     }
 
     /**
@@ -38,16 +35,13 @@ class Router
      * @param $p
      * @param $o
      */
-    public function toCtrl ($c, $p, $o){
+    public function toCtrl ($c, $p, $o, $t){
         $ctrl = $this->getCtrlName($c);
         $p = $this->paramCase($p);
         if(class_exists($ctrl)){
             $controller = new $ctrl;
             if(method_exists($controller, $p)){
-                if(null !== $o){
-                    $controller->$p($o);
-                }
-                $controller->$p();
+                $controller->$p($o, $t);
             }
             else{
                 $this->error();

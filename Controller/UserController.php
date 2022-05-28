@@ -49,7 +49,7 @@ class UserController extends Controller
             }
 
             // check password attempt character
-            if(!preg_match('/^(?=.*[!+@#$%^&*-\])(?=.*[0-9])(?=.*[A-Z]).{8,20}$/', $password)) {
+            if(!preg_match('/^(?=.*[a-z])(?=.*[!+@#$%^&*-\])(?=.*[0-9])(?=.*[A-Z]).{8,20}$/', $password)) {
                 // Le password ne correspond pas au critère.
                 $error = "Le password ne correspond pas aux critères";
             }
@@ -89,21 +89,19 @@ class UserController extends Controller
                     // send validation mail
                     $val = new ValidationController();
                     $val->sendValidationMail($user);
-                    $_SESSION['success'] = 'Vous allez recevoir un mail de validation, merci de cliquer sur le lien de
-                 confirmation contenu dans ce message pour finaliser votre inscription';
+                    $_SESSION['success'] = 'Vous allez recevoir un mail de validation, merci de cliquer 
+                    sur le lien de confirmation contenu dans ce message pour finaliser votre inscription';
                     $this->render('home');
                 }
                 else{
                     $_SESSION['error'] = 'Erreur lors de l\'inscription';
+                    $this->render('home');
                 }
-                $this->render('home');
             }
             else {
                 $_SESSION['error'] = $error;
                 $this->render('register');
             }
-
-            $this->render('home');
         }
         else {
             $_SESSION['error'] = 'Veuillez remplir tous les champs';

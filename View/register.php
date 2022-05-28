@@ -24,13 +24,15 @@
                         </span>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="password" name="passwrd" class="form-control" id="inputPassword" required>
+                        <input type="password" name="passwrd" minlength="8" maxlength="20" class="form-control"
+                               id="inputPassword" required>
                         <label for="inputPassword">Mot de passe</label>
                     </div>
                 </div>
                 <div>
                     <div class="form-floating mb-3">
-                        <input type="password" name="passwrdBis" class="form-control" id="inputPassword2" required>
+                        <input type="password" name="passwrdBis" minlength="8" maxlength="20" class="form-control"
+                               id="inputPassword2" required>
                         <label for="inputPassword2">vérification du mot de passe</label>
                     </div>
                 </div>

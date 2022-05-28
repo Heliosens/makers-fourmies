@@ -16,7 +16,7 @@ class ValidationController extends Controller
         $txt = "
         Bonjour, Merci de confirmer la création de votre compte en cliquant sur le lien :
         <a href=\"http://makers-fourmies.heliosens.fr/index.php?c=validation&p=check_account&o=" .
-        $id . "_" . $token . "\">Je confirme mon compte</a>";
+        $id . "&t=" . $token . "\">Je confirme mon compte</a>";
         $headers = [
             'reply-To' => 'makers.fourmies@gmail.com',
             'X-Mailer' => 'PHP/' . phpversion(),
@@ -30,17 +30,16 @@ class ValidationController extends Controller
     /**
      * @param $option
      */
-    public function checkAccount($option){
+    public function checkAccount($option, $token){
         // recup data of url
-        $value = $this->getOption($option);
-        $user = UserManager::getUserById($value[0]);
+        $user = UserManager::getUserById($option);
         // is the token already deleted
         if(self::checkToken($user)){
             $_SESSION['error'] = "Il semble que votre compte a déjà été validé";
         }
-        elseif ($user->getToken() === $value[1]) {  // is the id match with link token & user added
+        elseif ($user->getToken() === $token) {  // is the id match with link token & user added
             // delete user token
-            if(UserManager::updateToken($value[0])){
+            if(UserManager::updateToken($option)){
                 $_SESSION['success'] = "Votre compte a été créé avec succès, vous étes connecté";
                 $_SESSION['user'] = [
                     'id' => $user->getId(),

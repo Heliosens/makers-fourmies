@@ -31,8 +31,8 @@ if(registerBtn){
             errorFrame("Les mots de passe ne correspondent pas",e);
         }
 
-        // Checking password format (length, 1 upper, one lower, one digit, one special char).
-        if(!inputPassword.value.match(/^(?=.*[!+@#$%^&*-\])(?=.*[0-9])(?=.*[A-Z]).{8,20}$/)) {
+        // Checking password (one lower, 1 upper, one special char, one digit, 8 to 9 length).
+        if(!inputPassword.value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[!+@#$%^&*-\])(?=.*[0-9]).{8,20}$/)) {
             errorFrame("Le format du mot de passe n'est pas bon",e);
         }
 
@@ -52,8 +52,8 @@ if(connectionBtn){
             errorFrame("Merci de remplir TOUS les champs",e);
         }
 
-        // Checking password format (length, 1 upper, one lower, one digit, one special char).
-        if(!floatingPassword.value.match(/^(?=.*[!+@#$%^&*-\])(?=.*[0-9])(?=.*[A-Z]).{8,20}$/)) {
+        // Checking password (one lower, 1 upper, one special char, one digit, 8 to 9 length).
+        if(!floatingPassword.value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[!+@#$%^&*-\])(?=.*[0-9]).{8,20}$/)) {
             errorFrame("Le format du mot de passe n'est pas bon",e);
         }
 
