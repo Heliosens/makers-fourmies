@@ -26,7 +26,7 @@
                     <div class="bg-light p-3 border w-75 mx-auto">
                         <div class="d-flex py-1">
                             <h4 class="m-0">Pseudo : </h4>
-                            <span class="px-2"><?=$user->getPseudo()?></span>
+                            <span class="px-2"><?=html_entity_decode($user->getPseudo())?></span>
                         </div>
                         <div class="d-flex py-1">
                             <h4 class="m-0">Email : </h4>
@@ -54,15 +54,18 @@
                             echo '
                         <div class="row row-cols-2 bg-light mx-3 py-1">
                             <div class="row col-10">
-                                <a class="text-decoration-none text-dark col-7" href="/index?c=articles&p=one_article&o='
-                                . $key . '">' . $item['title'] . '</a>
+                                <a class="text-decoration-none text-dark col-7" 
+                                    href="/index?c=articles&p=one_article&o=' . $key . '">' . $item['title'] . '
+                                </a>
                                 <span class="col-5">' . Config::stateName($item['state']) . '</span>
-                                </div>
+                            </div>
                             <div class="col-2">
-                                <a  class="text-decoration-none text-dark" href="/index.php?c=articles&p=update_article&o=' . $key . '">
+                                <a  class="text-decoration-none text-dark" 
+                                    href="/index.php?c=articles&p=update_article&o=' . $key . '">
                                     <i class="fa-solid fa-pencil p-1" title="modifier"></i>
                                 </a>
-                                <a  class="text-decoration-none text-dark" href="/index.php?c=articles&p=del_article&o=' . $key . '">
+                                <a  class="text-decoration-none text-dark" 
+                                    href="/index.php?c=articles&p=del_article&o=' . $key . '">
                                     <i class="fa-solid fa-trash-can p-1" title="supprimer l\'article"></i>
                                 </a>
                             </div>
@@ -82,7 +85,8 @@
                         <div class="modal-body gap-4 d-flex flex-wrap justify-content-between">
                             <?php
                             foreach ($avatar as $item){
-                                echo '<a href="/index.php?c=avatar&p=change&o=' . $item->getId() . '_' .  $user->getId() . '">
+                                echo '<a href="/index.php?c=avatar&p=change&o=' . $item->getId() . '_' .
+                                    $user->getId() . '">
                                     <img class="logo" src="/img/avatar/' . $item->getAvatar() . '" alt="avatar">
                                 </a>';
                             }

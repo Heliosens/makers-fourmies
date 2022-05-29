@@ -6,13 +6,13 @@
             <form action="/index.php?c=user&p=new_user" method="post">
                 <div>
                     <div class="form-floating mb-3">
-                        <input type="text" name="pseudo" class="form-control" id="inputPseudo" required>
+                        <input type="text" name="pseudo" maxlength="20" class="form-control" id="inputPseudo" required>
                         <label for="inputPseudo">Pseudo</label>
                     </div>
                 </div>
                 <div>
                     <div class="form-floating mb-3">
-                        <input type="email" name="email" class="form-control" id="inputEmail" required>
+                        <input type="email" name="email" maxlength="50" class="form-control" id="inputEmail" required>
                         <label for="inputEmail">Email</label>
                     </div>
                 </div>

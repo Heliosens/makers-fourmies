@@ -5,7 +5,7 @@
             <form class="align-middle" action="/index.php?c=user&p=connection" method="post">
                 <div>
                     <div class="form-floating mb-3">
-                        <input type="email" name="email" class="form-control" id="floatingInput"
+                        <input type="email" name="email" maxlength="50" class="form-control" id="floatingInput"
                                placeholder="name@example.com" required>
                         <label for="floatingInput">Email</label>
                     </div>
